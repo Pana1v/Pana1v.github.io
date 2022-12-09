@@ -32,6 +32,10 @@ nav {
   text-decoration: none;
   
 }
+nav
+{
+  height: 70px;
+}
 .navigation
 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -212,8 +216,10 @@ p{
 {
   border: 2px solid pink;
   border-radius: 3px;
-  width: auto;
-  height: auto;
+  width: 80px;
+  height: 80px;
+  margin: 40px;
+  justify-self: center;
 }
 h2{
   font-size: 60px;
@@ -226,6 +232,8 @@ hr{
 }
 .project-link
 {
+  height: auto;
+  width: auto;
   text-decoration:none;
   color: yellow;
 }
