@@ -47,7 +47,10 @@ nav {
   text-decoration: none;
   
 }
-
+nav
+{
+  height: 50px;
+}
 .navigation
 {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
