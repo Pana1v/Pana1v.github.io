@@ -75,7 +75,7 @@ nav {
   display: flex;
   justify-content: space-between;
   font-family: 'Playfair Display', serif;}
-ul {
+ ul {
   display: flex;
   list-style-type: none;
   width: 500px;
@@ -87,6 +87,10 @@ ul:hover{
 li {
   text-decoration: none;
   font-size: 30px;
+  text-underline-offset: 16px;
+  color: #00ff15;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  
 }
 .card{
   background: #00ff15;
@@ -357,10 +361,35 @@ hr{
   }
   50% {
     background-color: #49e819;
-    box-shadow: 0 0 20px #49e819;
+    box-shadow: 0 0 15px #49e819;
   }
   100% {
     background-color: #2ba805;
     box-shadow: 0 0 5px #2ba805;
   }
+}
+.por-card{
+  width: auto;
+  height: auto;
+  border: #FF5555;
+  border-radius: 6px;
+  
+}
+html{
+  scroll-behavior: smooth;
+}
+.por
+{
+  content: \2065;
+  font-size: large;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  border-radius: 6px;
+  border: #000000 4px solid;
+  animation: glowing 3300ms infinite;
+  height: auto;
+  width: auto;
+  margin: 20px;
+  padding:5px;
+  justify-content: center;
+
 }
