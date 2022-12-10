@@ -1,6 +1,6 @@
 section {
   height: 100vh;
-  background-color: rgb(42, 37, 49);
+  background-color: rgb(18, 18, 18);
   border: solid rgb(197, 197, 197) 1px;
 }
 .hero {
@@ -47,10 +47,7 @@ nav {
   text-decoration: none;
   
 }
-nav
-{
-  height: 82px;
-}
+
 .navigation
 {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -63,6 +60,7 @@ nav
 .logo{
   margin: 10px;
   height: fit-content;
+  animation: glowing 1300ms infinite;
 }
 .hero-subtext
 {
@@ -128,6 +126,7 @@ p{
   justify-content: space-between;
   align-items: center;
 }
+
 .social{
   align-items :right;
   fill:#ffffff;
@@ -162,21 +161,25 @@ p{
   justify-content: right;
   
 }
+
 .social{
-  margin:10px;
+  margin:30px;
+  
+}
+img{
+  animation: glowing 1300ms infinite;
+  border-radius: 6px;
 }
 .button:hover{
   background-color: rgb(239, 6, 6);
 
 }
-.holo
+
+
+img:hover
 {
-  display: flex;
-  align-items: center;
-  height:0.02rem;
-  width: 0.04em;
-  justify-content: center;
-  align-items: center;
+  animation:forwards;
+  box-shadow: 0 10px 26px 0 rgba(255, 3, 3, 0.969);
 }
 .button.active
 {
@@ -193,12 +196,19 @@ p:hover{
   height:80px;
   margin:30px;
 }
+.logo:hover
+{fill:white;
+  height:100px;
+  margin:50px;
+  box-shadow: 0 10px 26px 0 rgba(62, 255, 3, 0.969);
+}
 p{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .hero-text {
   background-color: var(--background);
   display: block;
+  font-size: medium;
   justify-content: center;
   width: 650px;
   min-height: 90px;
@@ -215,7 +225,12 @@ p{
   left: 0;
   cursor: pointer;
 }
-
+.button
+{
+  font-size: large;
+  height: auto;
+  
+}
 .hero-text:hover {
   top: -40px;
   left: 40px;
@@ -224,15 +239,6 @@ p{
       0 0 0 -3px var(--background), 0 0 0 0  var(--orange),
       0 0 0 -3px  var(--background), 0 0 0 0  var(--red);
 }
-
-
-
-
-
-
-
-
-
 :root {
   --primary: #555BFF;
   --secondary: #22D2A0;
@@ -283,6 +289,33 @@ body {
   
   
 }
+.project-cards {
+  display: flex;
+  flex-wrap: wrap;
+   
+}
+.project-card {
+  width: auto;
+  margin: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: auto;
+  
+}
+.project-card:hover {
+  box-shadow: 0 10px 26px 0 rgba(255, 3, 3, 0.969);
+  animation: forwards;
+}
+.project-card img {
+  width: 100%;
+}
+.project-card h3 {
+  padding: 10px;
+  text-align: center;
+}
+.project-card p {
+  padding: 0 10px 10px 10px;
+  text-align: justify;
+}
 .container
 {
   height:280px;
@@ -292,38 +325,14 @@ body {
 .headshot{
   align-items: center;
 }
-.project
+
+.projects
 {
   display: flex;
-  flex-direction: column;
- align-content: center;
 }
 
-.project-card
-{
-  display: flex;
-  flex-direction: column;
-  margin-left:5%;
-  margin-bottom: 2%;
-  display: flex;
-  width: 85%;
-  height: 150px;
-  border:2px solid rgb(255, 255, 255);
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 60px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 60px;
- 
-}
-.project-image
-{
-  border: 2px solid pink;
-  border-radius: 3px;
-  width: 80px;
-  height: 80px;
-  margin: 40px;
-  justify-self: center;
-}
+
+
 h2{
   font-size: 60px;
   margin-left : 60px;
@@ -339,4 +348,19 @@ hr{
   width: auto;
   text-decoration:none;
   color: yellow;
+}
+@keyframes glowing {
+
+  0% {
+    background-color: #2ba805;
+    box-shadow: 0 0 5px #2ba805;
+  }
+  50% {
+    background-color: #49e819;
+    box-shadow: 0 0 20px #49e819;
+  }
+  100% {
+    background-color: #2ba805;
+    box-shadow: 0 0 5px #2ba805;
+  }
 }
