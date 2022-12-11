@@ -16,6 +16,10 @@ section {
   
   
 }
+a{
+  text-decoration: none;
+  color:#00ff15
+}
 .hero-area
 {
   display: flex;
@@ -29,6 +33,19 @@ section {
   margin: 0 auto;
   justify-content: center;
   
+}
+.contact-cards
+{
+  margin:80px;
+  display: flex;
+  margin:30px;
+  border:#00ff15 5px solid 5%;
+  border-radius: 6px;
+  color:#00ff15;
+  justify-content: center;
+}
+.contact-cards:hover{
+  scale: 1.1;
 }
 nav {
   position: sticky;
@@ -127,8 +144,9 @@ p{
 .hero-area{
   display:flex;
   height:100%;
-  justify-content: space-between;
+  
   align-items: center;
+
 }
 
 .social{
@@ -213,7 +231,7 @@ p{
   background-color: var(--background);
   display: block;
   font-size: medium;
-  justify-content: center;
+  
   width: 650px;
   min-height: 90px;
   border: 3px solid var(--primary);
@@ -224,9 +242,7 @@ p{
         30px -30px 0 -3px var(--background), 30px -30px var(--orange), 
         40px -40px 0 -3px var(--background), 40px -40px var(--red); 
   transition: box-shadow 1s, top 1s, left 1s;
-  position: relative;
-  top: 0;
-  left: 0;
+ 
   cursor: pointer;
 }
 .button
@@ -282,14 +298,15 @@ body {
 .sub-section{
   display:flex;
   justify-content: space-around;
-  padding :30px;
+  padding :5px;
 }
 .info
 {
   color:bisque;
-  margin: 10px;
-  padding: 40px;
+  margin: 0px;
+  padding: 0px;
   justify-items: center;
+  
   
   
 }
@@ -301,8 +318,10 @@ body {
 .project-card {
   width: auto;
   margin: auto;
+  height: 20%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: auto;
+  color: #009ece;
   
 }
 .project-card:hover {
@@ -310,7 +329,7 @@ body {
   animation: forwards;
 }
 .project-card img {
-  width: 100%;
+  width: 90%;
 }
 .project-card h3 {
   padding: 10px;
@@ -339,8 +358,9 @@ body {
 
 h2{
   font-size: 60px;
-  margin-left : 60px;
+  margin : 20px;
   justify-content:center;
+  align-items: center;
 }
 hr{
   margin-left: 20px;
