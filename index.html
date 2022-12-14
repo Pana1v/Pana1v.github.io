@@ -1,458 +1,174 @@
-section {
-  height: 100vh;
-  background-color: rgb(18, 18, 18);
-  border: solid rgb(197, 197, 197) 1px;
-}
-.hero {
- 
-  align-items: center;
-  width: auto;
-  height: auto;
-  justify-content: center;
-  margin: auto;
-  background-color: #141414;
-  height: 100vh;
-  color: #00ff15;
-  font-size: 40px;
-  
-  
-}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="src/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;500&family=Playfair+Display&family=Poppins:wght@200&display=swap" rel="stylesheet">    <title>Panav's Portfolio</title>
+<link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Archivo:700&display=swap" rel="stylesheet">
 
-a{
-  text-decoration: none;
-  color:#00ff15;
-}
-.hero-area
-{
-  display: flex;
-  align-items: center;
-  align-self: center;
-  
-  
- height: 20vh;
- width: 40vh;
-  margin: 0 auto;
-  justify-content: center;
-  
-}
+  </head>
+  <body>
+      
+    <nav class="main-nav">
+        
+      <img class = "logo" src="src/img/icons8-compass-50.png"/> 
+      <ul class="navigation" >
+        <li><a href="#about" class="nav-link">About Me</a></li>
+        <li><a href="#positions" class="nav-link">Positions</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#contacts" class="nav-link">Contacts</a></li>
+      </ul>
+    </nav>
+    <section class="hero" id="about">
+      <script src="./index.js"></script>
+<div id="wrapper">
+  <div class="innerDiv">
+      <div class="hero-area"><div class = "hero-text">
+        <h1 class="animate-charcter">Panav Arpit Raaj</h1>
+        <p class="hero-subtext">Competitive Programmer / Budding Developer. My field of interest also lies in Machine and Deep learning, Where I have done a variety of application based projects</p>
+        <div class ="button" ><a href="https://wa.me/+919606158818">Text me</a></div>
+        <div class ="button" ><a href="https://github.com/Pana1v/BluDash">Try out my App</a></div>
+        <div class="socials">
+          
+            <div class="card-content">
+              <div class="card-icon">
+        <a href="https://www.linkedin.com/in/panavraaj/"  class="social"><img src="/src/img/icons8-linkedin-60.png" fill="#ffffff" width="60" height="60" alt-text="Linkedin"></a>
+        </div>
+      </div>
 
-.animate-charcter
-{
-   text-transform: uppercase;
-  background-image: linear-gradient(
-    -225deg,
-    #00ff1a 0%,
-    #7b00ff 29%,
-    #ff0055 67%,
-    #ffffff 100%
-  );
-  background-size: auto auto;
-  background-clip: border-box;
-  background-size: 200% auto;
-  color: #fff;
-  background-clip: text;
-  fill: transparent;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: textclip 2s linear infinite;
-  display: inline-block;
-      font-size: auto;
-}
+          <div class="card-content">
+            <div class="card-icon">
+        <a href="https://www.facebook.com/panavarpit.raaj/" class="social"><img src="src/img/icons8-facebook-50.png" fill="#ffffff" width="60" height="60" alt-text="Facebook"></a>
+      </div>
+    </div>
+    
+        <div class="card-content">
+          <div class="card-icon">
+        <a href="https://github.com/Pana1v" class="social"><img src="src/img/icons8-github-48.png" fill="#ffffff" width="60" height="60" alt-text="GitHub"></a>
+      </div> 
+      </div>
+      <div class="card-content">
+        <div class="card-icon">
+          <style>img{width:auto;}</style>
+      <a href="https://codeforces.com/profile/kampf0wagen" class="social"><img src="src/img/codeforces.png" fill="#ffffff" width="60" height="60" alt-text="GitHub"></a>
+    </div> 
+    </div>
+    <div class="card-content">
+      <div class="card-icon">
+    <a href="https://www.codechef.com/users/pana1v" class="social"><img src="src/img/icons8-codechef-50.png" fill="#ffffff" width="60" height="60" alt-text="GitHub"></a>
+  </div> 
+  </div>
 
-@keyframes textclip {
-  to {
-    background-position: 200% center;
-  }
-}
-.contact-cards
-{
-  margin:80px;
-  display: flex;
-  margin:30px;
-  border:#00ff15 5px solid 5%;
-  border-radius: 6px;
-  color:#00ff15;
-  justify-content: center;
-}
-.contact-cards:hover{
-  scale: 1.1;
-}
-nav {
-  position: sticky;
-  top: 0;
-  height: 81px;
- font-variant: normal;
-  left: 0;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 0.5rem;
-  background-color: #000000;
-  box-shadow: 0 3px 5px rgba(210, 3, 3, 0.1);
-  border-radius: 12px;
-  text-decoration: none;
-  
-}
-
-.navigation
-{
-  display: flex;
-  margin:30px;  
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color:rgb(118, 34, 0);
-  text-decoration: none;
-  text-underline-offset: 10px;
-  text-decoration:solid;
-
-}
-.logo{
-  margin: 10px;
-  height: fit-content;
-  animation: glowing 1300ms infinite;
-}
-.hero-text
-{
-  font-size: 40px;
-  box-shadow: 3px #ffffff;
-}
-footer {
-  height: 50vh;
-  background-color: rgb(120, 173, 221);
-}
-nav {
-  display: flex;
-  justify-content: space-between;
-  font-family: 'Playfair Display', serif;}
- ul {
- 
-  list-style-type: none;
-  width: 500px;
-  justify-content: space-around;
-}
-ul:hover{
-  color:greenyellow;
-}
-li {
-  text-decoration: none;
-  font-size: 30px;
-  text-underline-offset: 16px;
-  color: #00ff15;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  
-}
-.card{
-  background: #00ff15;
-}
-li:hover{
-  color:greenyellow;
-}
-body{
-
-  justify-content: center;
-  align-items: center;
-
-}
-h1{
-  font-size: 80px;
-  margin:0px;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
-  font-weight: 300;
-}
-.hero-text{
-  margin-left: 90px;
-  align-items: center;
-  font-family: 'Bebas Neue', cursive;
-  margin: 0 auto;
-}
-p{
-  margin: 0%;
-  font-family: 'Poppins', sans-serif;
-}
-.headshot
-{
-  display: flex;
-}
-.hero-area{
-  display:flex;
-  height:100%;
-  
-  align-items: center;
-
-}
-
-.social{
-  align-items :right;
-  fill:#ffffff;
-  
-}
-.project-img
-{
-  width: 120px;
-  height: 300px;
-  border-radius: 7px;
-  margin: 15px;
- 
-}
-.button{
-  
-  width :150px;
-  font-family: 'Times New Roman', Times, serif;
-  height: 70px;
-  background-color: rgb(53, 53, 53);
-  border-radius: 5px;
-  text-align: center;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-weight: 300;
-  padding-top: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-
-
-
-}
-.sub-section{
-  display: flex;
-  justify-content:space-around;
-  fill: white;
-}
-.socials
-{
-  display: flex;
- align-self: right;
-  flex-direction: vertical;
-  justify-content: right;
-  
-}
-
-.social{
-  margin:30px;
-  
-}
-img{
-  animation: glowing 1300ms infinite;
-  border-radius: 6px;
-}
-.button:hover{
-  background-color: rgb(239, 6, 6);
-
-}
-
-
-img:hover
-{
-  animation:forwards;
-  box-shadow: 0 10px 26px 0 rgba(255, 3, 3, 0.969);
-}
-.button.active
-{
-  background-color: grey;
-}
-h1:hover{
-  color: red;
-}
-p:hover{
-  color: rgb(219, 135, 135);
-}
-.logo
-{fill:white;
-  height:80px;
-  margin:30px;
-}
-.logo:hover
-{fill:white;
-  height:100px;
-  margin:50px;
-  box-shadow: 0 10px 26px 0 rgba(62, 255, 3, 0.969);
-}
-p{
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-.hero-text {
-  background-color: var(--background);
-  display: block;
-  font-size: medium;
-  
-  width: 650px;
-  min-height: 90px;
-  border: 3px solid var(--primary);
-  padding: 15px;
-  margin: calc(50vh - 30px) auto 0 auto;
-  box-shadow: 10px -10px 0 -3px var(--background), 10px -10px var(--green),
-        20px -20px 0 -3px var(--background), 20px -20px var(--yellow), 
-        30px -30px 0 -3px var(--background), 30px -30px var(--orange), 
-        40px -40px 0 -3px var(--background), 40px -40px var(--red); 
-  transition: box-shadow 1s, top 1s, left 1s;
- 
-  cursor: pointer;
-}
-.button
-{
-  font-size: large;
-  height: auto;
-  
-}
-.hero-text:hover {
-  top: -40px;
-  left: 40px;
-  box-shadow: 0 0 0 -3px var(--background), 0 0 0 0 var(--green),
-      0 0 0 -3px var(--background), 0 0 0 0  var(--yellow),
-      0 0 0 -3px var(--background), 0 0 0 0  var(--orange),
-      0 0 0 -3px  var(--background), 0 0 0 0  var(--red);
-}
-:root {
-  --primary: #555BFF;
-  --secondary: #22D2A0;
-  --background: rgb(21, 21, 21);
-  --green: #1FC11B;
-  --yellow: #FFD913;
-  --orange: #FF9C55;
-  --red: #FF5555;
-} 
-
-*{
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-image: radial-gradient(var(--secondary) 30%, var(--background) 30%);
-  background-size: 2px 3px;
-  font-family: "Archivo", sans-serif;
-  color: var(--primary);
-}
-
-.hero-text p {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 10px;
-}
-
-.hero-text h2 {
-  font-size: 14px;
-  font-family: "Archivo Black", "Archivo", sans-serif;
-  font-weight: normal;
-}
-
-.sub-section{
-  display:flex;
-  justify-content: space-around;
-  padding :5px;
-}
-.info
-{
-  color:bisque;
-  margin: 0px;
-  padding: 0px;
-  justify-items: center;
-  
-  
-  
-}
-.project-cards {
-  display: flex;
-  flex-wrap: wrap;
+    </div>
+    </div>
+    </div>
    
-}
+    </section>
+      
+    <h2 class="animate-charcter">Positions</h2>
+    <section class="sub-section"id="positions">
+      
+      <div class="info" >
+      
+        
+        <div class="por">Google DSC IoT Lead</div>
+        <div class="por">Class Representative EEE Batch of 2025</div>
+        <div class="por">Robocon Team Member</div>    
+        <div class="por">Project Coordinator Tinkering Lab </div>     
+        <div class="por">Forthright - Content Correspondent</div>
+        <div class="por">Forthright - ShowBiz Divison</div>
+        <div class="por">TEDx 2022 Editorial Committee</div>
+        
+        <div class="por">Core Team Aaria Musical Club</div>
+        <div class="por">GeeksForGeeks Campus Ambassador</div>
+        </div>
+        <div class="project-cards">
+          <div class="project-card">
+           
+            <h3>Programming Languages</h3>
+           <ul>
+            <li>C++</li>
+            <li>Python</li>
+            <li>Arduino IDE</li>
+            <li>MATLAB</li>
+            <li>Java</li>
+            <li>HTML/CSS</li>
 
-.project-card {
-  width: 30%;
-  margin: auto;
-  height: auto;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: auto;
-  color: #009ece;
+           </ul>
+          </div>
+          <div class="project-card">
+           
+            <h3>Machine Learning Certifications</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+          <div class="project-card">
+            
+            <h3>Data Science Certifications</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+          <div class="project-card">
+            
+            <h3>Web Development Certifications</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+          <div class="project-card">
+           
+            <h3>MIscellaneous Certifications</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </div>
+
+      <div class="headshot">
+        <img class="container" src="/src/img/WTurtle.jpg" alt="Panav"></img>
+      </div>
+      </section>
+      <div><h2 class="animate-charcter">Projects</h2></div>
+    <section class="projects" id="projects">
+    
+      <div class="project-cards">
+        <div class="project-card">
+          <img src="/src/img/bludash.jpg" alt="BluDash" class="project-img">
+          <h3>The BluDash app</h3>
+          <p>This app lets you control your wireless robots, you can configure custom and voice commands as well. It is more spohisticated and provides, exponentially more control than it's competition
+
+          </p>
+        </div>
+        <div class="project-card">
+          <img src="project2.jpg" alt="Project 2">
+          <h3>Project 2</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div class="project-card">
+          <img src="project2.jpg" alt="Project 2">
+          <h3>Project 2</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div class="project-card">
+          <img src="project2.jpg" alt="Project 2">
+          <h3>Project 2</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div class="project-card">
+          <img src="project3.jpg" alt="Project 3">
+          <h3>Project 3</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </div>
+    </section>
+    <h2 class="animate-charcter">Contacts</h2>
+    <section id="contacts" class="contacts">
+      <div class="contact-cards"id="contact-cards">Email : praajarpit@gmail.com</div>
+      <div class="contact-cards"id="contact-cards">Phone : +91 960 61 588 18</div>
+      <div class="contact-cards"id="contact-cards">IITP Email : panav_2101ee48@iitp.ac.in</div>
+      <div class="contact-cards"id="contact-cards"><a href="https://www.linkedin.com/in/panavraaj/">Linkedin : Panav Arpit Raaj </a></div>
+    </section>
+    <section id="photos" class="photos"></section>
+    <script src="/src/app.js"></script>
+  </body>
+  </html>
   
-}
-.project-card:hover {
-  box-shadow: 0 10px 26px 0 rgba(255, 3, 3, 0.969);
-  animation: forwards;
-}
-.project-card img {
-  width: 90%;
-}
-.project-card h3 {
-  padding: 10px;
-  text-align: center;
-}
-.project-card p {
-  padding: 0 10px 10px 10px;
-  text-align: justify;
-}
-.container
-{
-  height:280px;
-  width:280px;
- border-radius:50px;
-}
-.headshot{
-  align-items: center;
-}
-
-.projects
-{
-  display: flex;
-}
-
-
-
-h2{
-  font-size: 60px;
-  margin : 20px;
-  justify-content:center;
-  align-items: center;
-}
-hr{
-  margin-left: 20px;
-  margin-right: 20px;
-}
-.project-link
-{
-  height: auto;
-  width: auto;
-  text-decoration:none;
-  color: yellow;
-}
-@keyframes glowing {
-
-  0% {
-    background-color: #2ba805;
-    box-shadow: 0 0 5px #2ba805;
-  }
-  50% {
-    background-color: #49e819;
-    box-shadow: 0 0 15px #49e819;
-  }
-  100% {
-    background-color: #2ba805;
-    box-shadow: 0 0 5px #2ba805;
-  }
-}
-.por-card{
-  width: auto;
-  height: auto;
-  border: #FF5555;
-  border-radius: 6px;
-  
-}
-html{
-  scroll-behavior: smooth;
-}
-.por
-{
-  content: \2065;
-  font-size: large;
-  color: #000000;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  border-radius: 6px;
-  border: #000000 4px solid;
-  animation: glowing 3300ms infinite;
-  height: auto;
-  width: auto;
-  margin: 20px;
-  padding:5px;
-  justify-content: center;
-
-}
