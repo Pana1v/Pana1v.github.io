@@ -41,10 +41,10 @@ a{
    text-transform: uppercase;
   background-image: linear-gradient(
     -225deg,
-    #00ff1a 0%,
-    #7b00ff 29%,
+    #14ff03b3 0%,
+    #00ffffce 29%,
     #ff0055 67%,
-    #ffffff 100%
+    #ffff00b2 100%
   );
   background-size: auto auto;
   background-clip: border-box;
@@ -105,6 +105,13 @@ nav {
   text-underline-offset: 10px;
   text-decoration:solid;
 
+}
+.hero-text
+{
+  height: auto;
+  width: auto;
+  align-items: center;
+  justify-content: center;
 }
 .logo{
   margin: 10px;
@@ -174,7 +181,7 @@ p{
   display: flex;
 }
 .hero-area{
-  display:flex;
+ 
   height:100%;
   
   align-items: center;
@@ -197,15 +204,15 @@ p{
 .button{
   
   width :150px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   height: 70px;
-  background-color: rgb(53, 53, 53);
+  background-color: rgb(0, 0, 0);
   border-radius: 5px;
   text-align: center;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: 300;
   padding-top: 5px;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-bottom: 10px;
 
 
@@ -234,15 +241,103 @@ img{
   border-radius: 6px;
 }
 .button:hover{
-  background-color: rgb(239, 6, 6);
+  background-color: rgb(188, 15, 3);
 
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+body {
+  font-family: Raleway;
+  background-color: #202125;
+}
+
+.heading {
+    text-align: center;
+    font-size: 2.0em;
+    letter-spacing: 1px;
+    padding: 40px;
+    color: white;
+}
+
+.gallery-image {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+}
+
+.gallery-image img {
+  height: 250px;
+  width: 350px;
+  transform: scale(1.05);
+  transition: transform 0.4s ease;
+  
+}
+
+.img-box {
+  box-sizing: content-box;
+  margin: 10px;
+  height: 250px;
+  width: 350px;
+  overflow: hidden;
+  display: inline-block;
+  color: white;
+  position: relative;
+  background-color: rgb(0, 255, 38);
+}
+
+.caption {
+  position: absolute;
+  bottom: 5px;
+  left: 20px;
+  opacity: 0.0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.transparent-box {
+  height: 250px;
+  width: 350px;
+  background-color:rgba(0, 0, 0, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: background-color 0.3s ease;
+}
+
+.img-box:hover img { 
+  transform: scale(1.1);
+}
+
+.img-box:hover .transparent-box {
+  background-color:rgba(0, 0, 0, 0.5);
+}
+
+.img-box:hover .caption {
+  transform: translateY(-20px);
+  opacity: 1.0;
+}
+
+.img-box:hover {
+  cursor: pointer;
+}
+
+.caption > p:nth-child(2) {
+  font-size: 0.8em;
+}
+
+.opacity-low {
+  opacity: 0.5;
+}
 img:hover
 {
   animation:forwards;
-  box-shadow: 0 10px 26px 0 rgba(255, 3, 3, 0.969);
+  box-shadow: 0 10px 26px 0 rgba(255, 0, 0, 0.969);
 }
 .button.active
 {
@@ -253,6 +348,70 @@ h1:hover{
 }
 p:hover{
   color: rgb(219, 135, 135);
+}
+
+.background {
+  /* image url  */
+  background-image: url(/src/img/11zon_resized.jpg);
+
+  /* make the image full height */
+  height: 100%;
+
+  /* center and scale the image */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* use the following only if if you are able to scroll past the image to see a white area (this is the <body> peeking out) above or below the image */
+  overflow: hidden;
+}
+.background2 {
+  /* image url  */
+  display: flex;
+  background-image: url(/src/img/por.jpg);
+
+  /* make the image full height */
+  height: 100%;
+
+  /* center and scale the image */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* use the following only if if you are able to scroll past the image to see a white area (this is the <body> peeking out) above or below the image */
+  overflow: hidden;
+}
+.background3 {
+  /* image url  */
+  display: flex;
+  background-image: url(/src/img/projects.jpg);
+
+  /* make the image full height */
+  height: 100%;
+
+  /* center and scale the image */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* use the following only if if you are able to scroll past the image to see a white area (this is the <body> peeking out) above or below the image */
+  overflow: hidden;
+}
+.background4 {
+  /* image url  */
+  display: flex;
+  background-image: url(/src/img/niklas-schoenberger-KjmQdNAvKA0-unsplash.jpg);
+
+  /* make the image full height */
+  height: 100%;
+
+  /* center and scale the image */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* use the following only if if you are able to scroll past the image to see a white area (this is the <body> peeking out) above or below the image */
+  overflow: hidden;
 }
 .logo
 {fill:white;
@@ -269,11 +428,14 @@ p{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .hero-text {
+  position: relative  ;
+  top: -20%;
+  left:-20%;
   background-color: var(--background);
   display: block;
   font-size: medium;
   
-  width: 650px;
+  width: 1000px;
   min-height: 90px;
   border: 3px solid var(--primary);
   padding: 15px;
@@ -293,8 +455,8 @@ p{
   
 }
 .hero-text:hover {
-  top: -40px;
-  left: 40px;
+ 
+  
   box-shadow: 0 0 0 -3px var(--background), 0 0 0 0 var(--green),
       0 0 0 -3px var(--background), 0 0 0 0  var(--yellow),
       0 0 0 -3px var(--background), 0 0 0 0  var(--orange),
@@ -324,14 +486,14 @@ body {
 }
 
 .hero-text p {
-  font-size: 11px;
+  font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 10px;
 }
 
 .hero-text h2 {
-  font-size: 14px;
+  font-size: 20px;
   font-family: "Archivo Black", "Archivo", sans-serif;
   font-weight: normal;
 }
@@ -364,6 +526,7 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: auto;
   color: #009ece;
+  opacity: 90%;
   
 }
 .project-card:hover {
