@@ -1,0 +1,112 @@
+*
+{
+    font-family: 'Orbitron', sans-serif;
+    margin:0%;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    outline: greenyellow;
+    background-color: rgb(104, 104, 104);
+
+}
+.container
+{
+    height:auto;
+    display:flex;
+    justify-content: center;
+    padding-top: 300px;
+}
+h1{
+    font-family: 'Orbitron', sans-serif;
+        color: #22ff00;
+    background-color: #000000;
+}
+.calculator
+{
+    text-align: center;
+    margin:6vh;
+    background-color: rgb(0, 0, 0);
+    padding:15px;
+    border-radius: 20px;
+    box-shadow:15px greenyellow;
+    color:rgb(0, 0, 0);
+    border: 1px rgb(59, 246, 17) solid;
+    display:grid;
+    grid-template-columns:repeat(4,70px);
+    padding:20px;
+    padding-top: 50px;
+}
+input{
+    font-family: 'Orbitron', sans-serif;
+
+    padding:20px;
+    color:rgb(0, 0, 0);
+    grid-column: span 4;
+    height:80px;
+    border-radius:20px;
+    font-size: 20px;
+    text-align:end;
+    box-shadow: 5px 4px 4px 5px  rgb(255, 255, 255) inset;
+    border:none;
+    margin-bottom:30px;
+    margin-top:30px;
+    padding:auto;
+}
+
+
+/* CSS */
+button {
+    font-family: 'Orbitron', sans-serif;
+
+    margin:4px;
+    align-items: center;
+    appearance: none;
+    background-color: #000000;
+    border-radius: 20px;
+    border-width: 2xp;
+    box-shadow: rgba(28, 100, 2, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#22ff00 0 -3px 0 inset;
+    
+    color: #2fff00;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono",monospace;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 8px;
+    padding-right: 8px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .35s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 20px;
+    
+  }
+  a{
+    text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+    background-color: #000000;
+    color: #22ff00;
+
+  }
+  button:focus {
+    box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  }
+  
+  button:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    transform: translateY(-2px);
+  }
+  
+  button:active {
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(2px);
+  }

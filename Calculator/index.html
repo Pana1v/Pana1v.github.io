@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron&family=Oswald:wght@300;500&family=Playfair+Display&family=Poppins:wght@200&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+	<script src="index.js"></script>
+    <div class="container">
+        <div class="calculator">
+            <h1>CALCULATOR</h1>
+            <input type="text" placeholder="0" id="screen">
+            <button onclick="clear()">CLR</button>
+            <button onclick="del()">DEL</button>
+            <button onclick="display('/')">/</button>
+            <button onclick="sqrt()">sqrt</button>
+            <button onclick="display('9')">9</button>
+            <button onclick="display('8')">8</button>
+            <button onclick="display('7')">7</button>
+            <button onclick="display('-')">-</button>
+            <button onclick="display('6')">6</button>
+            
+            
+            <button onclick="display('5')">5</button>
+            <button onclick="display('4')">4</button>
+            <button onclick="display('+')">+</button>
+            <button onclick="display('3')">3</button>
+            <button onclick="display('2')">2</button>
+            <button onclick="display('1')">1</button>
+            
+            
+            <button onclick="display('+')">+</button>
+            <button onclick="display('0')">0</button>
+            <button onclick="display('.')">.</button>
+            
+            <button onclick="calculate('=')" style="width:120px;border-radius:20px">=</button>
+        </br>
+            <button onclick="display('(')">(</button>
+            <button onclick="display(')')">)</button>
+            <button  style="width:120px;border-radius:20px"><a href="/index.html">Go Back ?</a></button>
+        </br>
+            
+
+        </div>
+
+    </div>
+    <script>
+        let output=document.getElementById("screen");
+        function display(num)
+        {
+            output.value+=num;
+        }
+        function calculate()
+        {
+            try 
+            {
+                output.value= eval(output.value);
+            }
+            catch{
+                alert("Invalid");
+            }
+           
+        }
+        function sqrt()
+        {
+            if(eval(output.value)<0)output.value=("LOL");
+            else output.value=Math.sqrt(output.value);
+        }
+        function clear()
+        {
+                console.log("cleared");
+                output.value=output.value.slice(0,0);
+        }
+        function del()
+        {
+            output.value=output.value.slice(0,-1);
+        }
+
+
+    </script>
+  </body>
+</html>
