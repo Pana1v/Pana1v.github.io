@@ -7,21 +7,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;500&family=Playfair+Display&family=Poppins:wght@200&display=swap" rel="stylesheet">    <title>Panav's Portfolio</title>
-<link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Archivo:700&display=swap" rel="stylesheet">
-
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron&family=Oswald:wght@300;500&family=Playfair+Display&family=Poppins:wght@200&family=Share+Tech+Mono&display=swap" rel="stylesheet"><style> @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;500&family=Playfair+Display&family=Poppins:wght@200&family=Share+Tech+Mono&display=swap'); </style>
   </head>
   <body>
       
-    <nav class="main-nav">
+    <nav class="main-nav" styles="border-radius:20px;">
         
-      <img class = "logo" src="src/img/icons8-compass-50.png"/> 
+      <h2 class = "animate-charcter">Panav</h2> 
       <ul class="navigation" >
-        <li><a href="#about" class="nav-link">About Me</a></li>
-        <li><a href="#positions" class="nav-link">Positions</a></li>
-        <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#contacts" class="nav-link">Contacts</a></li>
+        <li><div class ="button-30" ><a href="#about">About</a></div></li>
+        <li><div class ="button-30" ><a href="#positions">Positions</a></div></li>
+        <li><div class ="button-30" ><a href="#projects">Projects</a></div></li>
+        <li><div class ="button-30" ><a href="#contacts">Contacts</a></div></li>
+        <li><div class ="button-30" ><a href="#photos">Photos</a></div></li>
       </ul>
     </nav>
     <section class="hero" id="about">
@@ -29,8 +27,10 @@
       <div class="hero-area"><div class = "hero-text">
         <h1 class="animate-charcter">Panav Arpit Raaj</h1>
         <p class="hero-subtext">Competitive Programmer / Budding Developer. My field of interest also lies in Machine and Deep learning, Where I have done a variety of application based projects</p>
-        <div class ="button" ><a href="https://wa.me/+919606158818">Text me</a></div>
-        <div class ="button" ><a href="https://github.com/Pana1v/BluDash">Try out my App</a></div>
+        <div class="button-section">
+        <div class ="button-30" ><a href="https://wa.me/+919606158818">Text me</a></div>
+        <div class ="button-30" ><a href="https://github.com/Pana1v/BluDash">Try out my App</a></div>
+      </div>
         <div class="socials">
           
             <div class="card-content">
@@ -74,18 +74,18 @@
       
       <div class="info" >
       
+       <div class="por-grid" >
+        <div class="por"><b>Google DSC</b></br> IoT Lead</div>
+        <div class="por"><b>Class Representative</b></br> EEE Batch of 2025</div>
+        <div class="por"><b>Robocon</b></br> Team Member</div>    
+        <div class="por"><b>Tinkering Lab</b></br> Project Coordinator</div>     
+        <div class="por"><b> Forthright</b></br> Content Correspondent</div>
+        <div class="por"><b>Forthright </b></br>ShowBiz Divison</div>
+        <div class="por"><b>TEDx 2022 </b></br> Editorial Committee</div>
         
-        <div class="por">Google DSC IoT Lead</div>
-        <div class="por">Class Representative EEE Batch of 2025</div>
-        <div class="por">Robocon Team Member</div>    
-        <div class="por">Project Coordinator Tinkering Lab </div>     
-        <div class="por">Forthright - Content Correspondent</div>
-        <div class="por">Forthright - ShowBiz Divison</div>
-        <div class="por">TEDx 2022 Editorial Committee</div>
-        
-        <div class="por">Core Team Aaria Musical Club</div>
-        <div class="por">GeeksForGeeks Campus Ambassador</div>
-        </div>
+        <div class="por"><b>Aaria Musical Club</b></br> Core Team</div>
+        <div class="por"><b>GeeksForGeeks</b></br> Campus Ambassador</div>
+      </div>
         <div class="project-cards">
           <div class="project-card">
            
@@ -122,9 +122,9 @@
           </div>
         </div>
 
-      <div class="headshot">
-        <img class="container" src="/src/img/WTurtle.jpg" alt="Panav"></img>
+     
       </div>
+      
       </section>
      
       <div><h2 class="animate-charcter">Projects</h2></div>
@@ -132,16 +132,22 @@
       <div class="background3">
       <div class="project-cards">
         <div class="project-card">
-          <img src="/src/img/bludash.jpg" alt="BluDash" class="project-img">
+        
           <h3>The BluDash app</h3>
           <p>This app lets you control your wireless robots, you can configure custom and voice commands as well. It is more spohisticated and provides, exponentially more control than it's competition
-
+          </br>
+            
           </p>
+          <button class="button-30"><a href="https://github.com/Pana1v/BluDash">Try my App</a></button>
         </div>
         <div class="project-card">
-          <img src="project2.jpg" alt="Project 2">
-          <h3>Project 2</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h3>Panav's JS Calculator</h3>
+          <p>Just a good looking calculator with a <b>hidden easter egg</b></p>
+          </br>
+            
+          </p>
+          <button class="button-30"><a href="/Calculator/index.html">Can you find the egg?</a></button>
+        
         </div>
         <div class="project-card">
           <img src="project2.jpg" alt="Project 2">
@@ -163,7 +169,7 @@
     </div>
     </section>
     <h2 class="animate-charcter">Contacts</h2>
-    <section id="contacts" class="contacts">
+    <section id="contacts" style="font-size:larger;height: 10vh;display: flex;flex-wrap: wrap;" class="contacts">
       <div class="background4">
       <div class="contact-cards"id="contact-cards">Email : praajarpit@gmail.com</div>
       <div class="contact-cards"id="contact-cards">Phone : +91 960 61 588 18</div>
