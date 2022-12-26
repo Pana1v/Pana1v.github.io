@@ -73,39 +73,45 @@ a{
 
 .contact-cards
 {
-  margin: 40px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+
+  margin: 20px;
   justify-content: center;
   text-align: center;
   padding: 20px;
   border-radius: 20px;
   box-shadow: #00ff15;
   color: #00ff15;
+  border: #00ff15 3px double;
+  height:auto;
+  width: 400px;
 }
 .contact-cards:hover{
   box-shadow: #00ff15 10px solid;
 }
 nav {
-  opacity: 90%;
-  position: sticky;
-  top: 0;
+  opacity: 92%;
+  
   height: auto;
   width: 100hw;
-  margin-left: 20px;
-  margin-right: 20px;
-  border-width: 6px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-width: 20px;
   border: #1eff0043 3px solid;
- font-variant: normal;
   left: 0;
   z-index: 1;
   display: flex;
-  padding: 0.5rem 0.5rem;
+  padding: 15px;
   background-color: #000000f4;
   box-shadow: 8px 8px 8px  8px inline #79bc36 ;
-  border-radius: 12px;
+  border-radius: 20px;
   text-decoration: none;
   display: flex;
   flex-wrap: wrap;
-  margin: auto;
+  
+  justify-content: space-between;
   
 }
 
@@ -175,7 +181,7 @@ li:current
   background-color:white;
 }
 body{
-
+  background-color: gray;
   justify-content: center;
   align-items: center;
 
@@ -202,7 +208,7 @@ p{
 }
 .hero-area{
   position: absolute;
-  top: 0%;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 60hw;
@@ -601,7 +607,7 @@ body {
 
 h2{
   font-size: 60px;
-  margin : 20px;
+  margin : 5px;
   justify-content:center;
   align-items: center;
 }
@@ -632,16 +638,26 @@ hr{
   }
 }
 .por-grid
-{
-  width: 20%;
+{  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  
 }
 .por-card{
   font-family: 'Poppins', sans-serif;
-  width: auto;
+  width: 20%;
   height: auto;
   border: #FF5555;
   border-radius: 20px;
+  box-shadow: inset white -2px -2px -2px -2px;
   font-family: 'Share Tech Mono', monospace;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  opacity: 95%;
+  
+  transition: auto;
+  
 }
 html{
   scroll-behavior: smooth;
@@ -651,14 +667,16 @@ html{
   display:grid;
  
   content: \2065;
-  font-size: medium;
+  font-size: large;
   color: #000000;
   font-family: 'Share Tech Mono', monospace;
   border-radius: 20px;
   border: #000000 4px solid;
+  box-shadow: white inset 10px 10px 10px 10px;
   animation: glowing 3300ms infinite;
-  
-  margin: 4px;
+  width: 23vh;
+  height: 10vh;
+  margin: 10px;
   padding:15px;
   justify-content: left;
 
