@@ -4,6 +4,7 @@ section {
   box-shadow: #000000 3px  solid;
   margin:5px;
   border-radius: 20px;
+  
 
 }
 .hero {
@@ -15,7 +16,7 @@ section {
   background-color: #636363;
   height: 100vh;
   color: #00ff15;
-  font-size: 40px;
+  font-size: x-large;
 }
 .button-section
 {
@@ -34,7 +35,7 @@ a{
   justify-self: auto;
   opacity: 92%;
   
- height: 40vh;
+ height: 4vh;
  width:auto;
   
   justify-content: center;
@@ -70,40 +71,35 @@ a{
     background-position: 200% center;
   }
 }
-
-.contact-cards
+#contacts
 {
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-
-  margin: 20px;
-  justify-content: center;
-  text-align: center;
+}
+.contact-cards
+{
+  
+ width: auto;
+  margin: 40px;
   padding: 20px;
   border-radius: 20px;
   box-shadow: #00ff15;
   color: #00ff15;
-  border: #00ff15 3px double;
-  height:auto;
-  width: 400px;
 }
 .contact-cards:hover{
   box-shadow: #00ff15 10px solid;
 }
-nav {
-  opacity: 92%;
-  
+nav {opacity: 92%;
+  justify-self: space-around;
+
   height: auto;
   width: 100hw;
   margin-left: 10px;
   margin-right: 10px;
-  border-width: 20px;
+  
   border: #1eff0043 3px solid;
-  left: 0;
-  z-index: 1;
+ 
   display: flex;
-  padding: 15px;
+  
   background-color: #000000f4;
   box-shadow: 8px 8px 8px  8px inline #79bc36 ;
   border-radius: 20px;
@@ -111,25 +107,36 @@ nav {
   display: flex;
   flex-wrap: wrap;
   
-  justify-content: space-between;
+  
   
 }
+.main-nav
+{
+  position: sticky;
+  justify-content: space-around;
+}
+
 
 .navigation
 {
   display: flex;
-  margin:30px;  
+  margin:10px;  
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: medium;
   color:rgb(118, 34, 0);
   text-decoration: none;
   text-underline-offset: 10px;
   text-decoration:solid;
+  justify-content: right;
 
 }
 .hero-text
 {
-  
+  @media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
   align-self: center;
  justify-self: center;
   height: auto;
@@ -151,6 +158,7 @@ footer {
   background-color: rgb(120, 173, 221);
 }
 nav {
+  position: sticky;
   display: flex;
   justify-content: space-between;
   font-family: 'Playfair Display', serif;}
@@ -181,22 +189,26 @@ li:current
   background-color:white;
 }
 body{
-  background-color: gray;
+
   justify-content: center;
   align-items: center;
 
+}
+.hero h1{
+  font-size:xxx-large;
 }
 h1{
   font-size: 80px;
   margin:0px;
   font-family: 'Orbitron', sans-serif;
-  font-weight: 700;
+  font-weight: 1000;
 }
 .hero-text{
   margin-left: 90px;
   align-items: center;
   font-family: 'Bebas Neue', cursive;
   margin: 0 auto;
+  width: 65%;
 }
 p{
   margin: 0%;
@@ -208,7 +220,7 @@ p{
 }
 .hero-area{
   position: absolute;
-  top: 10%;
+  top: 0%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 60hw;
@@ -551,6 +563,10 @@ body {
   
   
 }
+.info .project-card
+{
+  padding:10px;
+}
 .project-cards {
   display: flex;
   flex-wrap: wrap;
@@ -559,13 +575,19 @@ body {
 }
 
 .project-card {
+  padding:10px;
   display: grid;
   justify-content: center;
   align-items: center;
   opacity: 95%;
   width: 30%;
+  height:max-content;
+  border-radius: 20px;
   margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
   height: auto;
+  background-color: #0000008f;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: auto;
   color: #e1ff00;
@@ -607,7 +629,7 @@ body {
 
 h2{
   font-size: 60px;
-  margin : 5px;
+  margin : 20px;
   justify-content:center;
   align-items: center;
 }
@@ -638,15 +660,17 @@ hr{
   }
 }
 .por-grid
-{  display: flex;
+{
+  margin-top: 60px;
+  display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
   
+  justify-content: space-around;
 }
 .por-card{
   font-family: 'Poppins', sans-serif;
   width: 20%;
-  height: auto;
+  height: 20vh;
   border: #FF5555;
   border-radius: 20px;
   box-shadow: inset white -2px -2px -2px -2px;
@@ -665,20 +689,19 @@ html{
 .por
 {
   display:grid;
- 
+ height: 10%;
+ width: 35%;
   content: \2065;
-  font-size: large;
+  font-size: medium;
   color: #000000;
   font-family: 'Share Tech Mono', monospace;
   border-radius: 20px;
   border: #000000 4px solid;
-  box-shadow: white inset 10px 10px 10px 10px;
-  animation: glowing 3300ms infinite;
-  width: 23vh;
-  height: 10vh;
-  margin: 10px;
+  animation: glowing 1300ms infinite;
+  
+  margin: 4px;
   padding:15px;
-  justify-content: left;
+  justify-content: center;
 
 }
 
@@ -730,4 +753,38 @@ html{
   box-shadow: #D6D6E7 0 3px 7px inset;
   transform: translateY(2px);
 }
-
+@media only screen and (max-width: 1000px) {
+  section{
+   
+  }
+  .hero-text
+  {
+    font-size: larger;
+    font-weight: 1300;
+  }
+  .por-grid
+{
+  margin-top: 60px;
+  display: flex;
+  margin: 20px;
+  flex-flow: row wrap;
+ 
+  justify-content: space-around;
+}
+.por-card{
+  font-family: 'Poppins', sans-serif;
+  width: 20%;
+  height: fit-content;
+  border: #FF5555;
+  border-radius: 20px;
+  box-shadow: inset white -2px -2px -2px -2px;
+  font-family: 'Share Tech Mono', monospace;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  opacity: 95%;
+  
+  transition: auto;
+  
+}
+}
