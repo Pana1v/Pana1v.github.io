@@ -13,7 +13,7 @@ section {
   width: auto;
   height: 60hw;
   justify-content: center;
-  background-color: #636363;
+  background-color: #000000;
   height: 100vh;
   color: #00ff15;
   font-size: x-large;
@@ -209,6 +209,8 @@ h1{
   font-family: 'Bebas Neue', cursive;
   margin: 0 auto;
   width: 65%;
+  font-size: xxx-large;
+  font-weight: 1100;
 }
 p{
   margin: 0%;
@@ -321,7 +323,12 @@ body {
   transition: transform 0.4s ease;
   
 }
+.project-card h3{
+  font-size: x-large;
+  font-weight: bolder;
+  color: lightblue;
 
+}
 .img-box {
   box-sizing: content-box;
   margin: 10px;
@@ -575,6 +582,7 @@ body {
 }
 
 .project-card {
+  font-family: 'Teko', sans-serif;
   padding:10px;
   display: grid;
   justify-content: center;
@@ -605,6 +613,8 @@ body {
 .project-card h3 {
   padding: 10px;
   text-align: center;
+  font-weight: 1900;
+  font-size: xx-large;
 }
 .project-card p {
   padding: 0 10px 10px 10px;
@@ -679,7 +689,7 @@ hr{
   justify-content: center;
   align-items: center;
   opacity: 95%;
-  
+  font-size: xx-large;
   transition: auto;
   
 }
@@ -759,7 +769,7 @@ html{
   }
   .hero-text
   {
-    font-size: larger;
+    font-size: xxx-large;
     font-weight: 1300;
   }
   .por-grid
