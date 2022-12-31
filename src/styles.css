@@ -64,6 +64,7 @@ a{
   animation: textclip 2s linear infinite;
   display: inline-block;
       font-size: auto;
+      font-stretch:ultra-expanded;
 }
 
 @keyframes textclip {
@@ -93,8 +94,8 @@ nav {opacity: 92%;
 
   height: auto;
   width: 100hw;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 10vh;
+  margin-right: 10vh;
   
   border: #1eff0043 3px solid;
  
@@ -158,6 +159,8 @@ footer {
   background-color: rgb(120, 173, 221);
 }
 nav {
+  box-shadow: #00ff15 inset 1px 1px 1px 1px;
+  margin-top: 20px;
   position: sticky;
   display: flex;
   justify-content: space-between;
@@ -181,6 +184,11 @@ li {
 }
 .card{
   background: #00ff15;
+  padding:10px;
+}
+.card-icon
+{
+  margin: 10px;
 }
 li:hover{
   box-shadow: 8px 8px 8px  8px inline #79bc36 ;}
@@ -264,6 +272,7 @@ p{
 }
 .sub-section{
   display: flex;
+  height: 100vh;
   justify-content:space-around;
   fill: white;
 }
@@ -331,11 +340,13 @@ body {
 }
 .img-box {
   box-sizing: content-box;
-  margin: 10px;
+  margin: 20px;
   height: 250px;
   width: 350px;
   overflow: hidden;
   display: inline-block;
+  
+  border-radius: 20px;
   color: white;
   position: relative;
   background-color: rgb(0, 255, 38);
@@ -484,7 +495,7 @@ p{
 }
 .hero-text {
  
-  background-color: var(--background);
+  background-color: rgba(22, 22, 22, 0.856);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -554,8 +565,14 @@ body {
   font-family: "Archivo Black", "Archivo", sans-serif;
   font-weight: normal;
 }
-
+.sub-section1{
+  margin: auto;
+  display:flex;
+  justify-content: space-around;
+  padding :5px;
+}
 .sub-section{
+  margin: auto;
   display:flex;
   justify-content: space-around;
   padding :5px;
@@ -575,7 +592,9 @@ body {
   padding:10px;
 }
 .project-cards {
+
   display: flex;
+  justify-content: space-around;
   flex-wrap: wrap;
   flex-grow: calc();
    
@@ -591,9 +610,10 @@ body {
   width: 30%;
   height:max-content;
   border-radius: 20px;
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   height: auto;
   background-color: #0000008f;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -657,25 +677,35 @@ hr{
 @keyframes glowing {
 
   0% {
-    background-color: #2ba805;
-    box-shadow: 0 0 15px #2ba805;
+    background-color: #49e819b9;
+    box-shadow: 0 0 15px #2ba805b5;
   }
   50% {
-    background-color: #49e819;
-    box-shadow: 0 0 25px #49e819;
+    background-color: #49e819b9;
+    box-shadow: 0 0 15px #2ba805b5;
   }
   100% {
-    background-color: #2ba805;
-    box-shadow: 0 0 15px #2ba805;
+    background-color: #49e819b9;
+    box-shadow: 0 0 15px #1c530bb5;
   }
 }
+            
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            
+            body {background: rgb(0, 0, 0);}
+            canvas {opacity:90%;display:flex;position: relative;}
 .por-grid
 {
+  
   margin-top: 60px;
   display: flex;
   flex-flow: row wrap;
-  
+  height: auto;
   justify-content: space-around;
+  padding: 40px;
 }
 .por-card{
   font-family: 'Poppins', sans-serif;
@@ -698,20 +728,22 @@ html{
 }
 .por
 {
+  text-transform: uppercase;
   display:grid;
  height: 10%;
  width: 35%;
   content: \2065;
   font-size: medium;
-  color: #000000;
+  color: #101010;
   font-family: 'Share Tech Mono', monospace;
   border-radius: 20px;
   border: #000000 4px solid;
   animation: glowing 1300ms infinite;
+  font-weight:600;
   
   margin: 4px;
   padding:15px;
-  justify-content: center;
+  justify-content: space-around;
 
 }
 
@@ -721,11 +753,11 @@ html{
   margin:4px;
   align-items: center;
   appearance: none;
-  background-color: #000000;
+  background-color: #000000bb;
   border-radius: 20px;
   border-width: 2xp;
   box-shadow: rgba(28, 100, 2, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#22ff00 0 -3px 0 inset;
-  
+  padding: 7px;
   color: #2fff00;
   cursor: pointer;
   display: inline-flex;
@@ -735,8 +767,8 @@ html{
   line-height: 1;
   list-style: none;
   overflow: hidden;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: 18px;
+  padding-right: 18px;
   position: relative;
   text-align: left;
   text-decoration: none;
