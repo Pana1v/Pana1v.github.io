@@ -7,15 +7,16 @@ section {
   
 
 }
+@import url(//db.onlinewebfonts.com/c/8cdbb48678e4418f22a2f507c2b975bd?family=Blanka);
 .hero {
- 
+  
   align-items: center;
   width: auto;
-  height: 60hw;
+  height: auto;
   justify-content: center;
   background-color: #000000;
   height: 100vh;
-  color: #00ff15;
+  color: #00c510;
   font-size: x-large;
 }
 .button-section
@@ -25,17 +26,17 @@ section {
 }
 a{
   text-decoration: none;
-  color:#00ff15;
+  color: #00ff1e
 }
 .hero-area
 {
- 
+ top: 40vh;
   align-items: center;
   align-self: center;
   justify-self: auto;
   opacity: 92%;
   
- height: 4vh;
+ height: 10vh;
  width:auto;
   
   justify-content: center;
@@ -44,15 +45,15 @@ a{
 
 .animate-charcter
 {
+  
    text-transform: uppercase;
   background-image: linear-gradient(
     -225deg,
-    #14ff03b3 0%,
-    #00ffffce 29%,
-    #ff0055 67%,
-    #ffff00b2 100%
+    #7eff57 0%,
+   
+    #169f0a 100%
   );
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Blanka', sans-serif;
   background-size: auto auto;
   background-clip: border-box;
   background-size: 200% auto;
@@ -87,7 +88,7 @@ a{
   color: #00ff15;
 }
 .contact-cards:hover{
-  box-shadow: #00ff15 10px solid;
+  box-shadow: #008F11 10px solid;
 }
 nav {opacity: 92%;
   justify-self: space-around;
@@ -457,6 +458,39 @@ p:hover{
   /* use the following only if if you are able to scroll past the image to see a white area (this is the <body> peeking out) above or below the image */
   overflow: hidden;
 }
+
+.background-galleria {
+  /* image url  */
+  display: flex;
+  background-image: url(/src/img/galleria-bg.png);
+  border-radius: 20px;
+  /* make the image full height */
+  height: 100%;
+
+  /* center and scale the image */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* use the following only if if you are able to scroll past the image to see a white area (this is the <body> peeking out) above or below the image */
+  overflow: hidden;
+}
+.backgroundpan {
+  /* image url  */
+  display: flex;
+  background-image: url(/src/img/panav\ canvas.png);
+  border-radius: 20px;
+  /* make the image full height */
+  height: 100%;
+ 
+  /* center and scale the image */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* use the following only if if you are able to scroll past the image to see a white area (this is the <body> peeking out) above or below the image */
+  overflow: hidden;
+}
 .nav-link
 {
   border: solid 3px;
@@ -718,7 +752,7 @@ hr{
   display: grid;
   justify-content: center;
   align-items: center;
-  opacity: 95%;
+  
   font-size: xx-large;
   transition: auto;
   
@@ -731,10 +765,10 @@ html{
   text-transform: uppercase;
   display:grid;
  height: 10%;
- width: 35%;
+ width: 32%;
   content: \2065;
-  font-size: medium;
-  color: #101010;
+  font-size: large;
+  color: #000000;
   font-family: 'Share Tech Mono', monospace;
   border-radius: 20px;
   border: #000000 4px solid;
@@ -756,7 +790,8 @@ html{
   background-color: #000000bb;
   border-radius: 20px;
   border-width: 2xp;
-  box-shadow: rgba(28, 100, 2, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#22ff00 0 -3px 0 inset;
+  border: #00ff15 4px;
+  box-shadow: rgba(3, 103, 9, 0.849) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#22ff00 0 -3px 0 inset;
   padding: 7px;
   color: #2fff00;
   cursor: pointer;
@@ -824,7 +859,7 @@ html{
   display: grid;
   justify-content: center;
   align-items: center;
-  opacity: 95%;
+  
   
   transition: auto;
   
