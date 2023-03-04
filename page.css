@@ -334,7 +334,7 @@ body {
   
 }
 .project-card h3{
-  font-size: x-large;
+  font-size: large;
   font-weight: bolder;
   color: lightblue;
 
@@ -623,7 +623,7 @@ body {
 }
 .info .project-card
 {
-  padding:10px;
+  padding:7px;
 }
 .project-cards {
 
@@ -653,7 +653,7 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: auto;
   color: #ffffff;
-  opacity: 98%;
+  opacity: 100%;
   
 }
 
@@ -744,7 +744,7 @@ hr{
 .por-card{
   font-family: 'Poppins', sans-serif;
   width: 20%;
-  height: 20vh;
+  height: 23vh;
   border: #FF5555;
   border-radius: 20px;
   box-shadow: inset white -2px -2px -2px -2px;
@@ -762,9 +762,10 @@ html{
 }
 .por
 {
+text-align: center;
   text-transform: uppercase;
   display:grid;
- height: 14%;
+ height: 15%;
  width: 32%;
   content: \2065;
   font-size: large;
