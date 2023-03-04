@@ -7,25 +7,25 @@ c.height = window.innerHeight;
 c.width = window.innerWidth;
 
 //chinese characters - taken from the unicode charset
-var matrix = "abcdとりあえずビールefghij勉強になりましたklmnだいじょうぶですopqrstuvたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわを123456789@#$%^&*()*&^%+-/~{[|`]}";
+var matrix = "勉強になりましたいじょうぶですたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわを";
 //converting the string into an array of single characters
 matrix = matrix.split("");
 
-var font_size = 20;
+var font_size = 15;
 var columns = c.width/font_size; //number of columns for the rain
 //an array of drops - one per column
 var drops = [];
 //x below is the x coordinate
 //1 = y co-ordinate of the drop(same for every drop initially)
 for(var x = 0; x < columns; x++)
-    drops[x] = 1; 
+    drops[x] = 2; 
 
 //drawing the characters
 function draw()
 {
     //Black BG for the canvas
     //translucent BG to show trail
-    ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
+    ctx.fillStyle = "rgba(0, 0, 0,0.1)";
     ctx.fillRect(0, 0, c.width, c.height);
 
     ctx.fillStyle = "green";//green text
