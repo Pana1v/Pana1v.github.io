@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code, Palette, BookOpen, Building2 } from 'lucide-react';
+import { Code, Palette, BookOpen, Building2, Brain, Microchip } from 'lucide-react';
 
 const domains = [
   {
@@ -9,15 +9,21 @@ const domains = [
     icon: Code,
     color: 'bg-blue-100',
     resume: {
-      title: 'Software Engineer',
+      title: 'Software Engineering & Robotics',
       experience: [
         {
-          role: 'Senior Developer',
-          company: 'Tech Corp',
-          period: '2020-Present',
-          description: 'Led development of enterprise applications',
+          role: 'Mobile Robotics Intern',
+          company: 'Addverb Technologies',
+          period: 'May 2024 – August 2024',
+          description: 'Developed and tested localization and mapping algorithms for Autonomous Mobile Robots (AMR) using LIDAR and cameras.',
         },
-        // Add more experiences
+        {
+          role: 'BTech Project: Autonomous Robot Navigation & SLAM',
+          company: 'IIT Patna',
+          period: 'May 2024 – August 2024',
+          description: 'Implemented ORB SLAM on a monocular camera and RTAB-Map with a depth camera for mapping and localization.',
+        },
+        // Additional experiences here
       ],
     },
   },
@@ -27,14 +33,15 @@ const domains = [
     icon: Palette,
     color: 'bg-purple-100',
     resume: {
-      title: 'UI/UX Designer',
+      title: 'UI/UX Design & Robotics Integration',
       experience: [
         {
-          role: 'Lead Designer',
-          company: 'Creative Studio',
-          period: '2018-2020',
-          description: 'Designed user interfaces for mobile applications',
+          role: 'Team Captain, ABU Robocon & Rover Team',
+          company: 'IIT Patna',
+          period: 'Dec 2022 – May 2023',
+          description: 'Led a team of 60 students for ABU Robocon, designed and developed a lunar rover prototype for ISRO Robotics Challenge.',
         },
+        // Additional experiences here
       ],
     },
   },
@@ -47,28 +54,89 @@ const domains = [
       title: 'Academic Background',
       experience: [
         {
-          role: 'Computer Science',
-          company: 'University Name',
-          period: '2014-2018',
-          description: 'Bachelor\'s degree with honors',
+          role: 'B.Tech in Electrical & Electronics Engineering',
+          company: 'IIT Patna',
+          period: '2020-Present',
+          description: 'CPI: 7.5',
+        },
+        {
+          role: 'Indian School Certificate (ISC)',
+          company: 'Clarence High School',
+          period: '2019-2020',
+          description: 'Percentage: 95.5%',
         },
       ],
     },
   },
   {
-    id: 'business',
-    title: 'Business',
+    id: 'projects',
+    title: 'Projects',
     icon: Building2,
     color: 'bg-amber-100',
     resume: {
-      title: 'Business Development',
+      title: 'Key Projects',
       experience: [
         {
-          role: 'Project Manager',
-          company: 'Business Solutions',
-          period: '2016-2018',
-          description: 'Managed client relationships and project delivery',
+          role: 'ISRO USRC Lunar Elemental Mapping',
+          company: 'Inter IIT Tech Meet 13.0',
+          period: 'Ongoing',
+          description: 'Conducting multi-shot super-resolution on lunar X-Ray fluorescence data, enhancing spatial resolution in mapping elemental distribution.',
         },
+        {
+          role: 'Flipkart Grid Robotics',
+          company: 'Flipkart',
+          period: 'Sept – Oct 2024',
+          description: 'Utilized Mistral LLM and PyTorch models for product text extraction and freshness assessment of consumables.',
+        },
+        // Additional projects here
+      ],
+    },
+  },
+  {
+    id: 'skills',
+    title: 'Technical Skills',
+    icon: Microchip,
+    color: 'bg-pink-100',
+    resume: {
+      title: 'Core Skills',
+      experience: [
+        {
+          role: 'Programming Languages',
+          company: 'Skills',
+          period: '',
+          description: 'C/C++, Python, Java, MATLAB',
+        },
+        {
+          role: 'Technologies',
+          company: 'Technologies',
+          period: '',
+          description: 'Docker, ROS (1 and 2), OpenCV, Linux, SQL, PyTorch, YOLO (V9, V11), TensorFlow',
+        },
+        // Additional skills here
+      ],
+    },
+  },
+  {
+    id: 'certifications',
+    title: 'Certifications',
+    icon: Brain,
+    color: 'bg-teal-100',
+    resume: {
+      title: 'Certifications & Achievements',
+      experience: [
+        {
+          role: 'Deep Learning: Model Optimization and Tuning',
+          company: 'LinkedIn',
+          period: '',
+          description: '',
+        },
+        {
+          role: 'Fundamentals of Accelerated Data Science with RAPIDS',
+          company: 'Nvidia',
+          period: '',
+          description: '',
+        },
+        // Additional certifications here
       ],
     },
   },
@@ -88,7 +156,7 @@ const Resumes = () => {
           Professional Experience
         </motion.h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-12">
           {domains.map((domain) => {
             const Icon = domain.icon;
             return (
@@ -101,9 +169,7 @@ const Resumes = () => {
                   domain.id === selectedDomain.id
                     ? 'ring-2 ring-stone-800'
                     : ''
-                } ${
-                  domain.color
-                } p-6 rounded-lg text-center transition-all duration-300`}
+                } ${domain.color} p-6 rounded-lg text-center transition-all duration-300`}
               >
                 <Icon className="h-8 w-8 mx-auto mb-2" />
                 <h3 className="font-semibold">{domain.title}</h3>
