@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code, Palette, BookOpen, Building2, Brain, Microchip } from 'lucide-react';
+import { Code, Palette, BookOpen, Building2, Brain, Cpu  } from 'lucide-react';
 
 const domains = [
   {
