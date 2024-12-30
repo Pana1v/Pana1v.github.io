@@ -1,42 +1,61 @@
 import React, { useState } from 'react';
 import { Gift } from 'lucide-react';  // Confetti Icon
-import PasswordModal from '../components/PasswordModal';
+import PasswordModal from '../components/PasswordModal'; // Make sure PasswordModal handles user input
 import ProjectCard from '../components/ProjectCard';
 import { Link } from 'react-router-dom'; // Import Link for routing
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [password, setPassword] = useState('');
+  const [passwordEntered, setPasswordEntered] = useState(false);  // New state for tracking password entry
 
   const education = [
     {
-      degree: 'B.Tech in Computer Science',
-      institution: 'IIT Example',
-      year: '2019 - 2023',
+      degree: 'B.Tech in Electrical and Electronics Engineering',
+      institution: 'IIT Patna',
+      // year: '2019 - 2023',
     },
     {
-      degree: 'High School Diploma',
-      institution: 'ABC High School',
-      year: '2017 - 2019',
+      degree: 'Indian School Certificate (ISC)',
+      institution: 'Clarence High School',
+      // year: '2017 - 2020',
     },
   ];
 
   const projects = [
     {
-      title: 'Project A',
-      description: 'Implemented XYZ algorithm for efficient task management.',
-      link: '/projects/project-a',
+      title: 'ISRO USRC Lunar Elemental Mapping',
+      description:
+        'Conducting Multi-Shot Super-resolution on lunar X-Ray fluorescence (XRF) data to enhance spatial resolution.',
+      link: '/projects/isro-usrc-lunar-elemental-mapping',
     },
     {
-      title: 'Project B',
-      description: 'Developed a machine learning pipeline for ABC tasks.',
-      link: '/projects/project-b',
+      title: 'Autonomous Robot Navigation and SLAM',
+      description: 'Implemented SLAM on a robot using ROS Humble and ORB SLAM for navigation and localization.',
+      link: '/projects/autonomous-robot-navigation',
     },
     {
-      title: 'Project C',
-      description: 'Created a dynamic web application using React and Node.js.',
-      link: '/projects/project-c',
+      title: 'Flipkart Grid Robotics 6.0',
+      description: 'Used PyTorch and YOLOV11 for object detection and product text extraction in robotics.',
+      link: '/projects/flipkart-grid-robotics',
     },
   ];
+
+  const handleGiftIconClick = () => {
+    // When the gift icon is clicked, open the password dialog
+    setPasswordEntered(false);
+    setIsModalOpen(true);
+  };
+
+  const handlePasswordSubmit = () => {
+    if (password === 'shreya') {
+      setPasswordEntered(true);  // Correct password
+      setIsModalOpen(false);     // Close modal after success
+    } else {
+      alert('Incorrect password!');
+      console.log(password);
+    }
+  };
 
   return (
     <div className="min-h-screen pt-16">
@@ -51,9 +70,12 @@ const Home = () => {
             <Link to="/projects" className="text-gold-400 hover:text-gold-300 transition-colors">
               Projects
             </Link>
-            <Link to="/birthday-surprise" className="text-gold-400 hover:text-gold-300 transition-colors">
+            <button
+              onClick={handleGiftIconClick}
+              className="text-gold-400 hover:text-gold-300 transition-colors flex items-center"
+            >
               <Gift className="h-5 w-5" />
-            </Link>
+            </button>
           </div>
         </div>
       </nav>
@@ -102,7 +124,29 @@ const Home = () => {
       </div>
 
       {/* Password Modal */}
-      <PasswordModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      {isModalOpen && !passwordEntered && (
+        <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-md shadow-md">
+            <h2 className="text-2xl font-semibold mb-4">Enter Password</h2>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="border border-gray-300 p-2 rounded-md mb-4"
+              placeholder="Password"
+            />
+            <button
+              onClick={handlePasswordSubmit}
+              className="bg-gold-400 text-white px-4 py-2 rounded-md"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Password Modal on Success */}
+      {passwordEntered && <PasswordModal isOpen={true} onClose={() => setIsModalOpen(false)} />}
     </div>
   );
 };
