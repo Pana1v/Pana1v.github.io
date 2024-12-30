@@ -84,8 +84,8 @@ const Home = () => {
           alt="Your Photo"
           className="rounded-full h-32 w-32 mx-auto mb-6"
         />
-        <h2 className="text-3xl font-bold text-center">Hello, I'm Panzerkommandant</h2>
-        <p className="text-lg text-gray-700">Welcome to my personal portfolio!</p>
+        <h2 className="text-3xl font-bold text-center">Panav Arpit Raaj</h2>
+        {/* <p className="text-lg text-gray-700">Welcome to my personal portfolio!</p> */}
       </div>
 
       {/* Education Section */}
