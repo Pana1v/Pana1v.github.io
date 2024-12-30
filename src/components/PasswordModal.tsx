@@ -10,7 +10,7 @@ const PasswordModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'happybirthday') {
+    if (password === 'shreya') {
       navigate('/birthday-surprise');
       onClose();
     } else {

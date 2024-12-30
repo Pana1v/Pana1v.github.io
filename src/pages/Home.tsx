@@ -1,24 +1,22 @@
 import React, { useState } from 'react';
 import { Gift } from 'lucide-react';  // Confetti Icon
-import PasswordModal from '../components/PasswordModal'; // Make sure PasswordModal handles user input
+import PasswordModal from '../components/PasswordModal'; // Ensure PasswordModal handles user input
 import ProjectCard from '../components/ProjectCard';
 import { Link } from 'react-router-dom'; // Import Link for routing
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [password, setPassword] = useState('');
-  const [passwordEntered, setPasswordEntered] = useState(false);  // New state for tracking password entry
+  const [passwordEntered, setPasswordEntered] = useState(false);  // Track if password is correct
 
   const education = [
     {
       degree: 'B.Tech in Electrical and Electronics Engineering',
       institution: 'IIT Patna',
-      // year: '2019 - 2023',
     },
     {
       degree: 'Indian School Certificate (ISC)',
       institution: 'Clarence High School',
-      // year: '2017 - 2020',
     },
   ];
 
@@ -43,7 +41,7 @@ const Home = () => {
 
   const handleGiftIconClick = () => {
     // When the gift icon is clicked, open the password dialog
-    setPasswordEntered(false);
+    setPasswordEntered(false);  // Reset passwordEntered state
     setIsModalOpen(true);
   };
 
@@ -53,7 +51,6 @@ const Home = () => {
       setIsModalOpen(false);     // Close modal after success
     } else {
       alert('Incorrect password!');
-      console.log(password);
     }
   };
 
@@ -102,7 +99,6 @@ const Home = () => {
             >
               <h3 className="text-xl font-semibold">{edu.degree}</h3>
               <p className="text-sm text-gray-700">{edu.institution}</p>
-              <p className="text-sm text-gray-600">{edu.year}</p>
             </div>
           ))}
         </div>
@@ -145,8 +141,10 @@ const Home = () => {
         </div>
       )}
 
-      {/* Password Modal on Success */}
-      {passwordEntered && <PasswordModal isOpen={true} onClose={() => setIsModalOpen(false)} />}
+      {/* Success Modal */}
+      {passwordEntered && (
+        <PasswordModal isOpen={true} onClose={() => setIsModalOpen(false)} />
+      )}
     </div>
   );
 };
