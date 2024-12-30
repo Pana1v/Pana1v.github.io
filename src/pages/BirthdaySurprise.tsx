@@ -54,7 +54,7 @@ const playHappyBirthday = () => {
 
 const BirthdaySurprise = () => {
   const [showMessage, setShowMessage] = useState(false);
-  const [emojis, setEmojis] = useState(['<3', '(✿◡‿◡)', ' ~(=^‥^)ノ', '❤️', '💌']);
+  const [emojis, setEmojis] = useState(['<3', '(✿◡‿◡)', ' ~(=^‥^)ノ', '💜', ' 🩷','💌','ෆ⁠╹⁠ ⁠.̮⁠ ⁠╹⁠ෆ',' (⁠◍⁠•⁠ᴗ⁠•⁠◍⁠)⁠✧⁠*⁠']);
 
   const isActualBirthday = isBirthday();
 
@@ -85,7 +85,7 @@ const BirthdaySurprise = () => {
         return clearInterval(interval);
       }
 
-      const particleCount = 50 * (timeLeft / duration);
+      const particleCount = 200 * (timeLeft / duration);
       confetti({
         ...defaults,
         particleCount,

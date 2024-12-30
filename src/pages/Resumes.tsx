@@ -95,7 +95,7 @@ const domains = [
   {
     id: 'skills',
     title: 'Technical Skills',
-    icon: Microchip,
+    icon: Cpu,
     color: 'bg-pink-100',
     resume: {
       title: 'Core Skills',
