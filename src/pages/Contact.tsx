@@ -12,9 +12,9 @@ const Contact = () => {
           className="text-center mb-12"
         >
           <h1 className="text-4xl font-bold text-stone-800">Get in Touch</h1>
-          <p className="mt-4 text-xl text-stone-600">
+          {/* <p className="mt-4 text-xl text-stone-600">
             Let's discuss how we can work together
-          </p>
+          </p> */}
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -76,7 +76,8 @@ const Contact = () => {
                 <Mail className="h-6 w-6 text-stone-800" />
                 <div>
                   <h3 className="font-semibold">Email</h3>
-                  <p className="text-stone-600">your.email@example.com</p>
+                  <p className="text-stone-600">panav_2101ee48@iitp.ac.in</p>
+                  <p className="text-stone-600">praajarpit@gmail.com</p>
                 </div>
               </div>
             </div>
@@ -86,7 +87,7 @@ const Contact = () => {
                 <Phone className="h-6 w-6 text-stone-800" />
                 <div>
                   <h3 className="font-semibold">Phone</h3>
-                  <p className="text-stone-600">+1 (555) 123-4567</p>
+                  <p className="text-stone-600">+1 (91) 9606158818</p>
                 </div>
               </div>
             </div>
@@ -96,7 +97,7 @@ const Contact = () => {
                 <MapPin className="h-6 w-6 text-stone-800" />
                 <div>
                   <h3 className="font-semibold">Location</h3>
-                  <p className="text-stone-600">New York, NY</p>
+                  <p className="text-stone-600">Bangalore, KA, India</p>
                 </div>
               </div>
             </div>
