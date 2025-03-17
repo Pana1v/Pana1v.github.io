@@ -6,6 +6,7 @@ import Resumes from './pages/Resumes';
 import Contact from './pages/Contact';
 import BirthdaySurprise from './pages/BirthdaySurprise';
 import Project from './pages/Project';
+import Blog from './pages/Blog';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/birthday-surprise" element={<BirthdaySurprise />} />
           <Route path="/project/:id" element={<Project />} />
+          <Route path="/blog" element={<Blog />} /> {/* New Blog route */}
         </Routes>
       </div>
     </Router>

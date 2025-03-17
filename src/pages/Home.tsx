@@ -3,6 +3,7 @@ import { Gift } from 'lucide-react';  // Confetti Icon
 import PasswordModal from '../components/PasswordModal'; // Ensure PasswordModal handles user input
 import ProjectCard from '../components/ProjectCard';
 import { Link } from 'react-router-dom'; // Import Link for routing
+import profileImage from '../images/x.jpg'; // Import the image using ES6 import
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -57,9 +58,9 @@ const Home = () => {
   return (
     <div className="min-h-screen pt-16">
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 w-full bg-stone-900/90 shadow-md z-50">
+      {/* <nav className="fixed top-0 left-0 w-full bg-stone-900/90 shadow-md z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-          <div className="text-white font-bold text-lg">My Portfolio</div>
+          <div className="text-white font-bold text-lg">Panav</div>
           <div className="flex space-x-4">
             <Link to="/resume" className="text-gold-400 hover:text-gold-300 transition-colors">
               Resume
@@ -75,12 +76,12 @@ const Home = () => {
             </button>
           </div>
         </div>
-      </nav>
+      </nav> */}
 
       {/* Photo Section */}
       <div id="photo" className="mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <img
-          src="your-photo-url-here.jpg"
+          src={profileImage}
           alt="Your Photo"
           className="rounded-full h-32 w-32 mx-auto mb-6"
         />

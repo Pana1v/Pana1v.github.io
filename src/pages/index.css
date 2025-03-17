@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.blog-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto; /* Center align the container */
+  text-align: center; /* Center align text */
+}
+
+.medium-article {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.medium-article h2 {
+  font-size: 8.5rem; /* Increased font size */
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.medium-article p {
+  font-size: 3.25rem; /* Increased font size */
+  color: #555;
+  line-height: 1.;
+  text-align: justify;
+}
+
+.medium-article a {
+  color: #1a0dab;
+  text-decoration: none;
+}
+
+.medium-article a:hover {
+  text-decoration: underline;
+}
+
+.medium-article img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px; /* Added corner radius */
+}
+
+.medium-article figcaption {
+  text-align: center; /* Centered caption below image */
+  font-size: 1rem; /* Increased font size */
+  color: #555;
+  margin-top: 0.5rem;
+}
