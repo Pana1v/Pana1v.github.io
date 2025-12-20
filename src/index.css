@@ -2,29 +2,441 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===============================================
+   PORTFOLIO SITE - ELEGANT SCRIBE THEME
+   Classic, Refined, Timeless
+   =============================================== */
+
+:root {
+  /* Core palette - warm parchment tones */
+  --bg-primary: #faf8f5;
+  --bg-secondary: #f5f1eb;
+  --bg-accent: #eee8de;
+
+  /* Classic accent colors */
+  --accent-gold: #b8860b;
+  --accent-bronze: #cd7f32;
+  --accent-sepia: #704214;
+  --accent-ink: #1a1a2e;
+
+  /* Text colors */
+  --text-primary: #2d2d2d;
+  --text-secondary: #5a5a5a;
+  --text-muted: #8a8a8a;
+
+  /* Elegant effects */
+  --shadow-soft: 0 2px 15px rgba(0, 0, 0, 0.05);
+  --shadow-elevated: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
+  font-size: 18px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Elegant scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-gold);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-bronze);
+}
+
+/* Selection */
+::selection {
+  background: rgba(184, 134, 11, 0.2);
+  color: var(--text-primary);
+}
+
+/* ===============================================
+   TYPOGRAPHY
+   =============================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 2rem;
+  position: relative;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+/* Elegant underline accent */
+.heading-accent::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-gold), transparent);
+  margin-top: 0.75rem;
+}
+
+.heading-accent-center::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Gold text */
+.text-gold {
+  color: var(--accent-gold);
+}
+
+/* ===============================================
+   ANIMATIONS - Subtle & Refined
+   =============================================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gentlePulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+/* ===============================================
+   CARDS & CONTAINERS
+   =============================================== */
+
+.card {
+  background: white;
+  border-radius: 4px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-elevated);
+  transform: translateY(-2px);
+}
+
+.card-elegant {
+  background: linear-gradient(135deg, #ffffff 0%, #fdfcfa 100%);
+  border: 1px solid rgba(184, 134, 11, 0.15);
+}
+
+/* Paper texture overlay (subtle) */
+.paper-texture {
+  position: relative;
+}
+
+.paper-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.015;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ===============================================
+   BUTTONS & INPUTS
+   =============================================== */
+
+.btn-primary {
+  background: var(--accent-gold);
+  color: white;
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 0.875rem 2rem;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.btn-primary:hover {
+  background: var(--accent-bronze);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(184, 134, 11, 0.25);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 0.875rem 2rem;
+  border-radius: 2px;
+  border: 1px solid var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+/* Form inputs */
+input,
+textarea {
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  padding: 0.875rem 1rem;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.1);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ===============================================
+   DECORATIVE ELEMENTS
+   =============================================== */
+
+/* Ornamental divider */
+.divider-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  color: var(--accent-gold);
+}
+
+.divider-ornament::before,
+.divider-ornament::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184, 134, 11, 0.3), transparent);
+}
+
+/* Elegant quote styling */
+blockquote {
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  border-left: 3px solid var(--accent-gold);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+}
+
+/* ===============================================
+   BLOG STYLES
+   =============================================== */
+
 .blog-container {
-    padding: 20px;
-  }
-  
-  .medium-article {
-    margin-bottom: 20px;
-  }
-  
-  .medium-article h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .medium-article p {
-    font-size: 0.875rem;
-    color: #555;
-  }
-  
-  .medium-article a {
-    color: #1a0dab;
-    text-decoration: none;
-  }
-  
-  .medium-article a:hover {
-    text-decoration: underline;
-  }
+  padding: 6rem 1.5rem 3rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.blog-container h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.medium-article {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.medium-article:hover {
+  box-shadow: var(--shadow-elevated);
+  border-color: rgba(184, 134, 11, 0.2);
+}
+
+.medium-article h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.article-date {
+  color: var(--accent-gold) !important;
+  font-size: 0.875rem !important;
+  font-style: italic;
+}
+
+.article-content {
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.article-content img {
+  max-width: 100%;
+  border-radius: 4px;
+  margin: 1.5rem 0;
+}
+
+.read-more-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--accent-gold) !important;
+  font-weight: 500;
+  text-decoration: none !important;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.read-more-link:hover {
+  color: var(--accent-bronze) !important;
+}
+
+.medium-link-button {
+  display: inline-block;
+  background: var(--accent-gold);
+  color: white !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: 2px;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.medium-link-button:hover {
+  background: var(--accent-bronze);
+}
+
+.article-divider {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  margin: 2rem 0;
+}
+
+/* ===============================================
+   NAVIGATION GLASS (subtle frosted effect)
+   =============================================== */
+
+.nav-elegant {
+  background: rgba(250, 248, 245, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* ===============================================
+   UTILITIES
+   =============================================== */
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Link styling */
+a {
+  color: var(--accent-gold);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-bronze);
+}
+
+/* Profile styling */
+.profile-elegant {
+  border: 3px solid var(--accent-gold);
+  box-shadow: 0 0 0 6px rgba(184, 134, 11, 0.1);
+}

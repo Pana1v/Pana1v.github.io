@@ -1,208 +1,231 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code, Palette, BookOpen, Building2, Brain, Cpu  } from 'lucide-react';
+import { Briefcase, BookOpen, Folder, Cpu, Award } from 'lucide-react';
+import { useEditMode } from '../context/EditContext';
+import { ElegantCard } from '../components/GlassCard';
+import { EditableText } from '../components/EditableText';
 
 const domains = [
-  {
-    id: 'tech',
-    title: 'Technology',
-    icon: Code,
-    color: 'bg-blue-100',
-    resume: {
-      title: 'Software Engineering & Robotics',
-      experience: [
-        {
-          role: 'Mobile Robotics Intern',
-          company: 'Addverb Technologies',
-          period: 'May 2024 – August 2024',
-          description: 'Developed and tested localization and mapping algorithms for Autonomous Mobile Robots (AMR) using LIDAR and cameras.',
-        },
-        {
-          role: 'BTech Project: Autonomous Robot Navigation & SLAM',
-          company: 'IIT Patna',
-          period: 'May 2024 – August 2024',
-          description: 'Implemented ORB SLAM on a monocular camera and RTAB-Map with a depth camera for mapping and localization.',
-        },
-        // Additional experiences here
-      ],
-    },
-  },
-  {
-    id: 'design',
-    title: 'Design',
-    icon: Palette,
-    color: 'bg-purple-100',
-    resume: {
-      title: 'UI/UX Design & Robotics Integration',
-      experience: [
-        {
-          role: 'Team Captain, ABU Robocon & Rover Team',
-          company: 'IIT Patna',
-          period: 'Dec 2022 – May 2023',
-          description: 'Led a team of 60 students for ABU Robocon, designed and developed a lunar rover prototype for ISRO Robotics Challenge.',
-        },
-        // Additional experiences here
-      ],
-    },
-  },
-  {
-    id: 'education',
-    title: 'Education',
-    icon: BookOpen,
-    color: 'bg-green-100',
-    resume: {
-      title: 'Academic Background',
-      experience: [
-        {
-          role: 'B.Tech in Electrical & Electronics Engineering',
-          company: 'IIT Patna',
-          period: '2020-Present',
-          description: 'CPI: 7.5',
-        },
-        {
-          role: 'Indian School Certificate (ISC)',
-          company: 'Clarence High School',
-          period: '2019-2020',
-          description: 'Percentage: 95.5%',
-        },
-      ],
-    },
-  },
-  {
-    id: 'projects',
-    title: 'Projects',
-    icon: Building2,
-    color: 'bg-amber-100',
-    resume: {
-      title: 'Key Projects',
-      experience: [
-        {
-          role: 'ISRO USRC Lunar Elemental Mapping',
-          company: 'Inter IIT Tech Meet 13.0',
-          period: 'Ongoing',
-          description: 'Conducting multi-shot super-resolution on lunar X-Ray fluorescence data, enhancing spatial resolution in mapping elemental distribution.',
-        },
-        {
-          role: 'Flipkart Grid Robotics',
-          company: 'Flipkart',
-          period: 'Sept – Oct 2024',
-          description: 'Utilized Mistral LLM and PyTorch models for product text extraction and freshness assessment of consumables.',
-        },
-        // Additional projects here
-      ],
-    },
-  },
-  {
-    id: 'skills',
-    title: 'Technical Skills',
-    icon: Cpu,
-    color: 'bg-pink-100',
-    resume: {
-      title: 'Core Skills',
-      experience: [
-        {
-          role: 'Programming Languages',
-          company: 'Skills',
-          period: '',
-          description: 'C/C++, Python, Java, MATLAB',
-        },
-        {
-          role: 'Technologies',
-          company: 'Technologies',
-          period: '',
-          description: 'Docker, ROS (1 and 2), OpenCV, Linux, SQL, PyTorch, YOLO (V9, V11), TensorFlow',
-        },
-        // Additional skills here
-      ],
-    },
-  },
-  {
-    id: 'certifications',
-    title: 'Certifications',
-    icon: Brain,
-    color: 'bg-teal-100',
-    resume: {
-      title: 'Certifications & Achievements',
-      experience: [
-        {
-          role: 'Deep Learning: Model Optimization and Tuning',
-          company: 'LinkedIn',
-          period: '',
-          description: '',
-        },
-        {
-          role: 'Fundamentals of Accelerated Data Science with RAPIDS',
-          company: 'Nvidia',
-          period: '',
-          description: '',
-        },
-        // Additional certifications here
-      ],
-    },
-  },
+  { id: 'experience', title: 'Experience', icon: Briefcase },
+  { id: 'education', title: 'Education', icon: BookOpen },
+  { id: 'projects', title: 'Projects', icon: Folder },
+  { id: 'skills', title: 'Skills', icon: Cpu },
+  { id: 'certifications', title: 'Certifications', icon: Award },
 ];
 
 const Resumes = () => {
   const [selectedDomain, setSelectedDomain] = useState(domains[0]);
+  const { content, isEditMode } = useEditMode();
+
+  const renderContent = () => {
+    switch (selectedDomain.id) {
+      case 'experience':
+        return (
+          <div className="space-y-8">
+            {content.experience.map((exp, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="relative pl-6 border-l-2 border-gold-400/30"
+              >
+                <div className="absolute left-0 top-1 w-2.5 h-2.5 -translate-x-[6px] rounded-full bg-gold-400" />
+                <h3 className="text-lg font-serif text-ink-700">
+                  {isEditMode ? (
+                    <EditableText path={`experience.${index}.role`} />
+                  ) : (
+                    exp.role
+                  )}
+                </h3>
+                <p className="text-gold-400 text-sm">
+                  {isEditMode ? (
+                    <EditableText path={`experience.${index}.company`} />
+                  ) : (
+                    exp.company
+                  )}
+                </p>
+                <p className="text-ink-700/50 text-sm mb-2">{exp.period}</p>
+                <p className="text-ink-700/70">
+                  {isEditMode ? (
+                    <EditableText path={`experience.${index}.description`} multiline />
+                  ) : (
+                    exp.description
+                  )}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        );
+
+      case 'education':
+        return (
+          <div className="space-y-8">
+            {content.education.map((edu, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="relative pl-6 border-l-2 border-gold-400/30"
+              >
+                <div className="absolute left-0 top-1 w-2.5 h-2.5 -translate-x-[6px] rounded-full bg-gold-400" />
+                <h3 className="text-lg font-serif text-ink-700">{edu.degree}</h3>
+                <p className="text-gold-400 text-sm">{edu.institution}</p>
+                {edu.period && <p className="text-ink-700/50 text-sm">{edu.period}</p>}
+                {edu.description && <p className="text-ink-700/70 mt-2">{edu.description}</p>}
+              </motion.div>
+            ))}
+          </div>
+        );
+
+      case 'projects':
+        return (
+          <div className="grid gap-6 md:grid-cols-2">
+            {content.projects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <ElegantCard>
+                  <div className="p-5">
+                    <h3 className="font-serif text-ink-700 mb-2">{project.title}</h3>
+                    <p className="text-ink-700/70 text-sm mb-3">{project.description}</p>
+                    <div className="flex flex-wrap gap-1">
+                      {project.technologies.map((tech, i) => (
+                        <span key={i} className="px-2 py-0.5 text-xs bg-parchment-200 text-ink-700/60 rounded">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </ElegantCard>
+              </motion.div>
+            ))}
+          </div>
+        );
+
+      case 'skills':
+        const skillsByCategory = content.skills.reduce((acc, skill) => {
+          if (!acc[skill.category]) acc[skill.category] = [];
+          acc[skill.category].push(skill.name);
+          return acc;
+        }, {} as Record<string, string[]>);
+
+        return (
+          <div className="space-y-8">
+            {Object.entries(skillsByCategory).map(([category, skills], catIndex) => (
+              <motion.div
+                key={category}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: catIndex * 0.1 }}
+              >
+                <h3 className="text-sm uppercase tracking-wider text-gold-400 mb-4">{category}</h3>
+                <div className="flex flex-wrap gap-3">
+                  {skills.map((skill, index) => (
+                    <span
+                      key={index}
+                      className="px-4 py-2 bg-white border border-stone-200 rounded text-sm text-ink-700/70"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        );
+
+      case 'certifications':
+        return (
+          <div className="grid gap-4 md:grid-cols-2">
+            {content.certifications.map((cert, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <ElegantCard>
+                  <div className="p-5 flex items-start gap-4">
+                    <div className="p-2 bg-parchment-200 rounded">
+                      <Award className="w-5 h-5 text-gold-400" />
+                    </div>
+                    <div>
+                      <h3 className="font-serif text-ink-700">{cert.name}</h3>
+                      <p className="text-ink-700/60 text-sm">{cert.issuer}</p>
+                    </div>
+                  </div>
+                </ElegantCard>
+              </motion.div>
+            ))}
+          </div>
+        );
+
+      default:
+        return null;
+    }
+  };
 
   return (
-    <div className="min-h-screen pt-20 pb-12 bg-stone-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-24 pb-12 bg-parchment-100">
+      <div className="max-w-4xl mx-auto px-6 lg:px-8">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-4xl font-bold text-stone-800 mb-12 text-center"
+          className="text-3xl font-serif text-center mb-12 text-ink-700"
         >
           Professional Experience
         </motion.h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-12">
-          {domains.map((domain) => {
+        {/* Domain Tabs */}
+        <div className="flex flex-wrap justify-center gap-2 mb-12">
+          {domains.map((domain, index) => {
             const Icon = domain.icon;
+            const isActive = domain.id === selectedDomain.id;
+
             return (
               <motion.button
                 key={domain.id}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
                 onClick={() => setSelectedDomain(domain)}
-                className={`${
-                  domain.id === selectedDomain.id
-                    ? 'ring-2 ring-stone-800'
-                    : ''
-                } ${domain.color} p-6 rounded-lg text-center transition-all duration-300`}
+                className={`
+                  flex items-center gap-2 px-4 py-2 rounded text-sm transition-all
+                  ${isActive
+                    ? 'bg-gold-400 text-white'
+                    : 'bg-white border border-stone-200 text-ink-700/70 hover:border-gold-400 hover:text-gold-500'
+                  }
+                `}
               >
-                <Icon className="h-8 w-8 mx-auto mb-2" />
-                <h3 className="font-semibold">{domain.title}</h3>
+                <Icon className="w-4 h-4" />
+                <span className="hidden sm:inline">{domain.title}</span>
               </motion.button>
             );
           })}
         </div>
 
+        {/* Content */}
         <AnimatePresence mode="wait">
           <motion.div
             key={selectedDomain.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="bg-white p-8 rounded-lg shadow-xl"
+            transition={{ duration: 0.3 }}
           >
-            <h2 className="text-3xl font-bold mb-6">{selectedDomain.resume.title}</h2>
-            <div className="space-y-8">
-              {selectedDomain.resume.experience.map((exp, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="border-l-4 border-stone-800 pl-4"
-                >
-                  <h3 className="font-bold text-xl">{exp.role}</h3>
-                  <p className="text-stone-600">{exp.company}</p>
-                  <p className="text-stone-500 text-sm">{exp.period}</p>
-                  <p className="mt-2">{exp.description}</p>
-                </motion.div>
-              ))}
-            </div>
+            <ElegantCard hover={false}>
+              <div className="p-8">
+                <h2 className="text-xl font-serif mb-8 text-ink-700 heading-accent">
+                  {selectedDomain.title}
+                </h2>
+                {renderContent()}
+              </div>
+            </ElegantCard>
           </motion.div>
         </AnimatePresence>
       </div>
