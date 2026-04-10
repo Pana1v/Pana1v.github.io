@@ -7,14 +7,14 @@ import rehypeRaw from 'rehype-raw';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { DataStructure, Blog as BlogType } from '../data';
-import { Calendar, Tag, ArrowLeft, ChevronRight } from 'lucide-react';
+import { Calendar, ArrowLeft } from 'lucide-react';
 
 export function Blog({ data }: { data: DataStructure }) {
   const [selectedBlog, setSelectedBlog] = useState<BlogType | null>(null);
 
   return (
-    <section id="blog" className="py-20">
-      <div className="container mx-auto px-4">
+    <div className="min-h-[80vh] py-20">
+      <div className="container mx-auto max-w-4xl px-4">
         <AnimatePresence mode="wait">
           {!selectedBlog ? (
             <motion.div
@@ -23,104 +23,78 @@ export function Blog({ data }: { data: DataStructure }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <div className="mb-16">
-                <h2 className="mb-4 text-4xl font-black uppercase tracking-tighter sm:text-5xl">Latest Insights</h2>
-                <div className="h-1 w-24 bg-primary"></div>
+              <div className="mb-12">
+                <h1 className="mb-3 font-serif text-3xl font-semibold tracking-tight sm:text-4xl">Writing</h1>
+                <p className="text-[15px] text-muted-foreground">Notes on robotics, algorithms, and things I'm learning.</p>
               </div>
 
-              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <div className="space-y-1">
                 {data.blogs.map((blog, i) => (
-                  <motion.div
+                  <motion.article
                     key={blog.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: i * 0.03 }}
                     onClick={() => setSelectedBlog(blog)}
-                    className="group cursor-pointer border-2 border-border bg-card transition-all hover:border-primary overflow-hidden"
+                    className="group -mx-4 cursor-pointer rounded-xl px-4 py-4 transition-all duration-200 hover:bg-muted/50"
                   >
-                    {blog.image && (
-                      <div className="aspect-video w-full overflow-hidden border-b-2 border-border group-hover:border-primary transition-colors">
-                        <img 
-                          src={blog.image} 
-                          alt={blog.title} 
-                          className="h-full w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                          referrerPolicy="no-referrer"
-                        />
-                      </div>
-                    )}
-                    <div className="p-8">
-                      <div className="mb-6 flex items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="h-3 w-3" />
-                          {blog.date}
-                        </div>
-                      </div>
-                      <h3 className="mb-4 text-2xl font-black uppercase tracking-tighter group-hover:text-primary transition-colors">
+                    <div className="flex items-baseline justify-between gap-4">
+                      <h3 className="font-serif text-lg font-medium tracking-tight group-hover:text-primary transition-colors">
                         {blog.title}
                       </h3>
-                      <p className="mb-8 text-sm leading-relaxed text-muted-foreground line-clamp-3">
-                        {blog.excerpt}
-                      </p>
-                      <div className="flex items-center justify-between border-t border-border pt-6">
-                        <div className="flex gap-2">
-                          {blog.tags.slice(0, 2).map(tag => (
-                            <span key={tag} className="border border-primary/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-primary">
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                        <ChevronRight className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1" />
-                      </div>
+                      <span className="shrink-0 text-[13px] text-muted-foreground">
+                        {blog.date}
+                      </span>
                     </div>
-                  </motion.div>
+                    <p className="mt-1 text-[14px] text-muted-foreground line-clamp-1">
+                      {blog.excerpt}
+                    </p>
+                  </motion.article>
                 ))}
               </div>
             </motion.div>
           ) : (
             <motion.div
               key="detail"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="mx-auto max-w-4xl"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              className="mx-auto max-w-3xl"
             >
               <button
                 onClick={() => setSelectedBlog(null)}
-                className="mb-12 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors"
+                className="mb-10 flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 <ArrowLeft className="h-4 w-4" />
-                Return_to_Index
+                All posts
               </button>
 
-              <header className="mb-16 border-b-4 border-primary pb-8">
-                <div className="mb-6 flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-primary">
-                  <span className="flex items-center gap-1">
-                    <Calendar className="h-4 w-4" />
+              <header className="mb-12">
+                <div className="mb-4 flex items-center gap-4 text-[13px] text-muted-foreground">
+                  <span className="flex items-center gap-1.5">
+                    <Calendar className="h-3.5 w-3.5" />
                     {selectedBlog.date}
                   </span>
-                  <span className="flex items-center gap-1">
-                    <Tag className="h-4 w-4" />
-                    {selectedBlog.tags.join(', ')}
-                  </span>
+                  <span className="text-border">|</span>
+                  <span>{selectedBlog.tags.join(', ')}</span>
                 </div>
-                <h1 className="text-5xl font-black uppercase tracking-tighter sm:text-7xl">
+                <h1 className="font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
                   {selectedBlog.title}
                 </h1>
               </header>
 
               {selectedBlog.image && (
-                <div className="mb-16 border-4 border-primary bg-muted shadow-[16px_16px_0px_0px_rgba(var(--primary-rgb),0.2)]">
-                  <img 
-                    src={selectedBlog.image} 
-                    alt={selectedBlog.title} 
-                    className="w-full grayscale hover:grayscale-0 transition-all duration-500"
+                <div className="mb-12 overflow-hidden rounded-lg">
+                  <img
+                    src={selectedBlog.image}
+                    alt={selectedBlog.title}
+                    className="w-full"
                     referrerPolicy="no-referrer"
                   />
                 </div>
               )}
 
-              <div className="prose prose-lg dark:prose-invert max-w-none">
+              <div className="prose prose-neutral dark:prose-invert max-w-none prose-headings:font-serif prose-headings:tracking-tight prose-p:leading-[1.8] prose-p:text-[15px]">
                 <Markdown
                   remarkPlugins={[remarkMath]}
                   rehypePlugins={[rehypeKatex, rehypeRaw]}
@@ -132,6 +106,7 @@ export function Blog({ data }: { data: DataStructure }) {
                           style={vscDarkPlus}
                           language={match[1]}
                           PreTag="div"
+                          className="!rounded-lg !text-[13px]"
                           {...props}
                         >
                           {String(children).replace(/\n$/, '')}
@@ -142,10 +117,9 @@ export function Blog({ data }: { data: DataStructure }) {
                         </code>
                       );
                     },
-                    // Custom rendering for LaTeX blocks if needed
-                    p: ({ children }) => <p className="mb-6 leading-relaxed">{children}</p>,
-                    h2: ({ children }) => <h2 className="mt-12 mb-6 text-3xl font-bold">{children}</h2>,
-                    h3: ({ children }) => <h3 className="mt-8 mb-4 text-2xl font-bold">{children}</h3>,
+                    p: ({ children }) => <p className="mb-6 leading-[1.8]">{children}</p>,
+                    h2: ({ children }) => <h2 className="mt-12 mb-4 text-2xl font-semibold">{children}</h2>,
+                    h3: ({ children }) => <h3 className="mt-8 mb-3 text-xl font-semibold">{children}</h3>,
                   }}
                 >
                   {selectedBlog.content}
@@ -155,6 +129,6 @@ export function Blog({ data }: { data: DataStructure }) {
           )}
         </AnimatePresence>
       </div>
-    </section>
+    </div>
   );
 }

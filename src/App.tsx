@@ -9,12 +9,30 @@ import { Blog } from './components/Blog';
 import { Dashboard } from './components/Dashboard';
 import { DATA as INITIAL_DATA } from './data';
 
+export type Page = 'home' | 'writing';
+
 export default function App() {
+  const [page, setPage] = useState<Page>(() => {
+    return window.location.hash === '#/writing' ? 'writing' : 'home';
+  });
   const [showDashboard, setShowDashboard] = useState(false);
   const [data, setData] = useState(() => {
     const saved = localStorage.getItem('portfolio_data');
     return saved ? JSON.parse(saved) : INITIAL_DATA;
   });
+
+  useEffect(() => {
+    window.location.hash = page === 'writing' ? '#/writing' : '';
+    window.scrollTo(0, 0);
+  }, [page]);
+
+  useEffect(() => {
+    const onHashChange = () => {
+      setPage(window.location.hash === '#/writing' ? 'writing' : 'home');
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -32,35 +50,43 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen font-sans selection:bg-primary/30 selection:text-primary">
-      <Navbar />
-      <main>
-        <Hero data={data} />
-        <Skills data={data} />
-        <Projects data={data} />
-        <OpenSource data={data} />
-        <Experience data={data} />
-        <Blog data={data} />
+    <div className="min-h-screen font-sans">
+      <div className="bg-ambient" />
+      <div className="bg-noise" />
+      <Navbar page={page} onNavigate={setPage} />
+      <main className="relative z-10">
+        {page === 'home' ? (
+          <>
+            <Hero data={data} />
+            <Skills data={data} />
+            <Projects data={data} />
+            <OpenSource data={data} />
+            <Experience data={data} />
+          </>
+        ) : (
+          <Blog data={data} />
+        )}
       </main>
-      <footer className="border-t bg-muted/50 py-12">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-sm text-muted-foreground font-mono">
-            &copy; {new Date().getFullYear()} Panav // Built with React & Tailwind
+      <footer className="relative z-10 py-12">
+        <div className="container mx-auto max-w-4xl px-4 text-center">
+          <div className="mx-auto mb-6 h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent" />
+          <p className="text-[13px] text-muted-foreground/80">
+            &copy; {new Date().getFullYear()} Panav Arpit Raaj
           </p>
-          <button 
+          <button
             onClick={() => setShowDashboard(true)}
-            className="mt-4 text-[10px] font-bold uppercase tracking-widest text-muted-foreground/20 hover:text-primary transition-colors"
+            className="mt-3 text-[10px] text-muted-foreground/20 hover:text-muted-foreground transition-colors"
           >
-            [Access_System_Core]
+            admin
           </button>
         </div>
       </footer>
 
       {showDashboard && (
-        <Dashboard 
+        <Dashboard
           data={data}
           onUpdate={handleUpdateData}
-          onClose={() => setShowDashboard(false)} 
+          onClose={() => setShowDashboard(false)}
         />
       )}
     </div>

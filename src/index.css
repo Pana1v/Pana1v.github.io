@@ -3,6 +3,7 @@
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", ui-serif, Georgia, "Times New Roman", serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   --color-background: var(--background);
@@ -22,37 +23,39 @@
 
 @layer base {
   :root {
-    /* Light Mode: Black Text, Gold Accents */
-    --background: #ffffff;
-    --foreground: #000000;
-    --primary: #d4af37; /* Gold */
+    --background: #faf9f7;
+    --foreground: #1c1917;
+    --primary: #2c4a6e;
     --primary-foreground: #ffffff;
-    --secondary: #f4f4f5;
-    --secondary-foreground: #18181b;
-    --accent: #d4af37;
+    --secondary: #f0ece4;
+    --secondary-foreground: #1c1917;
+    --accent: #8b5e3c;
     --accent-foreground: #ffffff;
-    --muted: #f4f4f5;
-    --muted-foreground: #71717a;
-    --border: #e4e4e7;
+    --muted: #f5f3ef;
+    --muted-foreground: #78756e;
+    --border: #e8e5de;
     --card: #ffffff;
-    --card-foreground: #000000;
+    --card-foreground: #1c1917;
+    --glow-1: #e8dfd2;
+    --glow-2: #d4dee8;
   }
 
   .dark {
-    /* Dark Mode: Green Text, Black Background (Matrix Style) */
-    --background: #000000;
-    --foreground: #00ff41; /* Matrix Green */
-    --primary: #00ff41;
-    --primary-foreground: #000000;
-    --secondary: #003b00;
-    --secondary-foreground: #00ff41;
-    --accent: #008f11;
-    --accent-foreground: #ffffff;
-    --muted: #001a00;
-    --muted-foreground: #008f11;
-    --border: #003b00;
-    --card: #050505;
-    --card-foreground: #00ff41;
+    --background: #161618;
+    --foreground: #e8e6e1;
+    --primary: #7faed4;
+    --primary-foreground: #161618;
+    --secondary: #1e1e22;
+    --secondary-foreground: #e8e6e1;
+    --accent: #c4956a;
+    --accent-foreground: #161618;
+    --muted: #1e1e22;
+    --muted-foreground: #9a9890;
+    --border: #2a2a2f;
+    --card: #1c1c20;
+    --card-foreground: #e8e6e1;
+    --glow-1: #1a2030;
+    --glow-2: #201a18;
   }
 }
 
@@ -61,20 +64,76 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply bg-background text-foreground transition-colors duration-300 antialiased;
   }
 }
 
-/* Custom scrollbar */
-.dark ::-webkit-scrollbar {
-  width: 8px;
+/* Ambient background glow */
+.bg-ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 0%, var(--glow-1) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 90% 20%, var(--glow-2) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 50% 100%, var(--glow-1) 0%, transparent 40%);
+  opacity: 0.55;
+  transition: opacity 0.5s ease;
 }
-.dark ::-webkit-scrollbar-track {
-  background: #000;
+
+.dark .bg-ambient {
+  opacity: 0.4;
 }
-.dark ::-webkit-scrollbar-thumb {
-  background: #003b00;
+
+/* Subtle noise texture overlay */
+.bg-noise {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
 }
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #00ff41;
+
+.dark .bg-noise {
+  opacity: 0.04;
+}
+
+/* Section divider — soft fade instead of hard border */
+.section-divider {
+  position: relative;
+}
+.section-divider::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100%, 600px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--border) 30%, var(--border) 70%, transparent 100%);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* Selection */
+::selection {
+  background: color-mix(in srgb, var(--primary) 15%, transparent);
+  color: var(--foreground);
 }

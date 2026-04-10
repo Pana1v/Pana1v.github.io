@@ -1,40 +1,36 @@
 import { motion } from 'motion/react';
 import { DataStructure } from '../data';
-import { Github, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 export function OpenSource({ data }: { data: DataStructure }) {
   return (
-    <section id="opensource" className="py-20">
-      <div className="container mx-auto px-4">
-        <div className="mb-16">
-          <h2 className="mb-4 text-4xl font-black uppercase tracking-tighter sm:text-5xl">Open_Source_Contributions</h2>
-          <div className="h-1 w-24 bg-primary"></div>
-        </div>
+    <section id="opensource" className="section-divider py-16">
+      <div className="container mx-auto max-w-4xl px-4">
+        <h2 className="mb-10 font-serif text-2xl font-semibold tracking-tight">Open Source</h2>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="space-y-4">
           {data.openSource.map((item, i) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group border-2 border-border bg-card p-8 transition-all hover:border-primary"
+              transition={{ delay: i * 0.05, duration: 0.35 }}
+              className="flex items-start justify-between gap-4 rounded-xl border border-border/60 bg-card/60 p-5 backdrop-blur-sm shadow-sm shadow-black/[0.02] transition-all duration-300 hover:border-primary/25 hover:shadow-md hover:shadow-primary/[0.03]"
             >
-              <div className="mb-6 flex items-center justify-between">
-                <Github className="h-8 w-8 text-primary" />
-                {item.link && (
-                  <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                    <ExternalLink className="h-5 w-5" />
-                  </a>
-                )}
+              <div>
+                <h3 className="mb-1.5 font-serif text-lg font-semibold tracking-tight">
+                  {item.title}
+                </h3>
+                <p className="text-[14px] leading-relaxed text-muted-foreground">
+                  {item.description}
+                </p>
               </div>
-              <h3 className="mb-4 text-2xl font-black uppercase tracking-tighter group-hover:text-primary transition-colors">
-                {item.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                {item.description}
-              </p>
+              {item.link && (
+                <a href={item.link} target="_blank" rel="noopener noreferrer" className="shrink-0 rounded-lg p-2 text-muted-foreground transition-all duration-200 hover:text-foreground hover:bg-muted/60">
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              )}
             </motion.div>
           ))}
         </div>

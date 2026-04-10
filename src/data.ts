@@ -60,7 +60,7 @@ export interface DataStructure {
 }
 
 export const DATA: DataStructure = {
-  name: "PANAV_ARPIT_RAAJ",
+  name: "Panav Arpit Raaj",
   title: "Robotics Software Apprentice & AI Enthusiast",
   bio: "B.Tech student at IIT Patna specializing in SLAM, autonomous systems, and computer vision. Building the next generation of intelligent agents.",
   profilePhoto: "https://picsum.photos/seed/panav/400/400",
@@ -105,6 +105,11 @@ export const DATA: DataStructure = {
       title: "Autonomous Beginners Guide (Shisato Yano)",
       description: "Contributing to and maintaining educational resources for autonomous systems based on Shisato Yano's methodologies.",
       link: "https://github.com/AtsushiSakai/PythonRobotics"
+    },
+    {
+      title: "Polka",
+      description: "A specialized robotics project focused on precision movement and autonomous navigation.",
+      link: "https://github.com/Pana1v/Polka"
     }
   ],
   projects: [
