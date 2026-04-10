@@ -4,82 +4,85 @@ import { Github, ExternalLink, Code2 } from 'lucide-react';
 
 export function Projects({ data }: { data: DataStructure }) {
   return (
-    <section id="projects" className="bg-muted/30 py-20">
-      <div className="container mx-auto px-4">
-        <div className="mb-16">
-          <h2 className="mb-4 text-4xl font-black uppercase tracking-tighter sm:text-5xl">Featured Projects</h2>
-          <div className="h-1 w-24 bg-primary"></div>
-        </div>
+    <section id="projects" className="section-divider py-16">
+      <div className="container mx-auto max-w-4xl px-4">
+        <h2 className="mb-10 font-serif text-2xl font-semibold tracking-tight">Selected Projects</h2>
 
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
+        <div className="space-y-6">
           {data.projects.map((project, i) => (
-            <motion.div
+            <motion.article
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group border-2 border-border bg-card transition-all hover:border-primary"
+              transition={{ delay: i * 0.04, duration: 0.4 }}
+              className="group rounded-xl border border-border/60 bg-card/60 p-5 backdrop-blur-sm shadow-sm shadow-black/[0.02] transition-all duration-300 hover:border-border hover:shadow-md hover:shadow-black/[0.04]"
             >
-              <div className="relative aspect-video overflow-hidden border-b-2 border-border">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-
-              <div className="p-8">
-                <div className="mb-6 flex flex-wrap items-center gap-2">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="border border-primary/30 bg-primary/5 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-primary">
-                      {tag}
-                    </span>
-                  ))}
-                  {project.status && (
-                    <span className="ml-auto border-2 border-primary bg-primary px-2 py-0.5 text-[10px] font-black uppercase tracking-widest text-primary-foreground">
-                      {project.status}
-                    </span>
-                  )}
+              <div className="flex flex-col gap-5 sm:flex-row">
+                <div className="shrink-0 overflow-hidden rounded-lg sm:w-44">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="h-full w-full object-cover aspect-video sm:aspect-[4/3] transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    referrerPolicy="no-referrer"
+                  />
                 </div>
-                <h3 className="mb-4 text-3xl font-black uppercase tracking-tighter">{project.title}</h3>
-                <p className="mb-8 text-sm leading-relaxed text-muted-foreground">
-                  {project.description}
-                </p>
 
-                {project.interactiveHtml && (
-                  <div className="mb-8 border-2 border-dashed border-primary/20 bg-muted/50 p-6">
-                    <div className="mb-4 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary">
-                      <Code2 className="h-3 w-3" />
-                      <span>Interactive_Simulation_Module</span>
-                    </div>
-                    <div dangerouslySetInnerHTML={{ __html: project.interactiveHtml }} />
+                <div className="flex-1 min-w-0">
+                  <div className="mb-2 flex flex-wrap items-center gap-2">
+                    <h3 className="font-serif text-lg font-semibold tracking-tight">{project.title}</h3>
+                    {project.status && (
+                      <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-[11px] font-medium text-primary">
+                        {project.status}
+                      </span>
+                    )}
                   </div>
-                )}
 
-                <div className="flex items-center gap-6">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors underline decoration-primary/30 underline-offset-4"
-                    >
-                      <Github className="h-4 w-4" />
-                      Source_Code
-                    </a>
+                  <p className="mb-3 text-[14px] leading-relaxed text-muted-foreground">
+                    {project.description}
+                  </p>
+
+                  <div className="mb-3 flex flex-wrap gap-1.5">
+                    {project.tags.map(tag => (
+                      <span key={tag} className="text-[12px] text-muted-foreground/60">
+                        {tag}{project.tags.indexOf(tag) < project.tags.length - 1 ? ' ·' : ''}
+                      </span>
+                    ))}
+                  </div>
+
+                  {project.interactiveHtml && (
+                    <div className="mb-3 rounded-lg border border-border/50 bg-muted/40 p-4">
+                      <div className="mb-2 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
+                        <Code2 className="h-3 w-3" />
+                        <span>Interactive Demo</span>
+                      </div>
+                      <div dangerouslySetInnerHTML={{ __html: project.interactiveHtml }} />
+                    </div>
                   )}
-                  {project.demo && (
-                    <a
-                      href={project.demo}
-                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors underline decoration-primary/30 underline-offset-4"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                      Live_System
-                    </a>
-                  )}
+
+                  <div className="flex items-center gap-4">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        className="inline-flex items-center gap-1.5 text-[13px] text-muted-foreground hover:text-foreground transition-colors duration-200"
+                      >
+                        <Github className="h-3.5 w-3.5" />
+                        Source
+                      </a>
+                    )}
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        className="inline-flex items-center gap-1.5 text-[13px] text-muted-foreground hover:text-foreground transition-colors duration-200"
+                      >
+                        <ExternalLink className="h-3.5 w-3.5" />
+                        Demo
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>

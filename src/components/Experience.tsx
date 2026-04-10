@@ -1,37 +1,29 @@
 import { motion } from 'motion/react';
 import { DataStructure } from '../data';
-import { Briefcase, GraduationCap } from 'lucide-react';
 
 export function Experience({ data }: { data: DataStructure }) {
   return (
-    <section id="experience" className="py-20">
-      <div className="container mx-auto px-4">
-        <div className="mb-16">
-          <h2 className="mb-4 text-4xl font-black uppercase tracking-tighter sm:text-5xl">Experience & Education</h2>
-          <div className="h-1 w-24 bg-primary"></div>
-        </div>
-
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+    <section id="experience" className="section-divider py-16">
+      <div className="container mx-auto max-w-4xl px-4">
+        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
           {/* Experience */}
           <div>
-            <div className="mb-8 flex items-center gap-3 border-b border-primary/20 pb-2">
-              <Briefcase className="h-6 w-6 text-primary" />
-              <h3 className="text-2xl font-black uppercase tracking-tight">Professional</h3>
-            </div>
-            <div className="space-y-12">
+            <h2 className="mb-8 font-serif text-2xl font-semibold tracking-tight">Experience</h2>
+            <div className="relative space-y-8 pl-5 before:absolute before:left-0 before:top-1 before:h-[calc(100%-8px)] before:w-px before:bg-gradient-to-b before:from-primary/30 before:via-border before:to-transparent">
               {data.experience.map((exp, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -8 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  className="relative border-l-2 border-primary/20 pl-8 pb-2"
+                  transition={{ delay: i * 0.06, duration: 0.35 }}
+                  className="relative"
                 >
-                  <div className="absolute -left-[9px] top-0 h-4 w-4 border-2 border-primary bg-background"></div>
-                  <span className="text-xs font-bold uppercase tracking-widest text-primary">{exp.period}</span>
-                  <h4 className="text-2xl font-black uppercase tracking-tighter">{exp.role}</h4>
-                  <p className="mb-4 font-mono text-sm text-muted-foreground">{exp.company}</p>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{exp.description}</p>
+                  <div className="absolute -left-5 top-1.5 h-2 w-2 rounded-full border-2 border-primary/50 bg-background" />
+                  <p className="mb-1 text-[12px] font-medium uppercase tracking-wider text-muted-foreground/70">{exp.period}</p>
+                  <h3 className="font-serif text-lg font-semibold tracking-tight">{exp.role}</h3>
+                  <p className="mb-2 text-[14px] font-medium text-primary/80">{exp.company}</p>
+                  <p className="text-[14px] leading-[1.7] text-muted-foreground">{exp.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -39,24 +31,22 @@ export function Experience({ data }: { data: DataStructure }) {
 
           {/* Education */}
           <div>
-            <div className="mb-8 flex items-center gap-3 border-b border-primary/20 pb-2">
-              <GraduationCap className="h-6 w-6 text-primary" />
-              <h3 className="text-2xl font-black uppercase tracking-tight">Education</h3>
-            </div>
-            <div className="space-y-12">
+            <h2 className="mb-8 font-serif text-2xl font-semibold tracking-tight">Education</h2>
+            <div className="relative space-y-8 pl-5 before:absolute before:left-0 before:top-1 before:h-[calc(100%-8px)] before:w-px before:bg-gradient-to-b before:from-accent/30 before:via-border before:to-transparent">
               {data.education.map((edu, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, x: 20 }}
+                  initial={{ opacity: 0, x: -8 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  className="relative border-l-2 border-primary/20 pl-8 pb-2"
+                  transition={{ delay: i * 0.06, duration: 0.35 }}
+                  className="relative"
                 >
-                  <div className="absolute -left-[9px] top-0 h-4 w-4 border-2 border-primary bg-background"></div>
-                  <span className="text-xs font-bold uppercase tracking-widest text-primary">{edu.period}</span>
-                  <h4 className="text-2xl font-black uppercase tracking-tighter">{edu.degree}</h4>
-                  <p className="mb-4 font-mono text-sm text-muted-foreground">{edu.institution}</p>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{edu.description}</p>
+                  <div className="absolute -left-5 top-1.5 h-2 w-2 rounded-full border-2 border-accent/50 bg-background" />
+                  <p className="mb-1 text-[12px] font-medium uppercase tracking-wider text-muted-foreground/70">{edu.period}</p>
+                  <h3 className="font-serif text-lg font-semibold tracking-tight">{edu.degree}</h3>
+                  <p className="mb-2 text-[14px] font-medium text-primary/80">{edu.institution}</p>
+                  <p className="text-[14px] leading-[1.7] text-muted-foreground">{edu.description}</p>
                 </motion.div>
               ))}
             </div>

@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { DATA as INITIAL_DATA, DataStructure, Experience, Project, Blog, OpenSourceContribution } from '../data';
-import { Plus, Trash2, Save, Download, LayoutDashboard, Briefcase, FolderCode, BookOpen, X, Check, Wrench, Github, RotateCcw } from 'lucide-react';
+import { Plus, Trash2, Save, Download, LayoutDashboard, Briefcase, FolderCode, BookOpen, X, Check, Wrench, Github, RotateCcw, HardDrive } from 'lucide-react';
 
 export function Dashboard({ data, onUpdate, onClose }: { data: DataStructure, onUpdate: (newData: DataStructure) => void, onClose: () => void }) {
   const [localData, setLocalData] = useState(data);
   const [activeTab, setActiveTab] = useState<'experience' | 'projects' | 'blogs' | 'skills' | 'openSource'>('projects');
   const [copied, setCopied] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [wroteFile, setWroteFile] = useState<'idle' | 'saving' | 'done' | 'error'>('idle');
 
   const handleExport = () => {
     const code = `import { DataStructure } from './types';
 
 export const DATA: DataStructure = ${JSON.stringify(localData, null, 2)};`;
-    
+
     navigator.clipboard.writeText(code);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -23,6 +24,24 @@ export const DATA: DataStructure = ${JSON.stringify(localData, null, 2)};`;
     onUpdate(localData);
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
+  };
+
+  const handleWriteFile = async () => {
+    setWroteFile('saving');
+    try {
+      const res = await fetch('/__api/save-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(localData),
+      });
+      if (!res.ok) throw new Error('Failed to write');
+      onUpdate(localData);
+      setWroteFile('done');
+      setTimeout(() => setWroteFile('idle'), 2500);
+    } catch {
+      setWroteFile('error');
+      setTimeout(() => setWroteFile('idle'), 3000);
+    }
   };
 
   const handleReset = () => {
@@ -121,6 +140,17 @@ export const DATA: DataStructure = ${JSON.stringify(localData, null, 2)};`;
             >
               {saved ? <Check className="h-3 w-3" /> : <Save className="h-3 w-3" />}
               {saved ? 'SAVED_LOCALLY' : 'SAVE_CHANGES'}
+            </button>
+            <button
+              onClick={handleWriteFile}
+              disabled={wroteFile === 'saving'}
+              className="flex items-center gap-2 border-2 border-accent bg-accent/10 px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-accent transition-all hover:bg-accent hover:text-accent-foreground disabled:opacity-50"
+            >
+              {wroteFile === 'done' ? <Check className="h-3 w-3" /> : <HardDrive className="h-3 w-3" />}
+              {wroteFile === 'idle' && 'WRITE_TO_FILE'}
+              {wroteFile === 'saving' && 'WRITING...'}
+              {wroteFile === 'done' && 'WRITTEN_TO_DATA.TS'}
+              {wroteFile === 'error' && 'FAILED_(DEV_ONLY)'}
             </button>
             <button
               onClick={handleExport}
