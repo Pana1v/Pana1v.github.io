@@ -78,6 +78,21 @@ export function Hero({ data }: { data: DataStructure }) {
                 LinkedIn
               </a>
             </motion.div>
+
+            {data.experience.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.28, duration: 0.4 }}
+                className="mt-5 flex flex-wrap items-center gap-x-1.5 text-[13px] text-muted-foreground/60"
+              >
+                {data.experience.map((exp, i) => (
+                  <span key={i}>
+                    {exp.company}{i < data.experience.length - 1 ? ' · ' : ''}
+                  </span>
+                ))}
+              </motion.div>
+            )}
           </div>
         </div>
       </div>

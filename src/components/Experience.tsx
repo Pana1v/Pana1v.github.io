@@ -10,12 +10,7 @@ export function Experience({ data }: { data: DataStructure }) {
       <div className="container mx-auto max-w-4xl px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16">
           {/* Headings */}
-          <div className="mb-8">
-            <h2 className="font-serif text-2xl font-semibold tracking-tight">Experience</h2>
-            {data.experienceSummary && (
-              <p className="mt-2 text-[14px] leading-relaxed text-muted-foreground">{data.experienceSummary}</p>
-            )}
-          </div>
+          <h2 className="mb-8 font-serif text-2xl font-semibold tracking-tight">Experience</h2>
           <h2 className="mb-8 font-serif text-2xl font-semibold tracking-tight max-lg:hidden">Education</h2>
 
           {/* Paired entries */}
