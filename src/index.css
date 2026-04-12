@@ -102,6 +102,19 @@
   opacity: 0.04;
 }
 
+/* Radial vignette around profile photo */
+.photo-vignette {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+  box-shadow: 0 0 120px 40px rgba(0, 0, 0, 0.06);
+}
+
+.dark .photo-vignette {
+  box-shadow: 0 0 200px 80px black;
+}
+
 /* Section divider — soft fade instead of hard border */
 .section-divider {
   position: relative;

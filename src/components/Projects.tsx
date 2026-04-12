@@ -4,12 +4,11 @@ import { Github, ExternalLink, Code2 } from 'lucide-react';
 
 export function Projects({ data }: { data: DataStructure }) {
   return (
-    <section id="projects" className="section-divider py-16">
-      <div className="container mx-auto max-w-4xl px-4">
-        <h2 className="mb-10 font-serif text-2xl font-semibold tracking-tight">Selected Projects</h2>
+    <div>
+      <h2 className="mb-10 font-serif text-2xl font-semibold tracking-tight">Selected Projects</h2>
 
-        <div className="space-y-6">
-          {data.projects.map((project, i) => (
+      <div className="space-y-6">
+        {data.projects.map((project, i) => (
             <motion.article
               key={project.id}
               initial={{ opacity: 0, y: 12 }}
@@ -86,6 +85,5 @@ export function Projects({ data }: { data: DataStructure }) {
           ))}
         </div>
       </div>
-    </section>
   );
 }
