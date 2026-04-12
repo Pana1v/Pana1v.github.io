@@ -15,6 +15,7 @@ export function Hero({ data }: { data: DataStructure }) {
             className="shrink-0"
           >
             <div className="relative">
+              <div className="photo-vignette" />
               <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-primary/20 via-transparent to-accent/20 blur-sm" />
               <img
                 src={data.profilePhoto}

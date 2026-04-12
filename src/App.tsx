@@ -6,6 +6,7 @@ import { Projects } from './components/Projects';
 import { Skills } from './components/Skills';
 import { OpenSource } from './components/OpenSource';
 import { Blog } from './components/Blog';
+import { BlogPreview } from './components/BlogPreview';
 import { Dashboard } from './components/Dashboard';
 import { DATA as INITIAL_DATA } from './data';
 
@@ -58,8 +59,15 @@ export default function App() {
         {page === 'home' ? (
           <>
             <Hero data={data} />
+            <section className="section-divider py-16">
+              <div className="container mx-auto max-w-5xl px-4">
+                <div className="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_1fr] lg:gap-12">
+                  <Projects data={data} />
+                  <BlogPreview data={data} onNavigate={setPage} />
+                </div>
+              </div>
+            </section>
             <Skills data={data} />
-            <Projects data={data} />
             <OpenSource data={data} />
             <Experience data={data} />
           </>
