@@ -1,66 +1,48 @@
 import { useState, useEffect } from 'react';
-import { Sun, Moon } from 'lucide-react';
-import { Page } from '../App';
+import { DATA } from '../data';
+import { Container, SUBSTACK_URL } from '../App';
 
-export function Navbar({ page, onNavigate }: { page: Page; onNavigate: (p: Page) => void }) {
-  const [isDark, setIsDark] = useState(false);
+export function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDark]);
-
-  const homeLink = (href: string, label: string) => (
-    <a
-      href={href}
-      onClick={(e) => {
-        if (page !== 'home') {
-          e.preventDefault();
-          onNavigate('home');
-          setTimeout(() => {
-            document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
-          }, 50);
-        }
-      }}
-      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-    >
-      {label}
-    </a>
-  );
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-xl backdrop-saturate-150">
-      <div className="container mx-auto flex h-14 items-center justify-between px-4 max-w-4xl">
-        <button
-          onClick={() => onNavigate('home')}
-          className="font-serif text-lg font-semibold tracking-tight text-foreground hover:text-primary transition-colors duration-200"
-        >
-          Panav Arpit Raaj
-        </button>
-
-        <div className="flex items-center gap-6">
-          {homeLink('#research', 'Research')}
-          {homeLink('#projects', 'Projects')}
-          {homeLink('#experience', 'Experience')}
-          <button
-            onClick={() => onNavigate('writing')}
-            className={`text-sm transition-colors ${page === 'writing' ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground'}`}
+    <nav style={{
+      position: 'sticky', top: 0, zIndex: 50,
+      background: scrolled ? 'rgba(0,0,0,0.88)' : 'transparent',
+      backdropFilter: scrolled ? 'blur(14px) saturate(140%)' : 'none',
+      borderBottom: scrolled ? '1px solid var(--rule-soft)' : '1px solid transparent',
+      transition: 'background 280ms ease, border-color 280ms ease'
+    }}>
+      <Container>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 68, gap: 24 }}>
+          <a
+            href="#"
+            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+            style={{ background: 'none', border: 0, cursor: 'pointer', color: 'var(--fg)', display: 'inline-flex', alignItems: 'center', gap: 12, padding: 0, textDecoration: 'none' }}
           >
-            Writing
-          </button>
-
-          <button
-            onClick={() => setIsDark(!isDark)}
-            className="p-1.5 text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="Toggle theme"
-          >
-            {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-          </button>
+            <span className="serif" style={{ fontSize: 20, fontWeight: 500, letterSpacing: '-0.015em' }}>
+              Panav
+            </span>
+          </a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 22 }}>
+            <a className="navlink" href="#projects-section">
+              <span style={{ color: 'var(--fg-faint)', marginRight: 6 }}>01</span>Work
+            </a>
+            <a className="navlink" href={SUBSTACK_URL} target="_blank" rel="noopener noreferrer">
+              <span style={{ color: 'var(--fg-faint)', marginRight: 6 }}>02</span>Writing
+            </a>
+            <a className="navlink" href="#contact-section">
+              <span style={{ color: 'var(--fg-faint)', marginRight: 6 }}>03</span>Contact
+            </a>
+          </div>
         </div>
-      </div>
+      </Container>
     </nav>
   );
 }
