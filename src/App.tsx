@@ -1,102 +1,122 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { DATA } from './data';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { Experience } from './components/Experience';
+import { FeaturedEssay } from './components/FeaturedEssay';
 import { Projects } from './components/Projects';
 import { Skills } from './components/Skills';
 import { OpenSource } from './components/OpenSource';
-import { Blog } from './components/Blog';
-import { BlogPreview } from './components/BlogPreview';
+import { Experience } from './components/Experience';
+import { Contact } from './components/Contact';
+import { Footer } from './components/Footer';
 import { Dashboard } from './components/Dashboard';
-import { DATA as INITIAL_DATA } from './data';
 
-export type Page = 'home' | 'writing';
+export const SUBSTACK_URL = 'https://substack.com/@panavraaj';
+
+export function useReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!ref.current) return;
+    const el = ref.current;
+    const io = new IntersectionObserver(
+      (es) => es.forEach((e) => { if (e.isIntersecting) { el.classList.add('in'); io.unobserve(el); } }),
+      { threshold: 0.12 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return ref;
+}
+
+export function Reveal({ children, delay = 0, className = '', style }: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  const ref = useReveal();
+  return (
+    <div ref={ref} className={`reveal ${className}`} style={{ transitionDelay: `${delay}ms`, ...style }}>
+      {children}
+    </div>
+  );
+}
+
+export function Container({ children, size = 'wide', style }: {
+  children: React.ReactNode;
+  size?: 'tight' | 'default' | 'wide';
+  style?: React.CSSProperties;
+}) {
+  const w = { tight: '680px', default: '960px', wide: '1180px' };
+  return (
+    <div style={{ maxWidth: w[size], width: '100%', margin: '0 auto', padding: '0 24px', ...style }}>
+      {children}
+    </div>
+  );
+}
+
+export function SectionHeader({ eyebrow, title, kicker, right }: {
+  eyebrow?: string;
+  title: string;
+  kicker?: string;
+  right?: React.ReactNode;
+}) {
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 24, alignItems: 'end', marginBottom: 56 }}>
+      <div style={{ minWidth: 0 }}>
+        {eyebrow && (
+          <div className="sh-rail">
+            <div className="eyebrow" style={{ whiteSpace: 'nowrap' }}>{eyebrow}</div>
+            <div className="tape-bar" />
+          </div>
+        )}
+        <h2 className="serif" style={{ margin: 0, fontSize: 'clamp(32px, 4.2vw, 52px)', fontWeight: 400, letterSpacing: '-0.022em', lineHeight: 1.05 }}>
+          {title}
+        </h2>
+        {kicker && (
+          <p style={{ margin: '16px 0 0', maxWidth: '58ch', color: 'var(--fg-dim)', fontSize: 16, lineHeight: 1.65 }}>
+            {kicker}
+          </p>
+        )}
+      </div>
+      {right && <div style={{ alignSelf: 'end', paddingBottom: 4 }}>{right}</div>}
+    </div>
+  );
+}
 
 export default function App() {
-  const [page, setPage] = useState<Page>(() => {
-    return window.location.hash === '#/writing' ? 'writing' : 'home';
-  });
   const [showDashboard, setShowDashboard] = useState(false);
-  const [data, setData] = useState(() => {
-    const saved = localStorage.getItem('portfolio_data');
-    return saved ? JSON.parse(saved) : INITIAL_DATA;
-  });
-
-  useEffect(() => {
-    window.location.hash = page === 'writing' ? '#/writing' : '';
-    window.scrollTo(0, 0);
-  }, [page]);
-
-  useEffect(() => {
-    const onHashChange = () => {
-      setPage(window.location.hash === '#/writing' ? 'writing' : 'home');
-    };
-    window.addEventListener('hashchange', onHashChange);
-    return () => window.removeEventListener('hashchange', onHashChange);
-  }, []);
+  const [data, setData] = useState(DATA);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-        setShowDashboard(prev => !prev);
-      }
+      if (e.ctrlKey && e.shiftKey && e.key === 'D') setShowDashboard(prev => !prev);
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const handleUpdateData = (newData: typeof INITIAL_DATA) => {
-    setData(newData);
-    localStorage.setItem('portfolio_data', JSON.stringify(newData));
-  };
-
   return (
-    <div className="min-h-screen font-sans">
-      <div className="bg-ambient" />
-      <div className="bg-noise" />
-      <Navbar page={page} onNavigate={setPage} />
-      <main className="relative z-10">
-        {page === 'home' ? (
-          <>
-            <Hero data={data} />
-            <section className="section-divider py-16">
-              <div className="container mx-auto max-w-5xl px-4">
-                <div className="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_1fr] lg:gap-12">
-                  <Projects data={data} />
-                  <BlogPreview data={data} onNavigate={setPage} />
-                </div>
-              </div>
-            </section>
-            <Skills data={data} />
-            <OpenSource data={data} />
-            <Experience data={data} />
-          </>
-        ) : (
-          <Blog data={data} />
-        )}
+    <>
+      <div className="grain" id="grain" style={{ display: 'none' }} />
+      <Navbar />
+      <main style={{ position: 'relative', zIndex: 1 }}>
+        <Hero />
+        <FeaturedEssay />
+        <Projects />
+        <Skills />
+        <OpenSource />
+        <Experience />
+        <Contact />
       </main>
-      <footer className="relative z-10 py-12">
-        <div className="container mx-auto max-w-4xl px-4 text-center">
-          <div className="mx-auto mb-6 h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent" />
-          <p className="text-[13px] text-muted-foreground/80">
-            &copy; {new Date().getFullYear()} Panav Arpit Raaj
-          </p>
-          <button
-            onClick={() => setShowDashboard(true)}
-            className="mt-3 text-[10px] text-muted-foreground/20 hover:text-muted-foreground transition-colors"
-          >
-            admin
-          </button>
-        </div>
-      </footer>
-
+      <Footer />
       {showDashboard && (
         <Dashboard
           data={data}
-          onUpdate={handleUpdateData}
+          onUpdate={(d) => setData(d)}
           onClose={() => setShowDashboard(false)}
         />
       )}
-    </div>
+    </>
   );
 }
