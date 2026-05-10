@@ -1,125 +1,106 @@
+import { useContext } from 'react';
+import { Container, Reveal, TweaksContext } from '../App';
 import { DATA } from '../data';
-import { Reveal, Container } from '../App';
 
-export function Hero() {
+function HeroEditorial() {
+  const today = new Date();
+  const dateStr = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
   return (
-    <section style={{ position: 'relative', padding: '88px 0 72px' }}>
+    <section style={{ position: 'relative', padding: '72px 0 56px' }}>
       <Container>
         <Reveal>
-          <h1
-            className="serif hero-headline"
-            style={{
-              margin: 0,
-              fontSize: 'clamp(56px, 9vw, 128px)',
-              lineHeight: 0.94,
-              fontWeight: 300,
-              letterSpacing: '-0.035em',
-              maxWidth: '14ch'
-            }}
-          >
-            Robots, <em className="hl-em">and the</em>{' '}
-            <span className="hl-rule">messy</span> physical world
-            <span className="caret" />
-          </h1>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', paddingBottom: 18, marginBottom: 28, flexWrap: 'wrap', gap: 12 }}>
+            <span className="mono" style={{ fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--fg-faint)' }}>Bangalore</span>
+            <span className="mono" style={{ fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--fg-faint)' }}>{dateStr}</span>
+          </div>
         </Reveal>
-
-        <div
-          className="resp-hero-grid"
-          style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 3fr) minmax(0, 1fr)', gap: 56, alignItems: 'start', marginTop: 48 }}
-        >
-          <Reveal delay={120}>
-            <p style={{
-              margin: 0, fontFamily: 'var(--serif)',
-              fontSize: 'clamp(20px, 1.6vw, 24px)', lineHeight: 1.55,
-              color: 'var(--fg)', fontWeight: 300, maxWidth: '48ch'
-            }}>
-              I'm <strong style={{ fontWeight: 500 }}>{DATA.name.split(' ')[0]}</strong>, a robotics software engineer currently at <em>{DATA.experience[0]?.company}</em>. {DATA.shortBio.split('. ').slice(1).join('. ')}
+        <Reveal delay={80}>
+          <h1 className="masthead">Panav<span style={{ fontStyle: 'italic', fontWeight: 300, color: 'var(--fg-dim)', marginLeft: '0.04em' }}>.</span></h1>
+          <div className="masthead-rule thick" style={{ marginTop: 12 }} />
+        </Reveal>
+        <div className="resp-hero-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 2.2fr) minmax(0, 1fr)', gap: 72, alignItems: 'start', marginTop: 56 }}>
+          <Reveal delay={180}>
+            <p style={{ margin: 0, fontFamily: 'var(--serif)', fontSize: 'clamp(20px, 1.7vw, 26px)', lineHeight: 1.45, color: 'var(--fg)', fontWeight: 300, letterSpacing: '-0.005em', maxWidth: '32ch' }}>
+              Robotics software engineer at <em style={{ fontWeight: 400 }}>Eternal.ag</em>. I write autonomy stacks for machines that have to make decisions in unpredictable places.
             </p>
-            <p style={{ marginTop: 24, color: 'var(--fg-dim)', fontSize: 16, lineHeight: 1.7, maxWidth: '52ch' }}>
-              My work sits at the seam between perception, planning, and the physical world. This site is where I collect the things I build and the things I'm thinking about — mostly SLAM, controls, and the unglamorous engineering that makes robots actually work.
+            <p style={{ marginTop: 22, color: 'var(--fg-dim)', fontSize: 15, lineHeight: 1.7, maxWidth: '54ch' }}>
+              My work sits at the seam between perception, planning, and the physical world. This site is where I collect what I build and what I'm thinking about: mostly SLAM, controls, and the unglamorous engineering that makes robots actually work.
             </p>
-            <div style={{ marginTop: 28, display: 'flex', gap: 24, flexWrap: 'wrap' }}>
-              <a className="ink-link mono" style={{ fontSize: 13 }} href="#writing-section">Read the writing →</a>
-              <a className="ink-link mono" style={{ fontSize: 13 }} href="#projects-section">See the work →</a>
-              <a className="ink-link mono" style={{ fontSize: 13 }} href={`mailto:${DATA.contact.email}`}>Get in touch →</a>
+            <div style={{ marginTop: 36, display: 'flex', gap: 28, flexWrap: 'wrap' }}>
+              <a className="ink-link mono" style={{ fontSize: 12 }} href="#writing-section">Read the writing →</a>
+              <a className="ink-link mono" style={{ fontSize: 12 }} href="#projects-section">See the work →</a>
+              <a className="ink-link mono" style={{ fontSize: 12 }} href={`mailto:${DATA.contact.email}`}>Get in touch →</a>
             </div>
           </Reveal>
-
-          <Reveal delay={220}>
-            <figure style={{ margin: 0, position: 'relative', maxWidth: 220, marginLeft: 'auto' }}>
-              <div className="eyebrow" style={{ position: 'absolute', top: -18, left: 0, fontSize: 9 }}>Fig. 01</div>
-              <div className="tex-dots" style={{ position: 'absolute', inset: '-14px -14px -14px 0', pointerEvents: 'none', zIndex: 0, opacity: 0.55 }} />
-              <div style={{ position: 'relative', width: '100%', aspectRatio: '4/5', overflow: 'hidden', zIndex: 1 }}>
-                <svg viewBox="0 0 300 375" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style={{ display: 'block' }}>
-                  <defs>
-                    <pattern id="hatchL" x="0" y="0" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                      <rect width="1" height="5" fill="rgba(255,255,255,0.55)" />
-                    </pattern>
-                    <pattern id="hatchD" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
-                      <rect width="0.8" height="4" fill="rgba(255,255,255,0.22)" />
-                    </pattern>
-                    <pattern id="dotsTiny" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
-                      <circle cx="1" cy="1" r="0.7" fill="rgba(255,255,255,0.18)" />
-                    </pattern>
-                    <pattern id="scan" x="0" y="0" width="1" height="3" patternUnits="userSpaceOnUse">
-                      <rect width="1" height="1" fill="rgba(255,255,255,0.08)" />
-                    </pattern>
-                  </defs>
-                  <rect width="300" height="375" fill="#0a0a0a" />
-                  <rect x="0" y="0" width="100" height="375" fill="url(#hatchD)" />
-                  <rect x="200" y="0" width="100" height="375" fill="url(#dotsTiny)" />
-                  <line x1="0" y1="250" x2="300" y2="250" stroke="#ffffff" strokeWidth="1" opacity="0.5" />
-                  <line x1="0" y1="252" x2="300" y2="252" stroke="#ffffff" strokeWidth="0.4" opacity="0.4" strokeDasharray="2 4" />
-                  <circle cx="150" cy="130" r="95" fill="none" stroke="#ffffff" strokeWidth="0.6" opacity="0.25" strokeDasharray="1 3" />
-                  <circle cx="150" cy="130" r="78" fill="none" stroke="#ffffff" strokeWidth="0.5" opacity="0.4" />
-                  <g>
-                    <path d="M 60 375 L 60 280 C 60 232, 240 232, 240 280 L 240 375 Z" fill="#ededed" />
-                    <path d="M 60 375 L 60 280 C 60 232, 240 232, 240 280 L 240 375 Z" fill="url(#scan)" />
-                    <rect x="130" y="215" width="40" height="40" fill="#1a1a1a" opacity="0.5" />
-                    <circle cx="150" cy="130" r="62" fill="#f2f2f2" />
-                    <path d="M 150 68 A 62 62 0 0 1 212 130 L 150 130 Z" fill="url(#hatchL)" opacity="0.3" />
-                    <ellipse cx="125" cy="142" rx="10" ry="5" fill="#d8d8d8" opacity="0.5" />
-                    <rect x="118" y="118" width="64" height="3" fill="#0a0a0a" />
-                    <rect x="118" y="118" width="22" height="3" fill="#ffffff" />
-                    <line x1="142" y1="165" x2="158" y2="165" stroke="#1a1a1a" strokeWidth="1.2" />
-                  </g>
-                  <g stroke="#ffffff" strokeWidth="0.8" fill="none" opacity="0.7">
-                    <path d="M 8 8 L 8 20 M 8 8 L 20 8" />
-                    <path d="M 292 8 L 292 20 M 292 8 L 280 8" />
-                    <path d="M 8 367 L 8 355 M 8 367 L 20 367" />
-                    <path d="M 292 367 L 292 355 M 292 367 L 280 367" />
-                  </g>
-                  <g fontFamily="ui-monospace, monospace" fontSize="7" fill="rgba(255,255,255,0.55)" letterSpacing="0.8">
-                    <text x="10" y="32">12°58'N</text>
-                    <text x="10" y="42">77°36'E</text>
-                    <text x="240" y="368" textAnchor="start">A/01</text>
-                  </g>
-                  <g fill="rgba(255,255,255,0.12)">
-                    {Array.from({ length: 16 }).map((_, k) => <rect key={k} x="2" y={20 + k * 22} width="3" height="10" />)}
-                  </g>
-                </svg>
-              </div>
-              <figcaption className="eyebrow" style={{ marginTop: 10, display: 'flex', justifyContent: 'flex-end', gap: 8, position: 'relative', zIndex: 2, fontSize: 10 }}>
-                <span>BLR · '26</span>
-              </figcaption>
-            </figure>
+          <Reveal delay={260}>
+            <div style={{ borderLeft: '1px solid var(--rule)', paddingLeft: 28 }}>
+              <div className="eyebrow" style={{ marginBottom: 22 }}>Now</div>
+              <ol style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 22 }}>
+                {DATA.currently.map((c, i) => (
+                  <li key={i}>
+                    <div className="mono" style={{ fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--fg-faint)', marginBottom: 4 }}>{c.label}</div>
+                    <div style={{ fontFamily: 'var(--serif)', fontSize: 15, color: 'var(--fg)', lineHeight: 1.4 }}>{c.value}</div>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </Reveal>
-        </div>
-
-        <div
-          className="resp-hero-grid"
-          style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)', gap: 48, alignItems: 'start', marginTop: 56, paddingTop: 32, borderTop: '1px solid var(--rule-soft)' }}
-        >
-          {DATA.currently.slice(0, 2).map((c, i) => (
-            <Reveal key={i} delay={280 + i * 60}>
-              <div>
-                <div className="eyebrow" style={{ marginBottom: 6 }}>{c.label}</div>
-                <div style={{ fontFamily: 'var(--serif)', fontSize: 17, color: 'var(--fg)', lineHeight: 1.4 }}>{c.value}</div>
-              </div>
-            </Reveal>
-          ))}
         </div>
       </Container>
     </section>
   );
+}
+
+function HeroPortrait() {
+  return (
+    <section style={{ position: 'relative', padding: '80px 0 64px' }}>
+      <Container>
+        <div className="resp-hero-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 2fr)', gap: 64, alignItems: 'center' }}>
+          <Reveal>
+            <div style={{ maxWidth: 320, aspectRatio: '3/4', background: 'var(--ink-1)', border: '1px solid var(--rule)', display: 'flex', alignItems: 'end', justifyContent: 'center', padding: 16 }}>
+              <svg viewBox="0 0 200 260" width="100%" style={{ display: 'block' }}>
+                <rect width="200" height="260" fill="var(--ink-2)" />
+                <circle cx="100" cy="100" r="46" fill="var(--ink-8)" />
+                <path d="M 30 260 C 30 180, 170 180, 170 260 Z" fill="var(--ink-8)" />
+              </svg>
+            </div>
+          </Reveal>
+          <Reveal delay={100}>
+            <div className="eyebrow" style={{ marginBottom: 16 }}>{DATA.dateline}</div>
+            <h1 className="serif hero-headline" style={{ margin: 0, fontSize: 'clamp(44px, 6.4vw, 84px)', fontWeight: 400, lineHeight: 1.0, letterSpacing: '-0.025em' }}>Panav.</h1>
+            <p style={{ marginTop: 24, fontFamily: 'var(--serif)', fontSize: 22, lineHeight: 1.5, color: 'var(--fg-dim)', maxWidth: '42ch' }}>{DATA.shortBio}</p>
+            <div style={{ marginTop: 28, display: 'flex', gap: 24, flexWrap: 'wrap' }}>
+              <a className="ink-link mono" style={{ fontSize: 13 }} href="#writing-section">Writing →</a>
+              <a className="ink-link mono" style={{ fontSize: 13 }} href="#projects-section">Work →</a>
+              <a className="ink-link mono" style={{ fontSize: 13 }} href={`mailto:${DATA.contact.email}`}>Contact →</a>
+            </div>
+          </Reveal>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+function HeroGrid() {
+  return (
+    <section style={{ position: 'relative', padding: '80px 0', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(var(--rule-soft) 1px, transparent 1px), linear-gradient(90deg, var(--rule-soft) 1px, transparent 1px)', backgroundSize: '40px 40px', maskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, #000 40%, transparent 85%)', WebkitMaskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, #000 40%, transparent 85%)', opacity: 0.7, zIndex: 0 }} />
+      <Container style={{ position: 'relative', zIndex: 1 }}>
+        <div className="eyebrow" style={{ marginBottom: 20 }}>{DATA.dateline}</div>
+        <h1 className="serif hero-headline" style={{ margin: 0, fontSize: 'clamp(56px, 10vw, 148px)', fontWeight: 300, letterSpacing: '-0.04em', lineHeight: 0.92 }}>
+          <span className="hl-rule">Where</span> am I?
+        </h1>
+        <p style={{ marginTop: 32, fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 22, color: 'var(--fg-dim)', maxWidth: '44ch', lineHeight: 1.55 }}>
+          The first question any robot has to answer. I spend my days helping them answer it a little better.
+        </p>
+      </Container>
+    </section>
+  );
+}
+
+export function Hero() {
+  const { tweaks } = useContext(TweaksContext);
+  if (tweaks.heroVariant === 'portrait') return <HeroPortrait />;
+  if (tweaks.heroVariant === 'grid') return <HeroGrid />;
+  return <HeroEditorial />;
 }

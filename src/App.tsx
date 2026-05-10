@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, createContext, useContext } from 'react';
 import { DATA } from './data';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -7,11 +7,69 @@ import { Projects } from './components/Projects';
 import { Skills } from './components/Skills';
 import { OpenSource } from './components/OpenSource';
 import { Experience } from './components/Experience';
-import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
+import { WritingIndex } from './components/WritingIndex';
+import { EssayReader } from './components/EssayReader';
+import { TweaksPanel } from './components/TweaksPanel';
 import { Dashboard } from './components/Dashboard';
 
-export const SUBSTACK_URL = 'https://substack.com/@panavraaj';
+export { DATA };
+
+// --- Tweaks context ---
+
+export interface Tweaks {
+  mode: string;
+  density: string;
+  heroVariant: string;
+  background: string;
+}
+
+const defaultTweaks: Tweaks = {
+  mode: 'ink',
+  density: 'spacious',
+  heroVariant: 'editorial',
+  background: 'grain',
+};
+
+interface TweaksContextValue {
+  tweaks: Tweaks;
+  update: (partial: Partial<Tweaks>) => void;
+  open: boolean;
+  setOpen: (v: boolean) => void;
+}
+
+export const TweaksContext = createContext<TweaksContextValue>({
+  tweaks: defaultTweaks,
+  update: () => {},
+  open: false,
+  setOpen: () => {},
+});
+
+function applyTweaks(t: Tweaks) {
+  document.body.setAttribute('data-density', t.density);
+  document.body.setAttribute('data-mode', t.mode || 'paper');
+  const grain = document.getElementById('grain');
+  if (grain) grain.style.display = t.background === 'grain' ? 'block' : 'none';
+}
+
+function TweaksProvider({ children }: { children: React.ReactNode }) {
+  const [tweaks, setTweaks] = useState<Tweaks>(defaultTweaks);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => { applyTweaks(tweaks); }, [tweaks]);
+
+  const update = (partial: Partial<Tweaks>) => {
+    setTweaks(prev => ({ ...prev, ...partial }));
+  };
+
+  return (
+    <TweaksContext.Provider value={{ tweaks, update, open, setOpen }}>
+      {children}
+    </TweaksContext.Provider>
+  );
+}
+
+// --- Layout utilities ---
 
 export function useReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -62,31 +120,36 @@ export function SectionHeader({ eyebrow, title, kicker, right }: {
   right?: React.ReactNode;
 }) {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 24, alignItems: 'end', marginBottom: 56 }}>
-      <div style={{ minWidth: 0 }}>
-        {eyebrow && (
-          <div className="sh-rail">
-            <div className="eyebrow" style={{ whiteSpace: 'nowrap' }}>{eyebrow}</div>
-            <div className="tape-bar" />
-          </div>
-        )}
-        <h2 className="serif" style={{ margin: 0, fontSize: 'clamp(32px, 4.2vw, 52px)', fontWeight: 400, letterSpacing: '-0.022em', lineHeight: 1.05 }}>
-          {title}
-        </h2>
-        {kicker && (
-          <p style={{ margin: '16px 0 0', maxWidth: '58ch', color: 'var(--fg-dim)', fontSize: 16, lineHeight: 1.65 }}>
-            {kicker}
-          </p>
-        )}
-      </div>
-      {right && <div style={{ alignSelf: 'end', paddingBottom: 4 }}>{right}</div>}
+    <div className="chapter-opener">
+      {eyebrow && (
+        <div className="ornament"><span className="glyph">&sect;</span><span>{eyebrow}</span></div>
+      )}
+      <h2>{title}</h2>
+      {kicker && <p className="kicker">{kicker}</p>}
+      <div className="underrule" />
+      {right && <div style={{ marginTop: 24, display: 'flex', justifyContent: 'center' }}>{right}</div>}
     </div>
   );
 }
 
+// --- Routing ---
+
+function parseHash(): { page: string; essayId: string | null } {
+  const h = window.location.hash || '';
+  if (h.startsWith('#/writing/')) return { page: 'writing', essayId: h.replace('#/writing/', '') };
+  if (h === '#/writing') return { page: 'writing', essayId: null };
+  return { page: 'home', essayId: null };
+}
+
 export default function App() {
+  const [route, setRoute] = useState(parseHash());
   const [showDashboard, setShowDashboard] = useState(false);
-  const [data, setData] = useState(DATA);
+
+  useEffect(() => {
+    const onHash = () => { setRoute(parseHash()); window.scrollTo(0, 0); };
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -96,27 +159,43 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  const navigate = (p: string) => { window.location.hash = p === 'writing' ? '#/writing' : ''; };
+  const openEssay = (e: typeof DATA.blogs[0] | null) => {
+    window.location.hash = e ? `#/writing/${e.id}` : '#/writing';
+  };
+  const backToList = () => { window.location.hash = '#/writing'; };
+  const currentEssay = route.page === 'writing' && route.essayId
+    ? DATA.blogs.find(e => e.id === route.essayId) || null
+    : null;
+
   return (
-    <>
+    <TweaksProvider>
       <div className="grain" id="grain" style={{ display: 'none' }} />
-      <Navbar />
+      <div className="reading-progress" id="reading-progress" />
+      <Navbar page={route.page} onNavigate={navigate} currentEssay={currentEssay} onBack={backToList} />
       <main style={{ position: 'relative', zIndex: 1 }}>
-        <Hero />
-        <FeaturedEssay />
-        <Projects />
-        <Skills />
-        <OpenSource />
-        <Experience />
-        <Contact />
+        {route.page === 'home' && (
+          <>
+            <Hero />
+            <FeaturedEssay onOpen={openEssay} />
+            <Projects />
+            <Skills />
+            <OpenSource />
+            <Experience />
+          </>
+        )}
+        {route.page === 'writing' && !currentEssay && <WritingIndex onOpen={openEssay} />}
+        {route.page === 'writing' && currentEssay && <EssayReader essay={currentEssay} onBack={backToList} />}
       </main>
       <Footer />
+      <TweaksPanel />
       {showDashboard && (
         <Dashboard
-          data={data}
-          onUpdate={(d) => setData(d)}
+          data={DATA}
+          onUpdate={() => {}}
           onClose={() => setShowDashboard(false)}
         />
       )}
-    </>
+    </TweaksProvider>
   );
 }
