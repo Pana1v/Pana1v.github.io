@@ -1,7 +1,15 @@
 import { Container, Reveal, SectionHeader } from '../App';
 import { DATA } from '../data';
 
-function ProjectThumb({ seed = 0 }: { seed?: number }) {
+function ProjectThumb({ image, seed = 0 }: { image?: string; seed?: number }) {
+  if (image) {
+    return (
+      <div style={{ position: 'relative', width: '100%', aspectRatio: '120/84', background: 'var(--ink-2)', border: '1px solid var(--rule)', overflow: 'hidden' }}>
+        <img src={image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+      </div>
+    );
+  }
+
   const patterns = [
     <g key="p0">
       <rect width="120" height="84" fill="var(--ink-2)" />
@@ -82,7 +90,7 @@ export function Projects() {
                 gap: 28, padding: '32px 20px', borderBottom: '1px solid var(--rule)', alignItems: 'start'
               }}>
                 <div className="mono" style={{ fontSize: 11, color: 'var(--fg-faint)', paddingTop: 6, letterSpacing: '0.08em' }}>{p.n}</div>
-                <ProjectThumb seed={i} />
+                <ProjectThumb image={p.image} seed={i} />
                 <div style={{ minWidth: 0 }}>
                   <h3 className="serif row-title" style={{ margin: 0, fontSize: 22, fontWeight: 500, letterSpacing: '-0.012em', lineHeight: 1.2, color: 'var(--fg)' }}>{p.title}</h3>
                   <div style={{ marginTop: 4, color: 'var(--fg-dim)', fontSize: 13, fontStyle: 'italic', fontFamily: 'var(--serif)' }}>{p.subtitle}</div>

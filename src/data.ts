@@ -142,8 +142,7 @@ export const DATA: DataStructure = {
       description: "Formulated robotic pick-and-place sequencing as an asymmetric TSP with bin-dependent transition costs. Replaced MTZ subtour constraints with a CP-SAT Hamiltonian circuit formulation for 5-7x solver speedup. Designed LEAP (Learning-Enhanced Arc Pruning) using imitation-learned GNN logits to reduce decision variables from O(N\u00B2) to O(Nk). Achieved 17.5x speedup at N=200 with worst-case optimality gap of 0.06%.",
       year: "2025 — 2026",
       tags: ["PyTorch", "GATv2", "CP-SAT", "Imitation Learning"],
-      status: "Manuscript",
-      image: "/projects/go-slam.png"
+      status: "Manuscript"
     },
     {
       id: "barn-challenge",
