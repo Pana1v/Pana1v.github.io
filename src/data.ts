@@ -54,22 +54,27 @@ export interface Blog {
   content: string;
   image?: string;
   substackUrl?: string;
+  source?: string;
+  href?: string;
 }
 
 export interface DataStructure {
   name: string;
   title: string;
   dateline: string;
+  coords: string;
   shortBio: string;
   bio: string;
   profilePhoto: string;
   contact: {
     email: string;
+    altEmail: string;
     location: string;
     github: string;
     linkedin: string;
+    handbook: string;
   };
-  currently: { label: string; value: string }[];
+  currently: { label: string; value: string; href?: string }[];
   experience: Experience[];
   education: Education[];
   projects: Project[];
@@ -84,18 +89,21 @@ export const DATA: DataStructure = {
   name: "Panav Arpit Raaj",
   title: "Robotics Software Engineer",
   dateline: "Bangalore, Spring 2026",
+  coords: "12.97° N · 77.59° E",
   shortBio: "Robotics software engineer. I write autonomy stacks for robots that make decisions in unpredictable places: warehouses, farms, construction sites.",
   bio: "B.Tech from IIT Patna specializing in autonomous systems, SLAM, and computer vision. Gold Medalist at Inter IIT Tech 12.0. Captain of IIT Patna's Robocon team, highest score among IITs at ABU Robocon 2024. Karnataka Rank 8 in NSTSE. Building intelligent robots that navigate the real world.",
   profilePhoto: "https://media.licdn.com/dms/image/v2/D5603AQGCl7j-Me2BgA/profile-displayphoto-scale_200_200/B56Z0jA8LaJIAY-/0/1774408947635?e=1777507200&v=beta&t=2-Qd6e8dugygWKfj6WVyRCMCeBJxM9KBzRdkbPGl77Q",
   contact: {
     email: "praajarpit@gmail.com",
+    altEmail: "panav.raaj@hotmail.com",
     location: "Bangalore, India",
     github: "github.com/Pana1v",
-    linkedin: "linkedin.com/in/panavraaj"
+    linkedin: "linkedin.com/in/panavraaj",
+    handbook: "https://panav.gitbook.io/robotics-handbook"
   },
   currently: [
     { label: "Currently", value: "Robotics Engineer Level II @ Eternal.ag" },
-    { label: "Writing", value: "On MPPI controllers & narrow-passage nav" },
+    { label: "Writing", value: "The Robotics Handbook — my field guide ↗", href: "https://panav.gitbook.io/robotics-handbook" },
     { label: "Reading", value: "Probabilistic Robotics, Thrun" }
   ],
   experience: [
@@ -278,8 +286,34 @@ export const DATA: DataStructure = {
   ],
   blogs: [
     {
+      id: "intrinsic-challenge",
+      n: "01",
+      title: "A Journey Through the Intrinsic AI for Industry Challenge",
+      subtitle: "A sprint through the final week before the deadline, iterating classical and alternative approaches first to dodge the data wall for imitation learning.",
+      date: "May 2026",
+      readTime: "Read on Substack",
+      tags: ["Imitation Learning", "Manipulation"],
+      excerpt: "A sprint through the final week before the deadline, iterating classical and alternative approaches first to dodge the data wall for imitation learning.",
+      source: "Substack",
+      href: "https://substack.com/@panav1/p-198501217",
+      content: ""
+    },
+    {
+      id: "robotics-handbook",
+      n: "02",
+      title: "The Ultimate Robotics Handbook",
+      subtitle: "A living field guide to robotics, from kinematics and SLAM to controls and perception. Notes I keep adding to as I learn.",
+      date: "Ongoing",
+      readTime: "Read the handbook",
+      tags: ["Reference", "Robotics"],
+      excerpt: "A living field guide to robotics, from kinematics and SLAM to controls and perception. Notes I keep adding to as I learn.",
+      source: "GitBook",
+      href: "https://panav.gitbook.io/robotics-handbook",
+      content: ""
+    },
+    {
       id: "intro-to-slam",
-      n: "I",
+      n: "03",
       title: "Where Am I? Notes on SLAM",
       subtitle: "On the peculiar problem of building a map while you're still inside it.",
       date: "March 15, 2024",
@@ -287,6 +321,8 @@ export const DATA: DataStructure = {
       tags: ["Robotics", "Algorithms"],
       excerpt: "A robot entering an unknown room faces a chicken-and-egg problem. To know where it is, it needs a map. To build a map, it needs to know where it is. SLAM is the elegant, uneasy resolution.",
       substackUrl: "https://substack.com/@panav1",
+      source: "Substack",
+      href: "https://substack.com/@panav1",
       content: `A robot entering a room it has never seen before faces a peculiar epistemological problem. To know where it is, it needs a map. To build a map, it needs to know where it is. SLAM — Simultaneous Localization and Mapping — is the field's uneasy, elegant resolution to this chicken-and-egg situation.
 
 The trick is to treat both the robot's pose and the map as random variables, and to update our beliefs about them jointly, every time a new sensor reading arrives. Uncertainty in one infects the other; that is the whole story.
@@ -319,7 +355,7 @@ The robots that will matter over the next decade will be the ones that know what
     },
     {
       id: "narrow-passages",
-      n: "II",
+      n: "04",
       title: "The Tyranny of Narrow Passages",
       subtitle: "What happens to your sampling-based controller when the free space shrinks.",
       date: "February 2, 2026",
@@ -327,6 +363,8 @@ The robots that will matter over the next decade will be the ones that know what
       tags: ["Controls", "MPPI"],
       excerpt: "In open space, MPPI is a joy — throw noise at the control, watch the best rollout emerge. In a doorway, it collapses. Here's what I learned tuning it for construction sites.",
       substackUrl: "https://substack.com/@panav1",
+      source: "Substack",
+      href: "https://substack.com/@panav1",
       content: `There is a particular kind of heartbreak reserved for people who have tuned a Model Predictive Path Integral controller for the first time. In open space, MPPI is a joy. You throw Gaussian noise at the control, you score each rollout with a hand-crafted cost, and — as if by arithmetic magic — a smooth, near-optimal trajectory crystallizes out of the mean.
 
 Then you put the robot in a doorway, and the magic stops.
@@ -347,7 +385,7 @@ None of this is clever. It's the unglamorous work of making a controller take th
     },
     {
       id: "lichtblick-notes",
-      n: "III",
+      n: "05",
       title: "On Writing Your Own Foxglove",
       subtitle: "A short defense of building tools in-house when the off-the-shelf ones stop fitting.",
       date: "December 18, 2025",
@@ -355,6 +393,8 @@ None of this is clever. It's the unglamorous work of making a controller take th
       tags: ["Tooling", "TypeScript"],
       excerpt: "We built a custom ROS 2 visualization stack in TypeScript. It cut peak compute from 120% to 26% and changed how the team debugs.",
       substackUrl: "https://substack.com/@panav1",
+      source: "Substack",
+      href: "https://substack.com/@panav1",
       content: `There is a well-worn piece of advice about not building your own tools. Use the good ones that exist. Don't waste your engineers on yak-shaves. For a long time I agreed with it. I still mostly do. But there's a point — and you recognize it when you hit it — where the off-the-shelf tool starts shaping your work in ways you don't want.
 
 For us, that was visualization. Foxglove is a beautiful piece of software. It is also, for our use case, heavy. On a field laptop running next to a live robot, it was taking 120% of one CPU just to render what was happening. That's not a bug, it's a mismatch.
