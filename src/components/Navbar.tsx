@@ -25,7 +25,7 @@ export function Navbar({ active, odom, onOpenPalette }: {
       transition: 'background 280ms ease, border-color 280ms ease',
     }}>
       <Container>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64, gap: 24 }}>
+        <div className="nav-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64, gap: 24 }}>
           <a
             className="ink-link serif"
             href="#top"
@@ -47,10 +47,10 @@ export function Navbar({ active, odom, onOpenPalette }: {
             <span className="odo-tip">you're driving a robot through the page · click to reset</span>
           </button>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
+          <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
             <button className="navlink" onClick={() => scrollToSec('writing-section')}>Writing</button>
             <button className="navlink" onClick={() => scrollToSec('projects-section')}>Projects</button>
-            <a className="navlink" href={DATA.contact.handbook} target="_blank" rel="noopener">Handbook ↗</a>
+            <a className="navlink nav-handbook" href={DATA.contact.handbook} target="_blank" rel="noopener">Handbook ↗</a>
             <button className="navlink" onClick={() => scrollToSec('contact-section')}>Contact</button>
             <button className="cmdk-chip" title="Command palette (⌘K or /)" onClick={onOpenPalette}>⌘K</button>
           </div>
