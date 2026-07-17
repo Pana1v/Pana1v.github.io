@@ -23,6 +23,7 @@ export interface Project {
   tags: string[];
   status?: string;
   image?: string;
+  motion?: string;
   github?: string;
   demo?: string;
 }
@@ -161,18 +162,21 @@ export const DATA: DataStructure = {
       year: "2026",
       tags: ["ROS 2", "Nav2", "Gazebo", "Jackal"],
       status: "Active",
-      image: "/projects/barn.png"
+      image: "/projects/barn.png",
+      motion: "/projects/barn-motion.gif"
     },
     {
-      id: "lichtblick",
+      id: "openpi-dora",
       n: "03",
-      title: "Lichtblick",
-      subtitle: "Custom ROS 2 Visualization Stack",
-      description: "Engineered a TypeScript/ROS2 visualization tool that reduced peak compute usage from 120% to 26% compared to Foxglove. Integrates pose recovery, MoveIt2 support, and runs in browser and Android apps.",
-      year: "2025",
-      tags: ["TypeScript", "ROS 2", "WebSockets", "MoveIt2"],
+      title: "openpi-dora",
+      subtitle: "DoRA Fine-Tuning for Robot Policies",
+      description: "Bolted DoRA (Weight-Decomposed Low-Rank Adaptation) onto Physical Intelligence's openpi pi0.5 policy as a standalone overlay, keeping openpi itself an untouched pinned submodule. Reimplemented DoRA in Flax over Gemma's einsum projections and benchmarked against LoRA on the LIBERO manipulation suite: a slight edge for DoRA at rank 8 (92.0% vs 91.4%, winning 3 of 4 suites), roughly tied at rank 16.",
+      year: "2026",
+      tags: ["JAX/Flax", "LoRA/DoRA", "LIBERO", "openpi"],
       status: "Active",
-      image: "/projects/lichtblick.png"
+      github: "https://github.com/Pana1v/openpi-dora",
+      image: "/projects/openpi-dora-still.png",
+      motion: "/projects/openpi-dora-motion.gif"
     },
     {
       id: "go-slam",
@@ -218,19 +222,8 @@ export const DATA: DataStructure = {
       tags: ["PCB", "Multi-Robot", "ROS", "Path Planning"]
     },
     {
-      id: "phone-ros-bridge",
-      n: "08",
-      title: "Phone-ROS Bridge",
-      subtitle: "Mobile Sensor Server",
-      description: "Built a flexible server (Node.js + Python) for real-time mobile sensor data collection with WebSocket and REST API endpoints. Developed a 3D dashboard visualization for intuitive real-time sensor readings. Integrated SSL/TLS encryption and designed for ROS Humble interoperability.",
-      year: "2024",
-      tags: ["Node.js", "WebSockets", "Three.js"],
-      status: "Active",
-      github: "https://github.com/Pana1v"
-    },
-    {
       id: "flipkart-grid",
-      n: "09",
+      n: "08",
       title: "Flipkart Grid Robotics",
       subtitle: "Computer Vision Pipeline",
       description: "Utilized Mistral LLM, GPT-2, Gemini, and PyTorch for product text extraction and image processing. Trained YOLOv11/v9 models with OpenCV to assess freshness indices of consumables. Implemented U-Net for segmentation and CNN for OCR.",
@@ -240,7 +233,7 @@ export const DATA: DataStructure = {
     },
     {
       id: "rigbetel-inter-iit",
-      n: "10",
+      n: "09",
       title: "RigBetel Labs",
       subtitle: "Inter IIT Tech Meet 13.0",
       description: "Implemented multi-robot mapping and localization using TurtleBot3 specification robots running ROS 2 Humble in a simulated environment. No-prep problem statement challenge.",
