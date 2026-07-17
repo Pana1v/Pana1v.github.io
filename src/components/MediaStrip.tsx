@@ -1,5 +1,7 @@
 /** Field-guide media plates: a still + a motion clip, shown only for items that actually have art. */
-export function MediaStrip({ still, motion }: { still?: string; motion?: string }) {
+export function MediaStrip({ still, motion, stillCaption = 'Still frame', motionCaption = 'In motion' }: {
+  still?: string; motion?: string; stillCaption?: string; motionCaption?: string;
+}) {
   if (!still && !motion) return null;
   const cols = still && motion ? '1.4fr 1fr' : '1fr';
   let plate = 0;
@@ -8,7 +10,7 @@ export function MediaStrip({ still, motion }: { still?: string; motion?: string 
       {still && (
         <figure className="media-plate">
           <figcaption className="media-cap">
-            <span className="plate-n serif">Pl. {['I', 'II'][plate++]}</span><span>Still frame</span>
+            <span className="plate-n serif">Pl. {['I', 'II'][plate++]}</span><span>{stillCaption}</span>
           </figcaption>
           <div className="media-frame">
             <img src={still} alt="" loading="lazy" />
@@ -18,7 +20,7 @@ export function MediaStrip({ still, motion }: { still?: string; motion?: string 
       {motion && (
         <figure className="media-plate">
           <figcaption className="media-cap">
-            <span className="plate-n serif">Pl. {['I', 'II'][plate++]}</span><span>In motion</span>
+            <span className="plate-n serif">Pl. {['I', 'II'][plate++]}</span><span>{motionCaption}</span>
           </figcaption>
           <div className="media-frame">
             <img src={motion} alt="" loading="lazy" />
