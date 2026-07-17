@@ -54,6 +54,7 @@ export interface Blog {
   excerpt: string;
   content: string;
   image?: string;
+  motion?: string;
   substackUrl?: string;
   source?: string;
   href?: string;
@@ -289,7 +290,9 @@ export const DATA: DataStructure = {
       excerpt: "A sprint through the final week before the deadline, iterating classical and alternative approaches first to dodge the data wall for imitation learning.",
       source: "Substack",
       href: "https://substack.com/@panav1/p-198501217",
-      content: ""
+      content: "",
+      image: "/writing/intrinsic-challenge-debug.png",
+      motion: "/writing/intrinsic-challenge-views.png"
     },
     {
       id: "robotics-handbook",
