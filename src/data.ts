@@ -75,6 +75,7 @@ export interface DataStructure {
     github: string;
     linkedin: string;
     handbook: string;
+    substack: string;
   };
   currently: { label: string; value: string; href?: string }[];
   experience: Experience[];
@@ -101,7 +102,8 @@ export const DATA: DataStructure = {
     location: "Bangalore, India",
     github: "github.com/Pana1v",
     linkedin: "linkedin.com/in/panavraaj",
-    handbook: "https://panav.gitbook.io/robotics-handbook"
+    handbook: "https://panav.gitbook.io/robotics-handbook",
+    substack: "https://substack.com/@panav1"
   },
   currently: [
     { label: "Currently", value: "Robotics Engineer Level II @ Eternal.ag" },
