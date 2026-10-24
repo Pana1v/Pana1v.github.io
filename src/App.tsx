@@ -13,11 +13,19 @@ declare global {
 
 // Fill these as field photos land in public/; empty sections stay hidden.
 const BAND_PHOTO = '';
-const PHOTOS: { src: string; cap: string }[] = [];
+// an empty src renders a placeholder slot until the photo lands in public/gallery/
+const PHOTOS: { src: string; cap: string }[] = [
+  { src: '/gallery/robocon-2024.jpg', cap: 'ABU Robocon 2024, IIT Patna' },
+  { src: '/gallery/origin.jpg', cap: '10xConstruction, Origin' },
+  { src: '/gallery/isro-rover.jpg', cap: 'ISRO Robotics Challenge' },
+  { src: '/gallery/addverb.jpg', cap: 'AMR work at Addverb' },
+  { src: '', cap: 'Photo coming soon' },
+  { src: '', cap: 'Photo coming soon' },
+];
 
 const NAV: [string, string][] = [
+  ...(PHOTOS.length ? [['log', 'Gallery'] as [string, string]] : []),
   ['index', 'Projects'],
-  ...(PHOTOS.length ? [['log', 'Photos'] as [string, string]] : []),
   ['writing', 'Writing'],
   ['ledger', 'Experience'],
   ['echo', 'Contact'],
@@ -25,21 +33,10 @@ const NAV: [string, string][] = [
 
 const NAV_OFFSET = 70;
 
-const SCENES: Record<string, [string, string]> = {
-  vision: ['Computer vision', 'A camera tracking three objects, with detection boxes drawn on its image plane.'],
-  plan: ['Path planning', 'A wavefront expands across a costmap from start to goal, then the shortest path is traced back.'],
-  net: ['Network training', 'A forward pass through five layers, then the gradients flowing back.'],
-  loss: ['Optimisation', 'Gradient descent with momentum, rolling down a loss surface to its minimum.'],
-  demo: ['Imitation learning', 'A policy following the average of six human demonstrations to the goal.'],
-  ekf: ['State estimation', "An EKF's uncertainty ellipse grows on odometry alone and collapses each time a landmark is seen."],
-  swarm: ['Multi-robot', 'Six robots switching between line, wedge and ring formations, with links between neighbours.'],
-  cloud: ['Point clouds', 'A scene being filtered by a sweeping crop plane and voxel-downsampled.'],
-};
+const PROJECTS = INDEX.filter((e) => !e.kinds.includes('essay'));
 
-// stable array identities so Interlude's effect doesn't resubscribe every render
-const INTERLUDES = [['vision', 'plan'], ['net', 'loss'], ['demo', 'ekf'], ['swarm', 'cloud']];
-// Fig. 01 belongs to the band photo when it is shown
-const FIG0 = BAND_PHOTO ? 2 : 1;
+// the hero cycles each project's ASCII shape; one entry per shape since the field reports shapes, not ids
+const HERO_SCENES = PROJECTS.filter((e, i) => PROJECTS.findIndex((x) => x.shape === e.shape) === i);
 
 const https = (u: string) => (u.startsWith('http') ? u : `https://${u}`);
 const pad = (n: number) => String(n).padStart(2, '0');
@@ -119,10 +116,10 @@ function Nav({ onPalette }: { onPalette: () => void }) {
   );
 }
 
-function Hero() {
+function Hero({ onOpen }: { onOpen: (id: string) => void }) {
   const city = DATA.contact.location.split(',')[0];
   return (
-    <section className="sec hero" id="top" data-shape="bot" data-cycle="bot,vision,net,demo" data-cx="0.36" data-scale="1.25" data-zone="hero">
+    <section className="sec hero" id="top" data-shape={HERO_SCENES[0].shape} data-cycle={HERO_SCENES.map((e) => e.shape).join(',')} data-cx="0.36" data-scale="1.25" data-zone="hero">
       <div className="hero-grid">
         <div>
           <div className="hero-k">{DATA.title} · {city}</div>
@@ -137,6 +134,7 @@ function Hero() {
           </div>
         </div>
       </div>
+      <SceneCaption scenes={HERO_SCENES} onOpen={onOpen} />
     </section>
   );
 }
@@ -152,31 +150,28 @@ function Band() {
   );
 }
 
-// figBase is passed in, not counted at render time, so StrictMode double renders keep numbering stable
-function Interlude({ shapes, figBase }: { shapes: string[]; figBase: number }) {
-  const [cur, setCur] = useState(shapes[0]);
+function SceneCaption({ scenes, onOpen }: { scenes: Entry[]; onOpen: (id: string) => void }) {
+  const [cur, setCur] = useState(scenes[0].shape);
 
   useEffect(() => {
     const onShape = (e: Event) => {
       const k = (e as CustomEvent<string>).detail;
-      if (shapes.includes(k)) {
+      if (scenes.some((e) => e.shape === k)) {
         setCur(k);
       }
     };
     window.addEventListener('field:shape', onShape);
     return () => window.removeEventListener('field:shape', onShape);
-  }, [shapes]);
+  }, [scenes]);
 
-  const k = shapes.indexOf(cur);
-  const [title, desc] = SCENES[cur];
+  const k = scenes.findIndex((e) => e.shape === cur);
+  const e = scenes[k];
   return (
-    <section className="sec interlude" data-shape={shapes[0]} data-cycle={shapes.length > 1 ? shapes.join(',') : undefined} data-zone="hero" data-cx="0.5" data-scale="1.45" aria-label={title}>
-      <div className="wrap il">
-        <div className="il-cap"><span>Fig. {pad(figBase + k)}</span>{title}</div>
-        <p key={cur}>{desc}</p>
-        {shapes.length > 1 && <div className="il-dots">{shapes.map((s) => <i key={s} className={s === cur ? 'on' : ''}></i>)}</div>}
-      </div>
-    </section>
+    <div className="wrap il hero-il" aria-live="polite">
+      <button className="il-cap" key={`c-${cur}`} onClick={() => onOpen(e.id)}><span>Fig. {pad(k + 1)}</span>{e.title}<em>↓</em></button>
+      <p key={cur}>{e.summary}</p>
+      <div className="il-dots">{scenes.map((s) => <i key={s.id} className={s.shape === cur ? 'on' : ''}></i>)}</div>
+    </div>
   );
 }
 
@@ -184,6 +179,7 @@ function MediaStrip({ e }: { e: Entry }) {
   const plates = [
     { src: e.image, label: 'Still' },
     { src: e.motion, label: 'Motion' },
+    ...(e.more ?? []).map((src, i) => ({ src, label: `Plate ${i + 3}` })),
   ].filter((p) => p.src);
   if (!plates.length) {
     return null;
@@ -193,7 +189,11 @@ function MediaStrip({ e }: { e: Entry }) {
       {plates.map((p, i) => (
         <figure key={p.label}>
           <figcaption><span>Fig. {i + 1}</span>{p.label}</figcaption>
-          <div className="media-frame"><img src={p.src} alt={`${e.title}, ${p.label.toLowerCase()}`} loading="lazy" /></div>
+          <div className="media-frame">
+            {p.src.endsWith('.mp4')
+              ? <video src={p.src} autoPlay muted loop playsInline aria-label={`${e.title}, ${p.label.toLowerCase()}`} />
+              : <img src={p.src} alt={`${e.title}, ${p.label.toLowerCase()}`} loading="lazy" />}
+          </div>
         </figure>
       ))}
     </div>
@@ -238,14 +238,14 @@ function Row({ e, num, open, onToggle }: { e: Entry; num: number; open: boolean;
   );
 }
 
-function Index({ openId, setOpenId }: { openId: string | null; setOpenId: (id: string | null) => void }) {
+function Index({ n, openId, setOpenId }: { n: string; openId: string | null; setOpenId: (id: string | null) => void }) {
   const [filter, setFilter] = useState<Kind | 'all'>('all');
-  const kinds = (Object.keys(KINDS) as Kind[]).filter((k) => INDEX.some((e) => e.kinds.includes(k)));
-  const rows = filter === 'all' ? INDEX : INDEX.filter((e) => e.kinds.includes(filter));
+  const kinds = (Object.keys(KINDS) as Kind[]).filter((k) => PROJECTS.some((e) => e.kinds.includes(k)));
+  const rows = filter === 'all' ? PROJECTS : PROJECTS.filter((e) => e.kinds.includes(filter));
   return (
     <section className="sec" id="index" data-shape="lidar">
       <div className="wrap">
-        <Head n="01" label="Projects and writing" note={`${INDEX.length} entries`} />
+        <Head n={n} label="Projects" note={`${PROJECTS.length} entries`} />
         <div className="filters">
           <button className={`filt ${filter === 'all' ? 'on' : ''}`} onClick={() => setFilter('all')}>All</button>
           {kinds.map((k) => (
@@ -256,7 +256,7 @@ function Index({ openId, setOpenId }: { openId: string | null; setOpenId: (id: s
         </div>
         <div className="ix-table">
           {rows.map((e) => (
-            <Row key={e.id} e={e} num={INDEX.indexOf(e) + 1} open={openId === e.id} onToggle={() => setOpenId(openId === e.id ? null : e.id)} />
+            <Row key={e.id} e={e} num={PROJECTS.indexOf(e) + 1} open={openId === e.id} onToggle={() => setOpenId(openId === e.id ? null : e.id)} />
           ))}
         </div>
       </div>
@@ -268,11 +268,11 @@ function Log() {
   return (
     <section className="sec" id="log" data-shape="field">
       <div className="wrap">
-        <Head n="02" label="Photos" note={`${PHOTOS.length} photos`} />
+        <Head n="01" label="Gallery" note={`${PHOTOS.filter((p) => p.src).length} photos`} />
         <div className="log">
           {PHOTOS.map((p, i) => (
-            <figure key={p.src} className={`log-${i + 1}`}>
-              <img src={p.src} alt={p.cap} loading="lazy" />
+            <figure key={i} className={`log-${i + 1} ${p.src ? '' : 'log-empty'}`}>
+              {p.src && <img src={p.src} alt={p.cap} loading="lazy" />}
               <figcaption><span>{pad(i + 1)}</span>{p.cap}</figcaption>
             </figure>
           ))}
@@ -411,7 +411,7 @@ export default function App() {
   const items: PaletteItem[] = useMemo(() => [
     ...INDEX.map((e) => ({
       group: 'Index', label: e.title, hint: e.kinds.map((k) => KINDS[k]).join(' · '),
-      action: () => { setOpenId(e.id); setTimeout(() => goTo('index'), 40); },
+      action: e.kinds.includes('essay') ? () => goTo('writing') : () => { setOpenId(e.id); setTimeout(() => goTo('index'), 40); },
     })),
     ...NAV.map(([id, l]) => ({ group: 'Sections', label: l, hint: 'jump', action: () => goTo(id) })),
     { group: 'Links', label: 'Email', hint: DATA.contact.email, action: () => { window.location.href = `mailto:${DATA.contact.email}`; } },
@@ -424,16 +424,12 @@ export default function App() {
   return (
     <>
       <Nav onPalette={() => setPal(true)} />
-      <Hero />
+      <Hero onOpen={(id) => { setOpenId(id); setTimeout(() => goTo('index'), 40); }} />
       {BAND_PHOTO && <Band />}
-      <Index openId={openId} setOpenId={setOpenId} />
-      <Interlude shapes={INTERLUDES[0]} figBase={FIG0} />
       {PHOTOS.length > 0 && <Log />}
-      <Interlude shapes={INTERLUDES[1]} figBase={FIG0 + 2} />
+      <Index n={sn(1)} openId={openId} setOpenId={setOpenId} />
       <Writing n={sn(2)} />
-      <Interlude shapes={INTERLUDES[2]} figBase={FIG0 + 4} />
       <Ledger n={sn(3)} />
-      <Interlude shapes={INTERLUDES[3]} figBase={FIG0 + 6} />
       <Echo n={sn(4)} />
       <CommandPalette open={pal} setOpen={setPal} items={items} />
       {dash && <Dashboard data={DATA} onUpdate={() => {}} onClose={() => setDash(false)} />}

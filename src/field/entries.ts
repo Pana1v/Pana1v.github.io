@@ -23,6 +23,7 @@ export interface Entry {
   hrefKind?: string;
   image?: string;
   motion?: string;
+  more?: string[];
 }
 
 interface Meta {
@@ -38,6 +39,10 @@ interface Meta {
 // Presentation-only fields the field layout needs on top of src/data.ts.
 // Keyed by data id so the Dashboard's save path keeps working untouched.
 const META: Record<string, Meta> = {
+  'deskew-lidar': {
+    kinds: ['essay'], shape: 'cloud',
+    facts: ['0.48 m to 0.10 m object spread', 'Compared with GLIM, rko_lio, LIO-SAM', 'Substack, Oct 2026'],
+  },
   'intrinsic-challenge': {
     kinds: ['essay'], shape: 'demo',
     facts: ['Final week sprint', 'Classical before learned', 'Substack, May 2026'],
@@ -50,9 +55,15 @@ const META: Record<string, Meta> = {
     summary: 'A living field guide: kinematics, SLAM, controls, perception.',
     body: 'Notes I keep adding to as I learn. Written as the reference I wanted when I started: derivations kept, shortcuts flagged, and each section standing on its own.',
   },
+  'egocentric-pipeline': {
+    kinds: ['build'], shape: 'demo',
+    facts: ['Dec 2025 - Jan 2026', '$0.30 per video hour, hand tracking', 'Prelabelling $7.00 to $0.80 per hour'],
+    summary: 'First-person video to annotated sequences: depth, hand pose, automated prelabelling.',
+  },
   'leap': {
-    kinds: ['paper'], shape: 'arm',
+    kinds: ['paper'], shape: 'graph',
     facts: ['17.5x speedup at N=200', '0.06% worst-case gap', 'O(N²) to O(Nk) variables'],
+    lesson: 'The curriculum schedule mattered more than the architecture. I spent too long tuning GAT depth and not enough on how examples were ordered.',
   },
   'barn-challenge': {
     kinds: ['competition', 'build'], shape: 'plan',
@@ -65,12 +76,6 @@ const META: Record<string, Meta> = {
   'go-slam': {
     kinds: ['build'], shape: 'map',
     facts: ['GICP + pose graph', 'Custom LM solvers', 'Benchmarked on KITTI'],
-  },
-  'gnn-robotic-manipulation': {
-    kinds: ['paper'], shape: 'graph',
-    facts: ['Under 2% gap to ILP at 40 objects', 'Under 400ms inference', 'Scales 5 to 200+ objects'],
-    summary: 'NP-hard pick-and-place sequencing recast as graph classification with GATv2.',
-    lesson: 'The curriculum schedule mattered more than the architecture. I spent too long tuning GATv2 depth and not enough on how examples were ordered.',
   },
   'autonomous-nav-slam': {
     kinds: ['build'], shape: 'ekf',
@@ -120,7 +125,7 @@ const projects: Entry[] = DATA.projects.map(p => {
     id: p.id, kinds: m.kinds, shape: m.shape, year: compactYear(p.year), title: p.title,
     summary: m.summary ?? p.subtitle, facts: m.facts, body: p.description, lesson: m.lesson,
     tags: p.tags, repo: p.github, href: p.demo, hrefLabel: 'Demo',
-    image: p.image, motion: p.motion,
+    image: p.image, motion: p.motion, more: p.more,
   };
 });
 
@@ -131,6 +136,7 @@ const tools: Entry[] = DATA.myProjects.map(t => {
     id, kinds: m.kinds, shape: m.shape, year: 'Ongoing', title: t.title,
     summary: t.tagline, facts: [t.stars, ...m.facts].slice(0, 3), body: t.description, lesson: m.lesson,
     tags: t.stack, repo: t.link,
+    image: t.image, motion: t.motion, more: t.more,
   };
 });
 

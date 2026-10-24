@@ -1,7 +1,7 @@
 (function () {
   const cv = document.getElementById("field"), ctx = cv.getContext("2d");
   const RAMPMODE = cv.dataset.style === "ramp";
-  const N = RAMPMODE ? 7000 : 2400, CW = RAMPMODE ? 8 : 13, CH = RAMPMODE ? 13 : 17;
+  const N = RAMPMODE ? 14000 : 2400, CW = RAMPMODE ? 6 : 13, CH = RAMPMODE ? 10 : 17;
   const ACC = cv.dataset.accent || "#FFB000", RAMP = ".:-=+*#%@", RAMP2 = " .`',:;-~=+<>*icoxz#%&@", GLITCH = "01<>/\\|[]{}#$%&?!*+=";
   // depth palette: far = deep teal, mid = pale grey, near = white
   const PAL = ["#1f4a43", "#2f6a5c", "#4f8a7a", "#8aa9a0", "#c4cdc8", "#eef1ee"];
@@ -376,7 +376,7 @@
     den = new Float32Array(cols * rows); amb = new Float32Array(cols * rows); dep = new Float32Array(cols * rows); trl = new Float32Array(cols * rows); trA = new Float32Array(cols * rows);
     bg = document.createElement("canvas"); bg.width = cv.width; bg.height = cv.height;
     const b = bg.getContext("2d"); b.scale(dpr, dpr); b.fillStyle = "rgba(241,241,238,0.07)";
-    const st = RAMPMODE ? 2 : 1; for (let r_ = 0; r_ < rows; r_ += st) for (let c = 0; c < cols; c += st) b.fillRect(c * CW + 6, r_ * CH + 8, 1, 1);
+    const st = RAMPMODE ? 2 : 1; for (let r_ = 0; r_ < rows; r_ += st) for (let c = 0; c < cols; c += st) b.fillRect(c * CW + CW / 2, r_ * CH + CH / 2, 1, 1);
   }
   window.addEventListener("resize", resize);
   window.addEventListener("pointermove", (e) => {
@@ -431,7 +431,7 @@
     for (let k = 0; k < trA.length; k++) { trA[k] = Math.max(trA[k] * (1 - dt * 2.6), amb[k] > 0.3 ? 1 : 0); trl[k] = Math.max(trl[k] * (1 - dt * 5), den[k] > 0.18 ? 0.5 : 0); }
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height); ctx.drawImage(bg, 0, 0);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.font = RAMPMODE ? "500 11px 'DM Mono', monospace" : "500 12px 'DM Mono', monospace"; ctx.textBaseline = "top";
+    ctx.font = RAMPMODE ? "500 9px 'DM Mono', monospace" : "500 12px 'DM Mono', monospace"; ctx.textBaseline = "top";
     const flick = Math.floor(t * 4);
     if (RAMPMODE) {
       const sweepR = sweepY >= 0 ? (sweepY * rows) | 0 : -99, pxC = (px / CW) | 0, pyR = (py / CH) | 0, gl = Math.floor(t * 14);
@@ -447,10 +447,10 @@
           }
           const pb = Math.min(PAL.length - 1, Math.max(0, ((dep[idx] - 0.55) / 0.45 * PAL.length) | 0));
           if (pb !== b) continue;
-          const v = Math.min(1, Math.sqrt(d / (9 * (N / 5200) / (sclF * sclF))));
+          const v = Math.min(1, Math.sqrt(d / (9 * (N / 5200) * (CW * CH / 104) / (sclF * sclF))));
           let ch = RAMP2[Math.min(RAMP2.length - 1, 1 + ((v * (RAMP2.length - 1)) | 0))];
           const near = Math.abs(cc - pxC) < 7 && Math.abs(rr - pyR) < 4;
-          if ((near && hash(idx, gl) > 0.55) || hash(idx, gl) > 0.994) ch = GLITCH[(hash(idx, gl + 3) * GLITCH.length) | 0];
+          if ((near && hash(idx, gl) > 0.55) || hash(idx, gl) > 0.998) ch = GLITCH[(hash(idx, gl + 3) * GLITCH.length) | 0];
           ctx.globalAlpha = 0.35 + 0.65 * v;
           if (Math.abs(rr - sweepR) < 2) { ctx.globalAlpha = 1; ctx.fillStyle = "#ffffff"; ctx.fillText(ch, cc * CW + 2, rr * CH); ctx.fillStyle = PAL[b]; continue; }
           ctx.fillText(ch, cc * CW + 2, rr * CH);
@@ -461,7 +461,7 @@
       ctx.fillStyle = "#f1f1ee"; ctx.globalAlpha = 0.22 + (0.78 * (b + 1)) / BUCKETS;
       for (let idx = 0; idx < den.length; idx++) {
         const d = den[idx]; if (d < 0.18 || amb[idx] > 0) continue;
-        const v = RAMPMODE ? Math.min(1, Math.sqrt(d / (9 * (N / 5200) / (sclF * sclF)))) : Math.min(1, d / 2.4), bk = Math.min(BUCKETS - 1, (v * BUCKETS) | 0);
+        const v = RAMPMODE ? Math.min(1, Math.sqrt(d / (9 * (N / 5200) * (CW * CH / 104) / (sclF * sclF)))) : Math.min(1, d / 2.4), bk = Math.min(BUCKETS - 1, (v * BUCKETS) | 0);
         if (bk !== b) continue;
         let ch;
         if (RAMPMODE) ch = RAMP[Math.min(8, (v * 9) | 0)];
@@ -472,7 +472,7 @@
     if (RAMPMODE) {
       ctx.fillStyle = ACC;
       for (let idx = 0; idx < trA.length; idx++) if (trA[idx] > 0.05 && amb[idx] <= 0.3) { ctx.globalAlpha = trA[idx] * 0.45; ctx.fillText(trA[idx] > 0.5 ? "+" : ".", (idx % cols) * CW + 2, ((idx / cols) | 0) * CH); }
-      ctx.globalAlpha = 1; ctx.shadowColor = ACC; ctx.shadowBlur = 10;
+      ctx.globalAlpha = 1; ctx.shadowColor = ACC; ctx.shadowBlur = 4;
       for (let idx = 0; idx < amb.length; idx++) if (amb[idx] > 0.3) ctx.fillText(amb[idx] > 3 ? "@" : amb[idx] > 1.6 ? "#" : amb[idx] > 0.9 ? "*" : "+", (idx % cols) * CW + 2, ((idx / cols) | 0) * CH);
       ctx.shadowBlur = 0;
       ctx.fillStyle = "#ffffff"; ctx.globalAlpha = 0.9;
