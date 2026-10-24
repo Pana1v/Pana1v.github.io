@@ -13,14 +13,11 @@ declare global {
 
 // Fill these as field photos land in public/; empty sections stay hidden.
 const BAND_PHOTO = '';
-// an empty src renders a placeholder slot until the photo lands in public/gallery/
 const PHOTOS: { src: string; cap: string }[] = [
   { src: '/gallery/robocon-2024.jpg', cap: 'ABU Robocon 2024, IIT Patna' },
   { src: '/gallery/origin.jpg', cap: '10xConstruction, Origin' },
   { src: '/gallery/isro-rover.jpg', cap: 'ISRO Robotics Challenge' },
   { src: '/gallery/addverb.jpg', cap: 'AMR work at Addverb' },
-  { src: '', cap: 'Photo coming soon' },
-  { src: '', cap: 'Photo coming soon' },
 ];
 
 const NAV: [string, string][] = [
@@ -204,13 +201,13 @@ function Row({ e, num, open, onToggle }: { e: Entry; num: number; open: boolean;
   return (
     <div className={`ix ${open ? 'is-open' : ''}`} data-kind={e.kinds[0]} onMouseEnter={() => hoverShape(e.shape)} onMouseLeave={() => hoverShape(null)}>
       <div
-        className="ix-row" role="button" tabIndex={0} aria-expanded={open} onClick={onToggle}
+        className={`ix-row ${e.image && !open ? '' : 'no-thumb'}`} role="button" tabIndex={0} aria-expanded={open} onClick={onToggle}
         onKeyDown={(ev) => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); onToggle(); } }}
       >
         <span className="ix-num">{pad(num)}</span>
         <span className="ix-year">{e.year}</span>
         <span className="ix-kind">{e.kinds.map((k) => <span key={k} data-kind={k} title={KINDS[k]}><Icon name={k} /></span>)}</span>
-        <span className="ix-thumb">{!open && e.image && <img src={e.image} alt="" loading="lazy" />}</span>
+        {e.image && !open && <span className="ix-thumb"><img src={e.image} alt="" loading="lazy" /></span>}
         <span className="ix-title">{e.title}</span>
         <span className="ix-sum">{e.summary}</span>
         <span className="ix-marks">
@@ -268,11 +265,11 @@ function Log() {
   return (
     <section className="sec" id="log" data-shape="field">
       <div className="wrap">
-        <Head n="01" label="Gallery" note={`${PHOTOS.filter((p) => p.src).length} photos`} />
+        <Head n="01" label="Gallery" note={`${PHOTOS.length} photos`} />
         <div className="log">
           {PHOTOS.map((p, i) => (
-            <figure key={i} className={`log-${i + 1} ${p.src ? '' : 'log-empty'}`}>
-              {p.src && <img src={p.src} alt={p.cap} loading="lazy" />}
+            <figure key={p.src} className={`log-${i + 1}`}>
+              <img src={p.src} alt={p.cap} loading="lazy" />
               <figcaption><span>{pad(i + 1)}</span>{p.cap}</figcaption>
             </figure>
           ))}
