@@ -126,20 +126,19 @@ button.il-cap:hover em{color:var(--amb)}
 .lesson p{margin:0;font-size:14px;color:var(--fg);font-style:italic}
 .tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:20px}
 .tag{font-size:11px;color:var(--body);border:1px solid var(--rule);padding:3px 9px}
-.media{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.media{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px;align-items:start}
 .media figure{margin:0}.media figcaption{margin:0 0 10px}
-.media-frame{position:relative;aspect-ratio:16/10;border:1px solid var(--rule);background:var(--elev);overflow:hidden}
-.media-frame img,.media-frame video,.band-frame img,.wr-cover img,.log figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.media-frame{position:relative;border:1px solid var(--rule);background:var(--elev);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.media-frame img,.media-frame video{display:block;width:100%;height:auto;max-height:560px;object-fit:contain}
+.band-frame img,.wr-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 @media(max-width:700px){.media{grid-template-columns:1fr}}
 
 /* field log */
-.log{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:200px;gap:16px}
-.log figure{margin:0;position:relative;grid-column:span 2;border:1px solid var(--rule);background:var(--elev);overflow:hidden}
-.log figure img{bottom:34px;height:calc(100% - 34px)}
-.log figcaption{position:absolute;left:0;right:0;bottom:0;margin:0;padding:9px 12px;background:var(--bg);border-top:1px solid var(--rule)}
-.log .log-1{grid-column:span 4;grid-row:span 2}
-.log .log-4:last-child{grid-column:1/-1}
-@media(max-width:800px){.log{grid-template-columns:1fr 1fr;grid-auto-rows:170px}.log figure{grid-column:span 1}.log .log-1{grid-column:span 2}}
+.log{display:flex;flex-wrap:wrap;gap:16px}
+.log figure{margin:0;min-width:0;border:1px solid var(--rule);background:var(--elev);overflow:hidden}
+.log figure img{display:block;width:100%;height:auto}
+.log figcaption{margin:0;padding:9px 12px;background:var(--bg);border-top:1px solid var(--rule)}
+@media(max-width:800px){.log figure{flex-basis:100% !important}}
 
 /* writing */
 .wr-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}

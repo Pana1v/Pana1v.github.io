@@ -13,11 +13,12 @@ declare global {
 
 // Fill these as field photos land in public/; empty sections stay hidden.
 const BAND_PHOTO = '';
-const PHOTOS: { src: string; cap: string }[] = [
-  { src: '/gallery/robocon-2024.jpg', cap: 'ABU Robocon 2024, IIT Patna' },
-  { src: '/gallery/origin.jpg', cap: '10xConstruction, Origin' },
-  { src: '/gallery/isro-rover.jpg', cap: 'ISRO Robotics Challenge' },
-  { src: '/gallery/addverb.jpg', cap: 'AMR work at Addverb' },
+// ar = width / height; photos sit in pairs sized by ar, so both share one height and neither is cropped
+const PHOTOS: { src: string; cap: string; ar: number }[] = [
+  { src: '/gallery/robocon-2024.jpg', cap: 'ABU Robocon 2024, IIT Patna', ar: 2.24 },
+  { src: '/gallery/origin.jpg', cap: '10xConstruction, Origin', ar: 0.68 },
+  { src: '/gallery/isro-rover.jpg', cap: 'ISRO Robotics Challenge', ar: 1.14 },
+  { src: '/gallery/addverb.jpg', cap: 'AMR work at Addverb', ar: 2.24 },
 ];
 
 const NAV: [string, string][] = [
@@ -268,8 +269,8 @@ function Log() {
         <Head n="01" label="Gallery" note={`${PHOTOS.length} photos`} />
         <div className="log">
           {PHOTOS.map((p, i) => (
-            <figure key={p.src} className={`log-${i + 1}`}>
-              <img src={p.src} alt={p.cap} loading="lazy" />
+            <figure key={p.src} style={{ flexBasis: `calc((100% - 16px) * ${p.ar / (p.ar + (PHOTOS[i ^ 1]?.ar ?? p.ar))})` }}>
+              <img src={p.src} alt={p.cap} loading="lazy" style={{ aspectRatio: p.ar }} />
               <figcaption><span>{pad(i + 1)}</span>{p.cap}</figcaption>
             </figure>
           ))}
