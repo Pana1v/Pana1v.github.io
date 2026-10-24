@@ -14,12 +14,22 @@ declare global {
 // Fill these as field photos land in public/; empty sections stay hidden.
 const BAND_PHOTO = '';
 // ar = width / height; photos sit in pairs sized by ar, so both share one height and neither is cropped
-const PHOTOS: { src: string; cap: string; ar: number }[] = [
-  { src: '/gallery/robocon-2024.jpg', cap: 'ABU Robocon 2024, IIT Patna', ar: 2.24 },
-  { src: '/gallery/origin.jpg', cap: '10xConstruction, Origin', ar: 0.68 },
-  { src: '/gallery/isro-rover.jpg', cap: 'ISRO Robotics Challenge', ar: 1.14 },
-  { src: '/gallery/addverb.jpg', cap: 'AMR work at Addverb', ar: 2.24 },
+// photos sharing a row split its width by aspect ratio, so every photo in a row is the same height
+const PHOTOS: { src: string; cap: string; ar: number; row: number; gold?: boolean }[] = [
+  { src: '/gallery/inter-iit-gold.jpg', cap: 'Inter IIT Tech Gold Medal', ar: 1, row: 0, gold: true },
+  { src: '/gallery/robocon-2024.jpg', cap: 'ABU Robocon 2024, IIT Patna', ar: 2.24, row: 0 },
+  { src: '/gallery/origin.jpg', cap: '10xConstruction, Origin', ar: 0.68, row: 1 },
+  { src: '/gallery/isro-rover.jpg', cap: 'ISRO Robotics Challenge', ar: 1.14, row: 1 },
+  { src: '/gallery/addverb.jpg', cap: 'AMR work at Addverb', ar: 2.24, row: 1 },
 ];
+
+const GALLERY_GAP = 16;
+
+function rowBasis(p: (typeof PHOTOS)[number]) {
+  const row = PHOTOS.filter((q) => q.row === p.row);
+  const arSum = row.reduce((a, q) => a + q.ar, 0);
+  return `calc((100% - ${(row.length - 1) * GALLERY_GAP}px) * ${p.ar / arSum})`;
+}
 
 const NAV: [string, string][] = [
   ...(PHOTOS.length ? [['log', 'Gallery'] as [string, string]] : []),
@@ -269,7 +279,7 @@ function Log() {
         <Head n="01" label="Gallery" note={`${PHOTOS.length} photos`} />
         <div className="log">
           {PHOTOS.map((p, i) => (
-            <figure key={p.src} style={{ flexBasis: `calc((100% - 16px) * ${p.ar / (p.ar + (PHOTOS[i ^ 1]?.ar ?? p.ar))})` }}>
+            <figure key={p.src} className={p.gold ? 'is-gold' : undefined} style={{ flexBasis: rowBasis(p) }}>
               <img src={p.src} alt={p.cap} loading="lazy" style={{ aspectRatio: p.ar }} />
               <figcaption><span>{pad(i + 1)}</span>{p.cap}</figcaption>
             </figure>
