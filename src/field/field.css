@@ -93,6 +93,8 @@ button.il-cap:hover em{color:var(--amb)}
 .ix:nth-child(odd):not(.is-open){border-right:1px solid rgba(255,255,255,.06)}
 .ix.is-open{grid-column:1/-1}
 .ix-row{display:grid;grid-template-columns:200px 28px 64px minmax(0,1fr) auto;grid-template-areas:"thumb num year kind marks" "thumb title title title title" "thumb sum sum sum sum";column-gap:14px;row-gap:8px;align-items:start;padding:14px;cursor:pointer}
+.ix-row.no-thumb{grid-template-columns:28px 64px minmax(0,1fr) auto;grid-template-areas:"num year kind marks" "title title title title" "sum sum sum sum"}
+.ix.is-open .ix-body{padding-left:14px}
 .ix-thumb{grid-area:thumb}.ix-num{grid-area:num}.ix-year{grid-area:year}.ix-kind{grid-area:kind;display:flex;gap:6px}.ix-marks{grid-area:marks}.ix-title{grid-area:title}.ix-sum{grid-area:sum}
 .ix-num,.ix-year{font-size:11px;color:var(--dim);font-variant-numeric:tabular-nums}
 .ix-kind{color:var(--k)}
@@ -109,6 +111,7 @@ button.il-cap:hover em{color:var(--amb)}
 .ix-row{grid-template-columns:120px 28px minmax(0,1fr) auto;grid-template-areas:"thumb num title marks" "thumb sum sum sum"}
 .ix-year,.ix-kind{display:none}
 .ix-thumb{width:120px}
+.ix-row.no-thumb{grid-template-columns:28px minmax(0,1fr) auto;grid-template-areas:"num title marks" "sum sum sum"}
 }
 .ix-body{padding:6px 14px 40px 228px;display:grid;gap:28px}
 @media(max-width:960px){.ix-body{padding-left:14px}}
@@ -133,9 +136,9 @@ button.il-cap:hover em{color:var(--amb)}
 .log{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:200px;gap:16px}
 .log figure{margin:0;position:relative;grid-column:span 2;border:1px solid var(--rule);background:var(--elev);overflow:hidden}
 .log figure img{bottom:34px;height:calc(100% - 34px)}
-.log .log-empty{background:repeating-linear-gradient(45deg,#1a1a1a 0 3px,#121212 3px 6px);border-style:dashed}
 .log figcaption{position:absolute;left:0;right:0;bottom:0;margin:0;padding:9px 12px;background:var(--bg);border-top:1px solid var(--rule)}
 .log .log-1{grid-column:span 4;grid-row:span 2}
+.log .log-4:last-child{grid-column:1/-1}
 @media(max-width:800px){.log{grid-template-columns:1fr 1fr;grid-auto-rows:170px}.log figure{grid-column:span 1}.log .log-1{grid-column:span 2}}
 
 /* writing */

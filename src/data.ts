@@ -271,8 +271,8 @@ export const DATA: DataStructure = {
       stack: ["C++", "ROS 2", "PCL", "CUDA"],
       stars: "\u2605 68",
       link: "https://github.com/Pana1v/Polka",
-      image: "/projects/polka-deskew-3d.gif",
-      motion: "/projects/polka-scan-merge.gif",
+      image: "/projects/polka-scan-merge.gif",
+      motion: "/projects/polka-deskew-3d.gif",
       more: ["/projects/polka-voxel.gif", "/projects/polka-self-filter.gif"]
     }
   ],
