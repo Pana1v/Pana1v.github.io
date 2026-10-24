@@ -32,8 +32,8 @@ function rowBasis(p: (typeof PHOTOS)[number]) {
 }
 
 const NAV: [string, string][] = [
-  ...(PHOTOS.length ? [['log', 'Gallery'] as [string, string]] : []),
   ['index', 'Projects'],
+  ...(PHOTOS.length ? [['log', 'Gallery'] as [string, string]] : []),
   ['writing', 'Writing'],
   ['ledger', 'Experience'],
   ['echo', 'Contact'],
@@ -272,11 +272,11 @@ function Index({ n, openId, setOpenId }: { n: string; openId: string | null; set
   );
 }
 
-function Log() {
+function Log({ n }: { n: string }) {
   return (
     <section className="sec" id="log" data-shape="field">
       <div className="wrap">
-        <Head n="01" label="Gallery" note={`${PHOTOS.length} photos`} />
+        <Head n={n} label="Gallery" note={`${PHOTOS.length} photos`} />
         <div className="log">
           {PHOTOS.map((p, i) => (
             <figure key={p.src} className={p.gold ? 'is-gold' : undefined} style={{ flexBasis: rowBasis(p) }}>
@@ -434,8 +434,8 @@ export default function App() {
       <Nav onPalette={() => setPal(true)} />
       <Hero onOpen={(id) => { setOpenId(id); setTimeout(() => goTo('index'), 40); }} />
       {BAND_PHOTO && <Band />}
-      {PHOTOS.length > 0 && <Log />}
-      <Index n={sn(1)} openId={openId} setOpenId={setOpenId} />
+      <Index n={pad(1)} openId={openId} setOpenId={setOpenId} />
+      {PHOTOS.length > 0 && <Log n={pad(2)} />}
       <Writing n={sn(2)} />
       <Ledger n={sn(3)} />
       <Echo n={sn(4)} />
