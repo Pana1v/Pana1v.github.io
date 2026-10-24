@@ -24,6 +24,7 @@ export interface Project {
   status?: string;
   image?: string;
   motion?: string;
+  more?: string[];
   github?: string;
   demo?: string;
 }
@@ -35,6 +36,9 @@ export interface MyProject {
   stack: string[];
   stars: string;
   link: string;
+  image?: string;
+  motion?: string;
+  more?: string[];
 }
 
 export interface OpenSourceContribution {
@@ -147,14 +151,28 @@ export const DATA: DataStructure = {
   ],
   projects: [
     {
+      id: "egocentric-pipeline",
+      n: "00",
+      title: "Egocentric Data Pipeline",
+      subtitle: "Freelance",
+      description: "Built an egocentric data collection and processing pipeline that turns long first-person videos into structured, annotated sequences. Integrated HaMeR and WiLoR for hand tracking and MANO pose estimation, and optimized FastFoundationStereo for image-to-depth at 9x real-time. Automated video segmentation and prelabelling with locally hosted and API-based models, producing segment-level labels for task, subtask, difficulty, venue and confidence.",
+      year: "2025 — 2026",
+      tags: ["HaMeR", "WiLoR", "MANO", "FoundationStereo", "Prelabelling"],
+      status: "Freelance",
+      image: "/projects/ego-review-ui.jpg",
+      motion: "/projects/ego-hand-actions.mp4",
+      more: ["/projects/ego-hamer-overlay.mp4", "/projects/ego-hamer-compare.jpg", "/projects/ego-stereo-depth.jpg"]
+    },
+    {
       id: "leap",
       n: "01",
       title: "LEAP",
-      subtitle: "Learning-Augmented Exact Optimization for Pick-and-Place",
+      subtitle: "Learning-Augmented Exact Optimization for Asymmetric Pick-and-Place Sequencing",
       description: "Formulated robotic pick-and-place sequencing as an asymmetric TSP with bin-dependent transition costs. Replaced MTZ subtour constraints with a CP-SAT Hamiltonian circuit formulation for 5-7x solver speedup. Designed LEAP (Learning-Enhanced Arc Pruning) using imitation-learned GNN logits to reduce decision variables from O(N\u00B2) to O(Nk). Achieved 17.5x speedup at N=200 with worst-case optimality gap of 0.06%.",
       year: "2025 — 2026",
-      tags: ["PyTorch", "GATv2", "CP-SAT", "Imitation Learning"],
-      status: "Manuscript"
+      tags: ["PyTorch", "GAT", "CP-SAT", "Imitation Learning"],
+      status: "Manuscript",
+      image: "/projects/gnn-pipeline.svg"
     },
     {
       id: "barn-challenge",
@@ -194,17 +212,6 @@ export const DATA: DataStructure = {
       image: "/projects/go-slam.png"
     },
     {
-      id: "gnn-robotic-manipulation",
-      n: "05",
-      title: "Graph-Learned Manipulation",
-      subtitle: "GNN Combinatorial Optimization",
-      description: "Formulated NP-Hard Pick-and-Place sequencing as a graph classification task using GATv2. Trained via supervised learning on ILP solver demonstrations with curriculum learning, scaling from 5 to 200+ objects. Achieved <2% gap to ILP for 40 objects and <400ms inference where ILP failed to produce solutions.",
-      year: "2025",
-      tags: ["PyTorch", "GATv2", "Imitation Learning"],
-      status: "Manuscript",
-      github: "https://github.com/Pana1v"
-    },
-    {
       id: "autonomous-nav-slam",
       n: "06",
       title: "Autonomous Nav & SLAM",
@@ -213,7 +220,8 @@ export const DATA: DataStructure = {
       year: "2024",
       tags: ["ROS 2", "Nav2", "Gazebo", "ESP32"],
       status: "Completed",
-      github: "https://github.com/Pana1v"
+      github: "https://github.com/Pana1v",
+      image: "/projects/btp-slam.jpg"
     },
     {
       id: "abu-robocon",
@@ -222,7 +230,9 @@ export const DATA: DataStructure = {
       subtitle: "Captain, IIT Patna",
       description: "Led 60+ students to the National Finals of ABU Robocon, one of only two IITs to qualify in Asia's largest robotics event. Achieved the highest score among IIT teams in 2024. Designed PCBs for motor control, sensor integration, and power management. Founded a 35-student team for ISRO Robotics Challenge 2024.",
       year: "2022 — 2024",
-      tags: ["PCB", "Multi-Robot", "ROS", "Path Planning"]
+      tags: ["PCB", "Multi-Robot", "ROS", "Path Planning"],
+      image: "/projects/robocon-robot.jpg",
+      motion: "/gallery/robocon-2024.jpg"
     },
     {
       id: "flipkart-grid",
@@ -247,7 +257,7 @@ export const DATA: DataStructure = {
   skills: {
     "Systems": ["C/C++", "Python", "Bash", "ROS 2 Humble", "Nav2", "CMake", "Colcon", "Docker", "Linux", "Git", "CI/CD"],
     "Autonomy": ["SLAM", "Localization (AMCL)", "Path Planning", "Sensor Fusion (EKF)", "Custom Motion Models", "MPPI"],
-    "Perception": ["OpenCV", "YOLO v9/v11", "DeepSort", "U-Net", "OCR", "PyTorch", "GNN (GATv2)"],
+    "Perception": ["OpenCV", "YOLO v9/v11", "DeepSort", "U-Net", "OCR", "PyTorch", "GNN (GAT)"],
     "Simulation": ["Gazebo", "RViz2", "Foxglove", "NVIDIA Isaac Sim"],
     "Embedded": ["micro-ROS", "ESP32", "Raspberry Pi", "PCB Design (KiCAD)"],
     "Web": ["TypeScript", "Node.js", "WebSockets"],
@@ -259,8 +269,11 @@ export const DATA: DataStructure = {
       tagline: "Multi-LiDAR fusion & pointcloud processing for ROS 2",
       description: "A ROS 2 multi-LiDAR fusion node that merges heterogeneous PointCloud2 and LaserScan streams into unified outputs with a single composable pipeline. Features per-source filtering, TF2-aligned fusion, optional CUDA acceleration, and IMU-based deskewing with per-source IMU overrides for articulated platforms. Supports ROS 2 Humble and Jazzy.",
       stack: ["C++", "ROS 2", "PCL", "CUDA"],
-      stars: "\u2605 22",
-      link: "https://github.com/Pana1v/Polka"
+      stars: "\u2605 68",
+      link: "https://github.com/Pana1v/Polka",
+      image: "/projects/polka-deskew-3d.gif",
+      motion: "/projects/polka-scan-merge.gif",
+      more: ["/projects/polka-voxel.gif", "/projects/polka-self-filter.gif"]
     }
   ],
   contributions: [
@@ -281,6 +294,21 @@ export const DATA: DataStructure = {
     }
   ],
   blogs: [
+    {
+      id: "deskew-lidar",
+      n: "00",
+      title: "To deskew LiDAR data or not?",
+      subtitle: "An analysis on public datasets of why and when deskewing point clouds matters, and how polka does it compared with GLIM, rko_lio and LIO-SAM.",
+      date: "Oct 2026",
+      readTime: "Read on Substack",
+      tags: ["LiDAR", "Point Clouds", "Polka"],
+      excerpt: "An analysis on public datasets of why and when deskewing point clouds matters, and how polka does it compared with GLIM, rko_lio and LIO-SAM.",
+      source: "Substack",
+      href: "https://pana1v.substack.com/p/to-deskew-lidar-data-or-not",
+      content: "",
+      image: "/writing/deskew-cover.jpg",
+      motion: "/writing/deskew-2.jpg"
+    },
     {
       id: "intrinsic-challenge",
       n: "01",
