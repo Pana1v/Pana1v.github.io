@@ -138,6 +138,7 @@ button.il-cap:hover em{color:var(--amb)}
 .log figure{margin:0;min-width:0;border:1px solid var(--rule);background:var(--elev);overflow:hidden}
 .log figure img{display:block;width:100%;height:auto}
 .log figcaption{margin:0;padding:9px 12px;background:var(--bg);border-top:1px solid var(--rule)}
+.log figure.is-gold{border-color:#E8B931;box-shadow:0 0 0 1px #E8B931}
 @media(max-width:800px){.log figure{flex-basis:100% !important}}
 
 /* writing */
