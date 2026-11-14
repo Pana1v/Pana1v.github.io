@@ -1,4 +1,4 @@
-:root{--bg:#0a0a0a;--elev:#121212;--fg:#f1f1ee;--body:#d0d0ca;--dim:#a0a09a;--faint:#6d6d68;--rule:rgba(255,255,255,.1);--glass:rgba(18,18,18,.48);--glass-b:rgba(255,255,255,.09);--amb:#4ADE80;
+:root{--bg:#0a0a0a;--elev:#121212;--fg:#f1f1ee;--body:#d0d0ca;--dim:#a0a09a;--faint:#6d6d68;--rule:rgba(255,255,255,.1);--glass:rgba(18,18,18,.48);--glass-b:rgba(255,255,255,.09);--amb:#B22222;
 --head:"Orbitron",sans-serif;--mono:"DM Mono",ui-monospace,monospace;
 /* aliases for the Ctrl+Shift+D data dashboard */
 --bg-elev:var(--elev);--fg-dim:var(--dim);--fg-faint:var(--faint);--accent-soft:rgba(255,255,255,.07)}
@@ -231,3 +231,21 @@ border:1px solid var(--glass-b);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0
 .echo-links li:last-child{border-bottom:0}
 .bk-btn{transition:background 160ms ease,box-shadow 200ms ease}
 .bk:not(.ghost) .bk-btn:hover{box-shadow:0 0 24px rgba(74,222,128,.35)}
+
+/* --- rice variant: blood red + linux rice styling --- */
+[data-theme="rice"]{
+  --glass:rgba(12,12,12,.28);
+  --glass-b:rgba(255,255,255,.04);
+  --rule:rgba(255,255,255,.05);
+}
+[data-theme="rice"] body{
+  background:var(--bg),
+    radial-gradient(ellipse 900% 700% at 50% -10%, rgba(178,34,34,.16), transparent 55%),
+    repeating-conic-gradient(from 90deg at 50% 50%, rgba(178,34,34,.04) 0deg, rgba(178,34,34,.04) 1deg, transparent 1deg, transparent 90deg);
+  background-attachment: fixed;
+}
+[data-theme="rice"] .nav{background:rgba(8,8,8,.55);backdrop-filter:blur(28px) saturate(1.4);border-bottom:1px solid rgba(178,34,34,.15)}
+[data-theme="rice"] .bk-btn{box-shadow:0 0 30px rgba(178,34,34,.4)}
+[data-theme="rice"] .hero-side,[data-theme="rice"] .wr,[data-theme="rice"] .ix-table,[data-theme="rice"] .led-grid,[data-theme="rice"] .media-frame,[data-theme="rice"] .log figure{
+  border:1px solid rgba(178,34,34,.18);
+}
