@@ -159,9 +159,6 @@ export const DATA: DataStructure = {
       year: "2025 — 2026",
       tags: ["HaMeR", "WiLoR", "MANO", "FoundationStereo", "Prelabelling"],
       status: "Freelance",
-      image: "/projects/ego-review-ui.jpg",
-      motion: "/projects/ego-hand-actions.mp4",
-      more: ["/projects/ego-hamer-overlay.mp4", "/projects/ego-hamer-compare.jpg", "/projects/ego-stereo-depth.jpg"]
     },
     {
       id: "leap",
